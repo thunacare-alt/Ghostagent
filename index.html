@@ -736,6 +736,24 @@ body.fx-to-premium .ufx-mist{ animation:ufx-fog 1180ms cubic-bezier(.16,1,.3,1) 
 .u-comic .nav-links a:hover{color:var(--red)}
 .u-comic .nav .btn{padding:12px 22px;font-size:.84rem;box-shadow:var(--ring),var(--pop-sm)}
 @media(max-width:1180px){.u-comic .nav-links{display:none}}
+.u-comic .menu-btn{display:none;width:48px;height:48px;border:var(--bd);background:var(--white);
+  box-shadow:var(--ring),var(--pop-sm);cursor:pointer;align-items:center;justify-content:center;
+  flex-direction:column;gap:4px;border-radius:12px;flex:0 0 auto}
+.u-comic .menu-btn i{display:block;width:20px;height:3px;background:var(--navy);transition:transform .3s var(--ease, ease),opacity .2s}
+.u-comic .menu-btn[aria-expanded="true"] i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.u-comic .menu-btn[aria-expanded="true"] i:nth-child(2){opacity:0}
+.u-comic .menu-btn[aria-expanded="true"] i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:1120px){.u-comic .menu-btn{display:flex}.u-comic .nav>.wrap .btn{display:none}}
+.u-comic .c-sheet{position:fixed;left:0;right:0;top:var(--sb);bottom:0;z-index:150;background:var(--white);
+  border-bottom:var(--bd);display:flex;flex-direction:column;justify-content:center;gap:0;padding:20px 22px 36px;
+  overflow-y:auto;transform:translateY(-103%);transition:transform .45s cubic-bezier(.22,1,.36,1);
+  visibility:hidden}
+.u-comic .c-sheet.open{transform:none;visibility:visible}
+.u-comic .c-sheet a{font-family:var(--punch);font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--navy);text-decoration:none;padding:15px 2px;border-bottom:2px solid rgba(20,24,48,.12)}
+.u-comic .c-sheet a:hover{color:var(--red)}
+.u-comic .c-sheet .c-sheet-hire{color:var(--red);border-bottom:none;margin-top:10px}
+@media(min-width:1121px){.u-comic .c-sheet{display:none}}
 .u-comic .hero{position:relative;border-bottom:var(--bd);overflow:hidden;padding:var(--s-5) 0 calc(var(--s-5) + 12px)}
 .u-comic .hero .wrap{position:relative;z-index:3}
 .u-comic .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:var(--s-4);align-items:center}
@@ -1762,8 +1780,21 @@ body.fx-to-premium .ufx-mist{ animation:ufx-fog 1180ms cubic-bezier(.16,1,.3,1) 
       <a href="#c-kryptonite">Kryptonite</a>
     </div>
     <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Hire GHOST</span></a>
+    <button class="menu-btn" id="menuBtnC" aria-expanded="false" aria-controls="sheetC" aria-label="Open menu"><i></i><i></i><i></i></button>
   </div>
 </nav>
+
+<div class="c-sheet" id="sheetC">
+  <a href="#c-powers">Powers</a>
+  <a href="#c-villains">Villains</a>
+  <a href="#c-departments">Departments</a>
+  <a href="#c-day">24 hours</a>
+  <a href="#c-hire">How to hire</a>
+  <a href="#c-powerlevels">Power levels</a>
+  <a href="#c-pay">How to pay</a>
+  <a href="#c-kryptonite">Kryptonite</a>
+  <a class="c-sheet-hire" href="https://app.ghostagents.in/">Hire GHOST &#8594;</a>
+</div>
 
 <header class="hero" id="c-top">
   <div class="burst" aria-hidden="true"></div>
@@ -2857,6 +2888,21 @@ window.__initPremium = function(){
       sset("ghost.y." + u, window.scrollY);
     }, 240);
   }, { passive:true });
+
+  /* ---------- comic universe mobile menu ---------- */
+  var cBtn = document.getElementById("menuBtnC"), cSheet = document.getElementById("sheetC");
+  if(cBtn && cSheet){
+    var setComic = function(open){
+      cSheet.classList.toggle("open", open);
+      cBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.style.overflow = open ? "hidden" : "";
+    };
+    cBtn.addEventListener("click", function(){ setComic(!cSheet.classList.contains("open")); });
+    [].forEach.call(cSheet.querySelectorAll("a"), function(a){
+      a.addEventListener("click", function(){ setComic(false); });
+    });
+    addEventListener("keydown", function(e){ if(e.key === "Escape") setComic(false); });
+  }
 })();
 
 </script>
