@@ -194,19 +194,19 @@ footer a:hover{color:var(--ink)}
     <!-- LIVE DEMO -->
     <div class="demo" id="demo">
       <div class="demo-top">
-        <span class="live"><i></i>LIVE AGENT</span>
-        <span>this is not a recording — every run is a real request</span>
+        <span class="live"><i></i>ARIA · LIVE</span>
+        <span>our sales agent, answering right now — not a script, not a recording</span>
       </div>
       <div class="demo-body">
         <div class="chips">
-          <button class="chip" data-t="https://ghostagents.in what is missing from this page?">Brief a website</button>
-          <button class="chip" data-t="Client wants 4 nights Munnar in Dec, 2 adults, budget 60k. Turn this into a booking note with the open questions.">Turn a message into a note</button>
-          <button class="chip" data-t="Invoice: Rs 45,000 from Live The Day Holidays, 3 nights Munnar, dated 12 Nov 2026. Pull out the facts.">Read an invoice</button>
-          <button class="chip" data-t="List the 5 questions a travel agent must ask before quoting a Kerala package.">Do the thinking</button>
+          <button class="chip" data-t="What is GHOST, in one line, and what does it cost?">Ask about the price</button>
+          <button class="chip" data-t="We run a 6-person travel agency in Kochi. What would GHOST actually do for us?">Your business, her answer</button>
+          <button class="chip" data-t="Which is the better buy for a small firm — GHOST at Rs 15,000 a month or a junior hire?">GHOST vs a junior hire</button>
+          <button class="chip" data-t="https://ghostagents.in what would you change on this page?">Give her your website</button>
         </div>
         <div class="row">
-          <input class="din" id="q" placeholder="Paste a link to brief, or a message to work on…" maxlength="400" />
-          <button class="run" id="go">Run agent</button>
+          <input class="din" id="q" placeholder="Ask Aria anything — or paste a link and she will read it…" maxlength="400" />
+          <button class="run" id="go">Ask Aria</button>
         </div>
         <div class="out" id="out">
           <div class="trace" id="trace"></div>
@@ -215,8 +215,8 @@ footer a:hover{color:var(--ink)}
         </div>
       </div>
       <div class="demo-foot">
-        <span id="meta">Paste a link and he reads the real page. Paste a message and he works on it.</span>
-        <span>Nothing you type is stored.</span>
+        <span id="meta">Aria has no tools in this demo — she cannot send, book or change anything.</span>
+        <span>Nothing you type is stored · 8 runs per hour</span>
       </div>
     </div>
   </div>
@@ -397,7 +397,7 @@ footer a:hover{color:var(--ink)}
   async function run(){
     var input = (q.value || "").trim();
     if (input.length < 4){ q.focus(); return; }
-    go.disabled = true; go.textContent = "Working…";
+    go.disabled = true; go.textContent = "Aria is typing…";
     out.classList.add("on"); trace.innerHTML = '<div class="tstep"><b>›</b><span>sent to the agent…</span></div>';
     facts.innerHTML = ""; answer.textContent = ""; answer.classList.remove("err");
     try {
@@ -416,7 +416,7 @@ footer a:hover{color:var(--ink)}
       trace.innerHTML = '<div class="tstep"><b>!</b><span>could not reach the demo</span></div>';
       answer.classList.add("err"); answer.textContent = "The demo service did not answer. Try again, or message us on WhatsApp.";
     } finally {
-      go.disabled = false; go.textContent = "Run agent";
+      go.disabled = false; go.textContent = "Ask Aria";
     }
   }
 
