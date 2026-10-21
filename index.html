@@ -1,2911 +1,428 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GHOST — the Super Employee for your business</title>
-<meta name="description" content="Meet GHOST, the Super Employee. One hire who handles enquiries, operations, finance, marketing, staff and reporting on WhatsApp. Works 24 hours. Takes no leave. Never resigns.">
-<link rel="canonical" href="https://ghostagents.in/">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="GHOST">
-<meta property="og:url" content="https://ghostagents.in/">
-<meta property="og:title" content="GHOST — the Super Employee for your business">
-<meta property="og:description" content="One hire who handles enquiries, operations, finance, marketing, staff and reporting on WhatsApp. Works 24 hours. Takes no leave. Never resigns.">
-<meta property="og:image" content="https://ghostagents.in/assets/og-ghost.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="GHOST — the Super Employee for your business">
-<meta property="og:locale" content="en_IN">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GHOST — the Super Employee for your business">
-<meta name="twitter:description" content="One hire who handles enquiries, operations, finance, marketing, staff and reporting on WhatsApp. Works 24 hours. Takes no leave. Never resigns.">
-<meta name="twitter:image" content="https://ghostagents.in/assets/og-ghost.png">
-<meta name="theme-color" content="#0B0C0E" id="themeColor">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0C0E'/%3E%3Ctext x='32' y='45' font-family='Helvetica,Arial,sans-serif' font-size='40' font-weight='700' letter-spacing='1' text-anchor='middle' fill='%23F8F8FF'%3EG%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GHOST — the AI employee that works on WhatsApp</title>
+<meta name="description" content="GHOST is an AI employee for your business: it answers customers, runs operations, keeps the books and reports to you — on WhatsApp. ₹15,000 per agent per month for 5 users. Live in two weeks." />
+<link rel="canonical" href="https://ghostagents.in/" />
+<meta property="og:title" content="GHOST — the AI employee that works on WhatsApp" />
+<meta property="og:description" content="One agent that answers customers, runs ops and keeps the books. ₹15,000/month, 5 users, live in two weeks." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ghostagents.in/" />
+<meta name="theme-color" content="#08090b" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2308090b'/><text x='50' y='72' font-size='62' font-family='system-ui' font-weight='700' fill='%23f0b429' text-anchor='middle'>G</text></svg>" />
 <style>
-/* ===================== shell: switch bar + universe transitions ============ */
-:root{ --sb:50px; }
-@media(max-width:700px){ :root{ --sb:44px; } }
-
-html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
-body{ margin:0; padding-top:var(--sb); overflow-x:hidden;
-  transition:background-color .5s linear; }
-body.uni-premium{ background:#0B0C0E; }
-body.uni-comic{ background:#F5F1E6; }
-
-body.uni-premium #universe-comic{ display:none; }
-body.uni-comic  #universe-premium{ display:none; }
-
-.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
-
-/* ==========================================================================
-   THE SWITCH BAR — one control, two native accents
-   ========================================================================== */
-.sbar{
-  position:fixed; top:0; left:0; right:0; height:var(--sb); z-index:9600;
-  display:flex; align-items:center; justify-content:center;
-  transition:background-color .5s ease, border-color .5s ease, box-shadow .5s ease;
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08090b; --bg2:#0d0f12; --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.06);
+  --ink:#f4f5f7; --mut:#9aa2ad; --dim:#6b7380;
+  --acc:#f0b429; --acc2:#ffd166; --ok:#3ddc97; --bad:#ff6b6b;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  --r:16px; --max:1160px;
 }
-.sbar-in{ display:flex; align-items:center; padding:0 18px; }
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+h2.sec-t{font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em;line-height:1.15;font-weight:650}
+p.lede{color:var(--mut);font-size:clamp(15px,1.5vw,17px);max-width:62ch}
 
-.uswitch{
-  display:inline-flex; align-items:center; gap:14px; line-height:1;
-  border:0; background:none; padding:0; cursor:pointer;
-}
-.uswitch-lbl{ white-space:nowrap; transition:color .4s ease; }
-.uswitch-track{
-  position:relative; display:block; width:54px; height:28px; flex:none;
-  transition:background-color .5s ease, border-color .5s ease, box-shadow .5s ease;
-}
-.uswitch-knob{ position:absolute; display:block; }
+/* nav */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(8,9,11,.78);border-bottom:1px solid var(--line2)}
+nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.16em;font-size:14px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 14px var(--acc)}
+.nlinks{display:flex;gap:26px;align-items:center}
+.nlinks a{color:var(--mut);font-size:14.5px}
+.nlinks a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:14.5px;border:1px solid transparent;transition:.18s;cursor:pointer}
+.btn-p{background:var(--acc);color:#151005}
+.btn-p:hover{background:var(--acc2);transform:translateY(-1px)}
+.btn-g{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.02)}
+.btn-g:hover{border-color:rgba(255,255,255,.28)}
+@media(max-width:860px){.nlinks{display:none}}
 
-/* ---------- premium accent: hairline glass, a knob that drifts ---------- */
-body.uni-premium .sbar{
-  background:rgba(11,12,14,.72); backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  border-bottom:1px solid rgba(248,248,255,.09);
-}
-body.uni-premium .uswitch-lbl{
-  font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.62rem;
-  letter-spacing:.2em; text-transform:uppercase; color:#8B929D; font-weight:400;
-}
-body.uni-premium .uswitch:hover .uswitch-lbl{ color:#F8F8FF; }
-body.uni-premium .uswitch-track{
-  border:1px solid rgba(248,248,255,.16); border-radius:100px;
-  background:rgba(248,248,255,.03);
-}
-body.uni-premium .uswitch-knob{
-  top:3px; left:3px; width:20px; height:20px; border-radius:50%;
-  background:rgba(159,180,255,.22);
-  box-shadow:0 0 0 1px rgba(159,180,255,.40), 0 0 20px 3px rgba(159,180,255,.26);
-  transform:translateX(0);
-  transition:transform .62s cubic-bezier(.16,1,.3,1),
-             background-color .5s ease, box-shadow .5s ease;
-}
-body.uni-premium .uswitch:hover .uswitch-knob{ background:rgba(159,180,255,.32); }
-body.uni-premium .uswitch:focus-visible .uswitch-track{
-  outline:2px solid #9FB4FF; outline-offset:3px; }
+/* hero */
+.hero{padding:76px 0 40px;position:relative}
+.hero:before{content:"";position:absolute;inset:-10% -20% auto -20%;height:520px;background:radial-gradient(60% 60% at 30% 0%,rgba(240,180,41,.14),transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(34px,5.6vw,64px);line-height:1.04;letter-spacing:-.035em;font-weight:700;max-width:19ch}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero p{margin-top:20px;color:var(--mut);font-size:clamp(16px,1.9vw,19px);max-width:56ch}
+.pricebar{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-top:26px;font-size:15px;color:var(--ink)}
+.pricebar b{font-size:19px;letter-spacing:-.01em}
+.pricebar span{color:var(--dim)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:center}
+.cta small{color:var(--dim);font-size:13px}
 
-/* ---------- comic accent: gold band, ink rules, a knob that snaps ---------- */
-body.uni-comic .sbar{
-  background:#F5B21B; border-bottom:4px solid #0A1024;
-  box-shadow:0 4px 0 rgba(10,16,36,.16);
-  backdrop-filter:none; -webkit-backdrop-filter:none;
-}
-body.uni-comic .sbar::before{
-  content:""; position:absolute; inset:0; pointer-events:none;
-  background-image:radial-gradient(#0A1024 1.3px,transparent 1.3px);
-  background-size:13px 13px; opacity:.09;
-}
-body.uni-comic .sbar-in{ position:relative; z-index:1; }
-body.uni-comic .uswitch-lbl{
-  font-family:'Luckiest Guy',system-ui,cursive; font-size:.88rem;
-  letter-spacing:.08em; text-transform:uppercase; color:#0A1024;
-}
-body.uni-comic .uswitch:hover .uswitch-lbl{ color:#C3102C; }
-body.uni-comic .uswitch-track{
-  border:3px solid #0A1024; border-radius:3px; background:#FFFFFF;
-  box-shadow:3px 3px 0 #0A1024;
-}
-body.uni-comic .uswitch-knob{
-  top:0; left:0; width:50%; height:100%; border-radius:1px;
-  background:#C3102C; border-left:3px solid #0A1024;
-  transform:translateX(100%);
-  transition:transform .34s cubic-bezier(.2,1.7,.42,1), background-color .3s ease;
-}
-body.uni-comic .uswitch:hover .uswitch-knob{ background:#9C0C22; }
-body.uni-comic .uswitch:focus-visible .uswitch-track{
-  outline:4px solid #0A57C9; outline-offset:3px; }
+/* demo */
+.demo{margin:46px 0 8px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));overflow:hidden}
+.demo-top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line2);font-family:var(--mono);font-size:12px;color:var(--mut)}
+.live{display:inline-flex;align-items:center;gap:7px;color:var(--ok);font-weight:600;letter-spacing:.08em}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.demo-body{padding:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{font-size:13px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);color:var(--mut);cursor:pointer;transition:.15s;background:transparent}
+.chip:hover{color:var(--ink);border-color:rgba(240,180,41,.5)}
+.row{display:flex;gap:10px}
+input.din{flex:1;background:#0a0c0f;border:1px solid var(--line);border-radius:12px;padding:15px 16px;color:var(--ink);font-size:15px;font-family:var(--sans);outline:none}
+input.din:focus{border-color:rgba(240,180,41,.55);box-shadow:0 0 0 3px rgba(240,180,41,.10)}
+.run{padding:0 22px;border-radius:12px;background:var(--acc);border:0;color:#151005;font-weight:650;font-size:15px;cursor:pointer;white-space:nowrap}
+.run:disabled{opacity:.55;cursor:progress}
+.out{margin-top:16px;display:none}
+.out.on{display:block}
+.trace{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.tstep{display:flex;gap:10px;align-items:flex-start;font-family:var(--mono);font-size:12.5px;color:var(--mut)}
+.tstep b{color:var(--ok);font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:0 0 14px}
+.fact{border:1px solid var(--line2);border-radius:12px;padding:11px 13px;background:rgba(255,255,255,.02)}
+.fact k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+.fact v{font-size:13.5px;color:var(--ink);word-break:break-word}
+.answer{white-space:pre-wrap;font-size:15px;color:#e7e9ec;border-left:2px solid var(--acc);padding:2px 0 2px 16px}
+.answer.err{border-color:var(--bad);color:#ffd7d7}
+.demo-foot{padding:12px 18px;border-top:1px solid var(--line2);color:var(--dim);font-size:12.5px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:640px){.row{flex-direction:column}.run{padding:14px}}
 
-/* mid-flight the knob leans into the direction of travel */
-body.uni-switching.uni-comic .uswitch-knob{ transform:translateX(100%) rotate(2.6deg); }
+/* strip */
+.strip{margin-top:44px;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);padding:22px 0}
+.strip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:center}
+.strip-grid b{display:block;font-size:clamp(20px,2.6vw,30px);letter-spacing:-.02em}
+.strip-grid span{font-size:12.5px;color:var(--dim);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:720px){.strip-grid{grid-template-columns:repeat(2,1fr);gap:22px}}
 
-@media(max-width:430px){
-  .uswitch{ gap:10px; }
-  body.uni-premium .uswitch-lbl{ font-size:.55rem; letter-spacing:.14em; }
-  body.uni-comic .uswitch-lbl{ font-size:.76rem; }
-}
+/* sections */
+section.blk{padding:88px 0;border-bottom:1px solid var(--line2)}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:38px;flex-wrap:wrap}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:900px){.grid3,.grid2{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:22px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01))}
+.card h3{font-size:17px;font-weight:640;margin-bottom:8px;letter-spacing:-.01em}
+.card p{color:var(--mut);font-size:14.5px}
+.card ul{margin-top:10px;padding-left:0;list-style:none;color:var(--mut);font-size:14px}
+.card li{padding-left:16px;position:relative;margin-top:5px}
+.card li:before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--acc);opacity:.75}
+.num{font-family:var(--mono);font-size:11.5px;color:var(--acc);letter-spacing:.12em;margin-bottom:12px;display:block}
 
-/* ==========================================================================
-   TRANSITIONS — comic arrives by ink, premium arrives by mist
-   ========================================================================== */
-.ufx{ position:fixed; top:var(--sb); left:0; right:0; bottom:0; z-index:9500;
-  pointer-events:none; overflow:hidden; }
-.ufx > *{ position:absolute; inset:0; opacity:0; }
-body.uni-switching .ufx{ pointer-events:auto; }
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.step{padding:22px;border-right:1px solid var(--line2)}
+.step:last-child{border-right:0}
+.step b{display:block;font-size:15px;margin-bottom:6px}
+.step p{color:var(--mut);font-size:14px}
+.step em{font-family:var(--mono);font-size:11.5px;color:var(--dim);font-style:normal;display:block;margin-bottom:10px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}.step{border-bottom:1px solid var(--line2)}.step:nth-child(2n){border-right:0}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}.step{border-right:0}}
 
-/* --- shared: mist layers (used entering premium) --- */
-.ufx-blur{ /* backdrop-filter applied by the animation only */ }
-.ufx-mist{ background:
-  radial-gradient(140% 108% at 50% 50%, rgba(11,12,14,0) 8%, #0B0C0E 74%),
-  linear-gradient(#0B0C0E,#0B0C0E); }
+/* price */
+.pcard{border:1px solid rgba(240,180,41,.35);border-radius:22px;padding:30px;background:linear-gradient(180deg,rgba(240,180,41,.09),rgba(240,180,41,.02));max-width:620px}
+.pcard .amt{font-size:clamp(34px,4.6vw,50px);font-weight:700;letter-spacing:-.03em;line-height:1}
+.pcard .per{color:var(--mut);font-size:14.5px;margin-top:8px}
+.pcard ul{list-style:none;margin-top:22px;display:grid;gap:9px}
+.pcard li{color:#e7e9ec;font-size:14.5px;padding-left:24px;position:relative}
+.pcard li:before{content:"✓";position:absolute;left:0;color:var(--acc);font-weight:700}
+.tbl{width:100%;border-collapse:collapse;margin-top:26px;font-size:14.5px}
+.tbl th,.tbl td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line2)}
+.tbl th{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:500}
+.tbl td:first-child{color:var(--ink)}
+.tbl td{color:var(--mut)}
 
-/* --- ink layers (used entering comic) --- */
-.ufx-panel{
-  left:-16%; width:132%; background:#F5F1E6;
-  border-right:6px solid #0A1024; transform:skewX(-11deg) translateX(-142%);
-  opacity:1;
-}
-.ufx-dots{ position:absolute; inset:0;
-  background-image:radial-gradient(#0A1024 1.4px,transparent 1.4px);
-  background-size:13px 13px; opacity:.10; }
-.ufx-lines{
-  background:repeating-conic-gradient(from 8deg at 50% 50%,
-    rgba(10,16,36,.30) 0deg 1.1deg, rgba(10,16,36,0) 1.1deg 5deg);
-  transform:scale(.55);
-}
-.ufx-flash{ background:#FFD35E; }
+/* limits */
+.limits{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.lim{border-left:2px solid rgba(255,107,107,.55);padding:4px 0 4px 16px}
+.lim b{display:block;font-size:15px;margin-bottom:3px}
+.lim p{color:var(--mut);font-size:14px}
+@media(max-width:760px){.limits{grid-template-columns:1fr}}
 
-/* ---------- premium -> comic : 760ms, hard and fast ---------- */
-body.fx-to-comic .ufx-panel{ animation:ufx-ink 760ms cubic-bezier(.52,0,.24,1) forwards; }
-body.fx-to-comic .ufx-lines{ animation:ufx-speed 620ms ease-out forwards; }
-body.fx-to-comic .ufx-flash{ animation:ufx-flash 380ms ease-out forwards; }
+/* faq */
+details{border-bottom:1px solid var(--line2);padding:18px 0}
+summary{cursor:pointer;font-size:16px;font-weight:550;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--acc);font-size:20px;line-height:1}
+details[open] summary:after{content:"−"}
+details p{color:var(--mut);font-size:15px;margin-top:12px;max-width:70ch}
 
-@keyframes ufx-ink{
-  0%   { transform:skewX(-11deg) translateX(-142%); }
-  44%  { transform:skewX(-11deg) translateX(-6%); }
-  56%  { transform:skewX(-11deg) translateX(-6%); }
-  100% { transform:skewX(-11deg) translateX(128%); }
-}
-@keyframes ufx-speed{
-  0%   { opacity:0; transform:scale(.55); }
-  30%  { opacity:.55; }
-  100% { opacity:0; transform:scale(2.1); }
-}
-@keyframes ufx-flash{
-  0%   { opacity:0; }
-  46%  { opacity:.42; }
-  100% { opacity:0; }
-}
-
-/* ---------- comic -> premium : 1180ms, dissolve and resolve ---------- */
-body.fx-to-premium .ufx-blur{ animation:ufx-defocus 1180ms cubic-bezier(.16,1,.3,1) forwards; }
-body.fx-to-premium .ufx-mist{ animation:ufx-fog 1180ms cubic-bezier(.16,1,.3,1) forwards; }
-
-@keyframes ufx-defocus{
-  0%   { opacity:1; backdrop-filter:blur(0px) saturate(1);
-         -webkit-backdrop-filter:blur(0px) saturate(1); }
-  46%  { opacity:1; backdrop-filter:blur(30px) saturate(.08);
-         -webkit-backdrop-filter:blur(30px) saturate(.08); }
-  54%  { opacity:1; backdrop-filter:blur(30px) saturate(.08);
-         -webkit-backdrop-filter:blur(30px) saturate(.08); }
-  100% { opacity:1; backdrop-filter:blur(0px) saturate(1);
-         -webkit-backdrop-filter:blur(0px) saturate(1); }
-}
-@keyframes ufx-fog{
-  0%   { opacity:0; transform:scale(1.06); }
-  46%  { opacity:1; transform:scale(1); }
-  54%  { opacity:1; transform:scale(1); }
-  100% { opacity:0; transform:scale(1.02); }
-}
-
-/* ---------- reduced motion: a plain crossfade, same timing contract ------- */
-@media(prefers-reduced-motion:reduce){
-  body.fx-to-comic .ufx-panel,
-  body.fx-to-comic .ufx-lines,
-  body.fx-to-comic .ufx-flash,
-  body.fx-to-premium .ufx-blur{ animation:none; opacity:0; }
-  body.fx-to-comic .ufx-mist{ background:#F5F1E6; }
-  body.fx-to-comic .ufx-mist,
-  body.fx-to-premium .ufx-mist{ animation:ufx-plain 300ms linear forwards; }
-  @keyframes ufx-plain{ 0%{opacity:0} 46%{opacity:1} 54%{opacity:1} 100%{opacity:0} }
-  body.uni-premium .uswitch-knob, body.uni-comic .uswitch-knob{ transition:none; }
-  .sbar, .uswitch-track{ transition:none; }
-}
-
-/* ===================== universe: premium (default) ======================== */
-.u-premium{--void:#0B0C0E;
-  --slate:#121418;
-  --panel:#171A1F;
-  --steel:#23262C;
-  --line:rgba(248,248,255,.09);
-  --line-2:rgba(248,248,255,.16);
-  --fog:#8B929D;
-  --mist:#B9C0CA;
-  --ghost:#F8F8FF;
-  --aura:#9FB4FF;
-  --aura-dim:rgba(159,180,255,.14);
-  --ecto:#7FE9C4;
-
-  --display:'Manrope',system-ui,sans-serif;
-  --body:'Inter',system-ui,sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,monospace;
-
-  --wrap:1240px;
-  --ease:cubic-bezier(.16,1,.3,1);
-  --s1:12px; --s2:20px; --s3:32px; --s4:52px; --s5:88px; --s6:130px;}
-.u-premium,.u-premium *{box-sizing:border-box}
-.u-premium{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-.u-premium{margin:0;background:var(--void);color:var(--mist);
-  font-family:var(--body);font-size:16.5px;line-height:1.65;font-weight:400;
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-  overflow-x:hidden;}
-.u-premium img,.u-premium svg{display:block;max-width:100%}
-.u-premium p{margin:0}
-.u-premium a{color:inherit;text-decoration:none}
-.u-premium ::selection{background:rgba(159,180,255,.28);color:var(--ghost)}
-.u-premium .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px;position:relative;z-index:2}
-.u-premium section[id],.u-premium header[id]{scroll-margin-top:90px}
-.u-premium h1,.u-premium h2,.u-premium h3,.u-premium h4{margin:0;font-family:var(--display);color:var(--ghost);font-weight:200;
-  line-height:1.02;letter-spacing:-.035em}
-.u-premium h1{font-size:clamp(3rem,8.4vw,6.3rem);line-height:.96}
-.u-premium h2{font-size:clamp(2.3rem,5.4vw,4.1rem)}
-.u-premium h3{font-size:clamp(1.45rem,2.4vw,1.9rem);letter-spacing:-.028em}
-.u-premium h4{font-size:1.22rem;font-weight:500;letter-spacing:-.02em}
-.u-premium strong,.u-premium b{font-weight:600;color:var(--ghost)}
-.u-premium em.hi{font-style:normal;font-weight:800;color:var(--ghost)}
-.u-premium .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);
-  font-size:.685rem;letter-spacing:.22em;text-transform:uppercase;color:var(--aura);font-weight:500}
-.u-premium .eyebrow::before{content:"";width:20px;height:1px;background:var(--aura);opacity:.7}
-.u-premium .sec-head{max-width:70ch}
-.u-premium .sec-head h2{margin:var(--s2) 0 0}
-.u-premium .sec-head .lede{margin-top:var(--s2);font-size:1.09rem;color:var(--fog);max-width:60ch}
-.u-premium .grain{position:fixed;inset:0;z-index:900;pointer-events:none;opacity:.038;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
-.u-premium .cursor{position:fixed;top:0;left:0;width:520px;height:520px;margin:-260px 0 0 -260px;
-  border-radius:50%;pointer-events:none;z-index:1;opacity:0;transition:opacity .5s ease;
-  background:radial-gradient(circle,rgba(159,180,255,.10) 0%,rgba(159,180,255,.04) 40%,transparent 70%)}
-.u-premium .orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px);z-index:0}
-.u-premium .prog{position:fixed;top:0;left:0;height:2px;z-index:200;width:100%;
-  transform:scaleX(0);transform-origin:0 50%;
-  background:linear-gradient(90deg,rgba(159,180,255,0),var(--aura),var(--ecto))}
-.u-premium .nav{position:sticky;top:0;z-index:150;border-bottom:1px solid transparent;
-  transition:background .4s var(--ease),border-color .4s var(--ease),backdrop-filter .4s}
-.u-premium .nav.stuck{background:rgba(11,12,14,.72);backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);border-bottom-color:var(--line)}
-.u-premium .nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px;
-  height:84px;transition:height .4s var(--ease)}
-.u-premium .nav.stuck .nav-in{height:66px}
-.u-premium .brand{display:flex;flex-direction:column;gap:4px;line-height:1}
-.u-premium .brand .wm{font-family:var(--display);font-weight:800;font-size:1.32rem;letter-spacing:.155em;
-  color:var(--ghost);display:block;line-height:1;transition:letter-spacing .55s var(--ease)}
-.u-premium .brand:hover .wm{letter-spacing:.2em}
-.u-premium .brand .wmsub{font-family:var(--mono);font-size:.555rem;letter-spacing:.27em;text-transform:uppercase;
-  color:var(--fog);display:block;line-height:1;transition:color .4s}
-.u-premium .brand:hover .wmsub{color:var(--mist)}
-@media(max-width:420px){.u-premium .brand .wm{font-size:1.14rem;letter-spacing:.13em}
-.u-premium .brand .wmsub{letter-spacing:.2em}}
-.u-premium .nav-links{display:flex;align-items:center;gap:4px}
-.u-premium .nav-links a{font-size:.83rem;color:var(--fog);padding:9px 13px;border-radius:100px;
-  transition:color .3s,background .3s;position:relative}
-.u-premium .nav-links a:hover{color:var(--ghost);background:rgba(248,248,255,.06)}
-.u-premium .nav-links a.active{color:var(--ghost)}
-@media(max-width:1120px){.u-premium .nav-links{display:none}}
-.u-premium .menu-btn{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);
-  background:transparent;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px}
-.u-premium .menu-btn i{display:block;width:16px;height:1px;background:var(--ghost);transition:transform .4s var(--ease),opacity .3s}
-.u-premium .menu-btn[aria-expanded="true"] i:first-child{transform:translateY(3px) rotate(45deg)}
-.u-premium .menu-btn[aria-expanded="true"] i:last-child{transform:translateY(-3px) rotate(-45deg)}
-.u-premium .sheet{position:fixed;inset:0;z-index:140;background:rgba(11,12,14,.96);
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 32px;
-  opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s}
-.u-premium .sheet.open{opacity:1;visibility:visible}
-.u-premium .sheet a{font-family:var(--display);font-weight:200;font-size:2rem;color:var(--ghost);
-  letter-spacing:-.03em;padding:11px 0;border-bottom:1px solid var(--line);
-  opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
-.u-premium .sheet.open a{opacity:1;transform:none}
-@media(max-width:1120px){.u-premium .menu-btn{display:flex}
-.u-premium .nav .btn-sm{display:none}}
-@media(min-width:1121px){.u-premium .sheet{display:none}}
-.u-premium .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  font-family:var(--body);font-weight:500;font-size:.93rem;letter-spacing:-.005em;
-  padding:15px 30px;border-radius:100px;border:1px solid transparent;overflow:hidden;
-  background:var(--ghost);color:var(--void);
-  transition:transform .5s var(--ease),box-shadow .5s var(--ease),background .3s,color .3s,border-color .3s;
-  will-change:transform}
-.u-premium .btn span{position:relative;z-index:2}
-.u-premium .btn:hover{box-shadow:0 14px 44px -14px rgba(159,180,255,.65)}
-.u-premium .btn-ghost{background:transparent;color:var(--ghost);border-color:var(--line-2)}
-.u-premium .btn-ghost:hover{background:rgba(248,248,255,.07);border-color:rgba(248,248,255,.3);box-shadow:none}
-.u-premium .btn-sm{padding:11px 22px;font-size:.85rem}
-.u-premium .btn::after{content:"";position:absolute;inset:0;z-index:1;opacity:0;transition:opacity .4s;
-  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(159,180,255,.5),transparent 60%)}
-.u-premium .btn:hover::after{opacity:1}
-.u-premium a:focus-visible,.u-premium button:focus-visible,.u-premium summary:focus-visible{outline:2px solid var(--aura);outline-offset:4px;border-radius:6px}
-.u-premium [data-r]{opacity:0;transform:translateY(30px);filter:blur(12px);
-  transition:opacity 1s var(--ease),transform 1.1s var(--ease),filter 1s var(--ease);
-  transition-delay:var(--d,0ms)}
-.u-premium [data-r].in{opacity:1;transform:none;filter:blur(0)}
-.u-premium [data-r="scale"]{transform:scale(.965) translateY(24px)}
-.u-premium [data-r="mask"]{opacity:1;filter:none;transform:none;clip-path:inset(0 100% 0 0);
-  transition:clip-path 1.4s var(--ease)}
-.u-premium [data-r="mask"].in{clip-path:inset(0 0 0 0)}
-.u-premium .hero{position:relative;min-height:100svh;display:flex;align-items:center;
-  padding:118px 0 74px;overflow:clip;border-bottom:1px solid var(--line)}
-.u-premium .hero-orb-a{width:min(880px,95vw);height:min(880px,95vw);top:-24%;left:-14%;
-  background:radial-gradient(circle,rgba(159,180,255,.20),transparent 66%)}
-.u-premium .hero-orb-b{width:min(620px,80vw);height:min(620px,80vw);bottom:-22%;right:-8%;
-  background:radial-gradient(circle,rgba(127,233,196,.10),transparent 68%)}
-.u-premium .spectre{position:absolute;right:-6%;top:50%;width:min(720px,68vw);opacity:.062;z-index:0;
-  transform:translateY(-50%);color:var(--ghost)}
-.u-premium .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:var(--s5);align-items:center}
-.u-premium .pill{display:inline-flex;align-items:center;gap:10px;padding:8px 17px 8px 12px;border-radius:100px;
-  border:1px solid var(--line-2);background:rgba(248,248,255,.04);backdrop-filter:blur(10px);
-  font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
-.u-premium .dot{width:7px;height:7px;border-radius:50%;background:var(--ecto);flex:none;
-  box-shadow:0 0 0 0 rgba(127,233,196,.6);animation:pulse 2.6s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(127,233,196,.5)}70%{box-shadow:0 0 0 12px rgba(127,233,196,0)}100%{box-shadow:0 0 0 0 rgba(127,233,196,0)}}
-.u-premium .hero h1{margin:var(--s2) 0 0}
-.u-premium .hero h1 .ln{display:block;overflow:hidden}
-.u-premium .hero h1 .ln i{display:block;font-style:normal;transform:translateY(105%);
-  transition:transform 1.25s var(--ease);transition-delay:var(--d,0ms)}
-.u-premium .hero.ready h1 .ln i{transform:translateY(0)}
-.u-premium .hero h1 .thin{font-weight:200;color:var(--fog)}
-.u-premium .hero h1 .bold{font-weight:800;color:var(--ghost);letter-spacing:-.05em}
-.u-premium .hero-sub{font-size:1.14rem;line-height:1.55;color:var(--mist);max-width:36ch;margin-top:var(--s2);font-weight:400}
-.u-premium .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s2)}
-.u-premium .chip{font-family:var(--mono);font-size:.67rem;letter-spacing:.13em;text-transform:uppercase;
-  padding:7px 14px;border-radius:100px;border:1px solid var(--line);color:var(--fog);
-  background:rgba(248,248,255,.02);transition:color .3s,border-color .3s,background .3s}
-.u-premium .chip:hover{color:var(--ghost);border-color:var(--line-2);background:rgba(159,180,255,.08)}
-.u-premium .acts{display:flex;flex-wrap:wrap;gap:var(--s1);margin-top:var(--s3)}
-.u-premium .hero-note{font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--fog);margin-top:var(--s2)}
-@media(max-width:1000px){.u-premium .hero-grid{grid-template-columns:1fr;gap:var(--s4)}
-.u-premium .hero{padding:110px 0 70px;min-height:auto}
-.u-premium .spectre{display:none}}
-.u-premium .record{position:relative;border-radius:20px;border:1px solid var(--line);overflow:hidden;
-  background:linear-gradient(160deg,rgba(248,248,255,.07),rgba(248,248,255,.015));
-  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  box-shadow:0 40px 90px -50px rgba(0,0,0,.9);will-change:transform}
-.u-premium .record::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:20px;
-  background:linear-gradient(140deg,rgba(159,180,255,.35),transparent 45%);
-  -webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
-  -webkit-mask-composite:xor;mask-composite:exclude;padding:1px}
-.u-premium .rec-top{display:flex;align-items:center;justify-content:space-between;gap:16px;
-  padding:17px 26px;border-bottom:1px solid var(--line)}
-.u-premium .rec-top .t{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.05em;color:var(--ghost)}
-.u-premium .rec-top .m{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--fog);text-align:right;line-height:1.7}
-.u-premium .rows{padding:4px 26px 16px;margin:0}
-.u-premium .row{display:grid;grid-template-columns:11ch 1fr;gap:18px;padding:9.5px 0;
-  border-bottom:1px solid var(--line);align-items:baseline}
-.u-premium .row:last-child{border-bottom:none}
-.u-premium .row dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--fog)}
-.u-premium .row dd{margin:0;font-size:.95rem;color:var(--ghost);font-weight:500}
-.u-premium .row dd small{display:block;font-weight:400;font-size:.79rem;color:var(--fog);margin-top:3px;letter-spacing:0}
-.u-premium .zero{font-family:var(--display);font-weight:200;font-size:2.1rem;color:var(--ecto);line-height:.9;display:inline-block}
-.u-premium .rec-foot{padding:14px 26px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px;
-  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ecto);
-  background:rgba(127,233,196,.04)}
-.u-premium .sec{position:relative;padding:var(--s6) 0;border-bottom:1px solid var(--line);overflow:clip}
-.u-premium .sec.slate{background:var(--slate)}
-.u-premium .sec.light{background:var(--ghost);color:#3C424C;border-bottom-color:rgba(11,12,14,.1)}
-.u-premium .sec.light h2,.u-premium .sec.light h3,.u-premium .sec.light h4{color:var(--void)}
-.u-premium .sec.light .eyebrow{color:#5B4EC7}
-.u-premium .sec.light .eyebrow::before{background:#5B4EC7}
-.u-premium .sec.light .lede{color:#5A616C}
-@media(max-width:760px){.u-premium .sec{padding:var(--s5) 0}}
-.u-premium .ribbon{border-bottom:1px solid var(--line);background:var(--slate);padding:20px 0;overflow:hidden;
-  -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
-  mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.u-premium .marq{display:flex;width:max-content;animation:slide 42s linear infinite}
-.u-premium .ribbon:hover .marq{animation-play-state:paused}
-@keyframes slide{to{transform:translateX(-50%)}}
-.u-premium .marq span{font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--fog);padding:0 30px;display:inline-flex;align-items:center;gap:30px;white-space:nowrap}
-.u-premium .marq span::after{content:"";width:4px;height:4px;border-radius:50%;background:var(--aura);opacity:.55}
-.u-premium .caps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:var(--s5);
-  background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
-.u-premium .cap{background:var(--void);padding:38px 30px 44px;position:relative;overflow:hidden;
-  transition:background .5s var(--ease)}
-.u-premium .cap:hover{background:var(--panel)}
-.u-premium .cap::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .5s;pointer-events:none;
-  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(159,180,255,.12),transparent 65%)}
-.u-premium .cap:hover::before{opacity:1}
-.u-premium .cap .no{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--aura)}
-.u-premium .cap .big{font-family:var(--display);font-weight:200;font-size:clamp(2.6rem,3.6vw,3.4rem);
-  color:var(--ghost);line-height:1;margin:26px 0 4px;letter-spacing:-.045em}
-.u-premium .cap .unit{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fog)}
-.u-premium .cap h4{margin:26px 0 10px}
-.u-premium .cap p{font-size:.92rem;color:var(--fog)}
-@media(max-width:1040px){.u-premium .caps{grid-template-columns:1fr 1fr}}
-@media(max-width:620px){.u-premium .caps{grid-template-columns:1fr}}
-.u-premium .losses{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s2);margin-top:var(--s5)}
-.u-premium .loss{border:1px solid var(--line);border-radius:16px;padding:32px 28px 36px;position:relative;
-  background:linear-gradient(170deg,rgba(248,248,255,.045),transparent 70%);
-  transition:transform .6s var(--ease),border-color .5s,background .5s}
-.u-premium .loss:hover{transform:translateY(-8px);border-color:rgba(159,180,255,.35);
-  background:linear-gradient(170deg,rgba(159,180,255,.1),transparent 72%)}
-.u-premium .loss .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--fog)}
-.u-premium .loss h4{margin:20px 0 12px;font-weight:200;font-family:var(--display);font-size:1.5rem;letter-spacing:-.03em}
-.u-premium .loss p{font-size:.91rem;color:var(--fog)}
-@media(max-width:1040px){.u-premium .losses{grid-template-columns:1fr 1fr}}
-@media(max-width:620px){.u-premium .losses{grid-template-columns:1fr}}
-.u-premium .rail-sec{position:relative;background:var(--slate);border-bottom:1px solid var(--line)}
-.u-premium .rail-pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;
-  justify-content:center;overflow:hidden;padding:92px 0 34px}
-.u-premium .rail-head{max-width:var(--wrap);margin:0 auto;padding:0 28px;width:100%}
-.u-premium .rail-head h2{margin-top:14px;font-size:clamp(1.9rem,3.6vw,3rem)}
-.u-premium .rail-head .lede{margin-top:14px;color:var(--fog);max-width:60ch;font-size:.96rem}
-.u-premium .rail-track{display:flex;gap:var(--s2);padding:30px 28px;will-change:transform}
-.u-premium .dept{flex:none;width:min(376px,82vw);border:1px solid var(--line);border-radius:18px;
-  background:var(--void);padding:0;overflow:hidden;display:flex;flex-direction:column}
-.u-premium .dept-top{display:flex;align-items:center;gap:14px;padding:16px 24px;border-bottom:1px solid var(--line)}
-.u-premium .dept-top .no{font-family:var(--display);font-weight:200;font-size:1.9rem;color:var(--aura);line-height:1}
-.u-premium .dept-top .nm{font-family:var(--mono);font-size:.66rem;letter-spacing:.17em;text-transform:uppercase;color:var(--mist)}
-.u-premium .dept-in{padding:22px 24px 24px}
-.u-premium .dept h4{font-family:var(--display);font-weight:200;font-size:1.38rem;letter-spacing:-.03em;margin-bottom:7px}
-.u-premium .dept .lede-s{font-size:.85rem;color:var(--fog);margin-bottom:16px;line-height:1.5}
-.u-premium .dept ul{list-style:none;margin:0;padding:0}
-.u-premium .dept li{font-size:.85rem;line-height:1.5;color:var(--mist);padding:8px 0 8px 22px;position:relative;border-top:1px solid var(--line)}
-.u-premium .dept li:first-child{border-top:none}
-.u-premium .dept li::before{content:"";position:absolute;left:2px;top:17px;width:6px;height:1px;background:var(--aura)}
-.u-premium .rail-bar{max-width:var(--wrap);margin:0 auto;padding:0 28px;width:100%}
-.u-premium .rail-bar i{display:block;height:2px;background:var(--line-2);border-radius:2px;position:relative;overflow:hidden}
-.u-premium .rail-bar i b{position:absolute;inset:0;background:var(--aura);transform-origin:0 50%;transform:scaleX(.16);border-radius:2px}
-@media(max-width:760px){.u-premium .rail-pin{height:auto;position:static;padding:var(--s5) 0}
-.u-premium .rail-head h2{font-size:clamp(2rem,7vw,2.6rem)}
-.u-premium .rail-track{flex-direction:column;transform:none!important;padding:var(--s3) 28px}
-.u-premium .dept{width:100%}
-.u-premium .rail-bar{display:none}}
-.u-premium .anything{margin-top:var(--s4);border:1px solid var(--line);border-radius:18px;padding:44px;
-  display:grid;grid-template-columns:auto 1fr;gap:var(--s4);align-items:center;
-  background:radial-gradient(120% 160% at 0% 0%,rgba(159,180,255,.13),transparent 62%)}
-.u-premium .anything .n{font-family:var(--display);font-weight:200;font-size:clamp(3.4rem,7vw,5.4rem);
-  color:var(--ghost);line-height:.85;letter-spacing:-.05em;white-space:nowrap}
-.u-premium .anything p{color:var(--fog);font-size:1.02rem}
-@media(max-width:760px){.u-premium .anything{grid-template-columns:1fr;gap:var(--s2);padding:30px}}
-.u-premium .day-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--s5);margin-top:var(--s5);align-items:start}
-.u-premium .day-stick{position:sticky;top:22vh}
-.u-premium .clock{font-family:var(--display);font-weight:200;font-size:clamp(3.2rem,6.6vw,5.2rem);
-  color:var(--ghost);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
-.u-premium .clock-dept{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--aura);margin-top:14px;min-height:1.2em}
-.u-premium .arc{margin-top:var(--s3);width:150px;height:150px}
-.u-premium .arc circle{fill:none;stroke-width:1.5}
-.u-premium .arc .bg{stroke:var(--line-2)}
-.u-premium .arc .fg{stroke:var(--aura);stroke-linecap:round;transition:stroke-dashoffset .5s var(--ease)}
-.u-premium .slots{display:grid;gap:var(--s1)}
-.u-premium .slot{display:grid;grid-template-columns:8.5ch 1fr;gap:var(--s3);padding:22px 26px;
-  border:1px solid var(--line);border-radius:14px;opacity:.42;
-  transition:opacity .6s var(--ease),border-color .6s,background .6s,transform .6s var(--ease)}
-.u-premium .slot.on{opacity:1;border-color:rgba(159,180,255,.3);background:rgba(159,180,255,.05)}
-.u-premium .slot .t{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--aura);padding-top:3px}
-.u-premium .slot .d{font-family:var(--mono);font-size:.6rem;letter-spacing:.17em;text-transform:uppercase;color:var(--fog);display:block;margin-bottom:7px}
-.u-premium .slot .a{font-size:.95rem;color:var(--mist)}
-@media(max-width:940px){.u-premium .day-grid{grid-template-columns:1fr;gap:var(--s3)}
-.u-premium .day-stick{position:static}
-.u-premium .arc{display:none}}
-@media(max-width:520px){.u-premium .slot{grid-template-columns:1fr;gap:8px}}
-.u-premium .reg{margin-top:var(--s5);border:1px solid var(--line);border-radius:18px;overflow:hidden;overflow-x:auto}
-.u-premium table{width:100%;border-collapse:collapse;min-width:620px}
-.u-premium th,.u-premium td{padding:20px 26px;text-align:left;border-bottom:1px solid var(--line)}
-.u-premium th{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--fog);font-weight:500;background:rgba(248,248,255,.03)}
-.u-premium td{font-size:.95rem;color:var(--mist)}
-.u-premium tr:last-child td{border-bottom:none}
-.u-premium tbody tr{transition:background .4s}
-.u-premium tbody tr:hover{background:rgba(159,180,255,.05)}
-.u-premium td.num{font-family:var(--display);font-weight:200;font-size:1.9rem;color:var(--ecto);line-height:1}
-.u-premium td.na{font-family:var(--mono);font-size:.7rem;color:var(--fog);letter-spacing:.06em}
-.u-premium .cmp{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s5)}
-.u-premium .col{border:1px solid var(--line);border-radius:18px;padding:36px 34px 40px;position:relative}
-.u-premium .col.win{background:radial-gradient(120% 150% at 100% 0%,rgba(159,180,255,.14),transparent 60%);
-  border-color:rgba(159,180,255,.3)}
-.u-premium .col h4{margin:18px 0 22px;font-family:var(--display);font-weight:200;font-size:1.6rem;letter-spacing:-.03em}
-.u-premium .col ul{list-style:none;margin:0;padding:0}
-.u-premium .col li{font-size:.93rem;color:var(--fog);padding:13px 0 13px 30px;position:relative;border-top:1px solid var(--line)}
-.u-premium .col li:first-child{border-top:none}
-.u-premium .col li::before{content:"—";position:absolute;left:0;color:var(--fog);opacity:.6}
-.u-premium .col.win li{color:var(--mist)}
-.u-premium .col.win li::before{content:"";left:2px;top:20px;width:9px;height:9px;border-radius:50%;
-  background:var(--aura);box-shadow:0 0 12px rgba(159,180,255,.8)}
-@media(max-width:900px){.u-premium .cmp{grid-template-columns:1fr}}
-.u-premium .chat-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);align-items:center}
-.u-premium .chat-grid p{color:var(--fog);font-size:1.05rem;margin-top:var(--s2)}
-.u-premium .note{font-family:var(--mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--fog);margin-top:var(--s3);opacity:.75}
-.u-premium .phone{border:1px solid var(--line);border-radius:26px;padding:22px;position:relative;
-  background:linear-gradient(170deg,rgba(248,248,255,.05),rgba(248,248,255,.01));
-  backdrop-filter:blur(14px);box-shadow:0 50px 100px -60px #000}
-.u-premium .ph-bar{display:flex;align-items:center;gap:12px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:20px}
-.u-premium .ph-bar .av{width:38px;height:38px;border-radius:50%;background:rgba(159,180,255,.14);
-  display:flex;align-items:center;justify-content:center;flex:none;
-  font-family:var(--display);font-weight:800;font-size:.92rem;letter-spacing:.04em;color:var(--aura)}
-.u-premium .ph-bar .who{font-family:var(--display);font-weight:700;font-size:.95rem;color:var(--ghost);letter-spacing:.02em}
-.u-premium .ph-bar .who small{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-weight:400;
-  font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ecto);margin-top:2px}
-.u-premium .ph-bar .who small::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ecto)}
-.u-premium .bub{max-width:86%;padding:14px 17px;border-radius:16px;font-size:.9rem;margin-bottom:12px;
-  color:var(--mist);background:rgba(248,248,255,.055);border:1px solid var(--line);
-  opacity:0;transform:translateY(14px) scale(.97);transition:opacity .55s var(--ease),transform .55s var(--ease)}
-.u-premium .bub.show{opacity:1;transform:none}
-.u-premium .bub time{display:block;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;
-  color:var(--fog);margin-top:9px;text-transform:uppercase}
-.u-premium .bub.them{border-bottom-left-radius:4px}
-.u-premium .bub.us{margin-left:auto;border-bottom-right-radius:4px;color:var(--void);
-  background:linear-gradient(160deg,#E8ECFF,#C6D2FF);border-color:transparent}
-.u-premium .bub.us time{color:rgba(11,12,14,.5)}
-.u-premium .bub.rep{max-width:100%;margin-bottom:0;background:rgba(159,180,255,.09);border-color:rgba(159,180,255,.25)}
-.u-premium .typing{display:flex;gap:5px;padding:16px 18px;width:fit-content;border-radius:16px;
-  background:rgba(248,248,255,.055);border:1px solid var(--line);margin-bottom:12px;
-  opacity:0;transition:opacity .3s}
-.u-premium .typing.show{opacity:1}
-.u-premium .typing i{width:6px;height:6px;border-radius:50%;background:var(--fog);animation:blink 1.3s infinite}
-.u-premium .typing i:nth-child(2){animation-delay:.18s}
-.u-premium .typing i:nth-child(3){animation-delay:.36s}
-@keyframes blink{0%,60%,100%{opacity:.28;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
-@media(max-width:940px){.u-premium .chat-grid{grid-template-columns:1fr;gap:var(--s4)}}
-.u-premium .sectors{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;
-  margin-top:var(--s5);background:rgba(11,12,14,.1);border:1px solid rgba(11,12,14,.1);border-radius:18px;overflow:hidden}
-.u-premium .sector{background:var(--ghost);padding:26px 24px;transition:background .4s var(--ease)}
-.u-premium .sector:hover{background:#EDEFFB}
-.u-premium .sector b{display:block;font-family:var(--display);font-weight:500;font-size:1.02rem;color:var(--void);letter-spacing:-.02em}
-.u-premium .sector span{display:block;font-family:var(--mono);font-size:.63rem;letter-spacing:.13em;
-  text-transform:uppercase;color:#7A818C;margin-top:8px}
-.u-premium .steps{margin-top:var(--s5);position:relative}
-.u-premium .step{display:grid;grid-template-columns:120px 1fr;gap:var(--s4);padding:var(--s4) 0;
-  border-top:1px solid var(--line);align-items:start}
-.u-premium .step:last-child{border-bottom:1px solid var(--line)}
-.u-premium .step .n{font-family:var(--display);font-weight:200;font-size:3.4rem;color:var(--steel);line-height:.8;
-  letter-spacing:-.05em;transition:color .6s var(--ease)}
-.u-premium .step.in-view .n{color:var(--aura)}
-.u-premium .step .wk{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--fog);display:block;margin-top:12px}
-.u-premium .step h4{font-family:var(--display);font-weight:200;font-size:clamp(1.5rem,2.6vw,2rem);letter-spacing:-.03em}
-.u-premium .step p{margin-top:14px;color:var(--fog);max-width:62ch}
-@media(max-width:700px){.u-premium .step{grid-template-columns:1fr;gap:var(--s1)}
-.u-premium .step .n{font-size:2.4rem}}
-.u-premium .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-top:var(--s5)}
-.u-premium .tier{border:1px solid var(--line);border-radius:18px;padding:34px 30px 38px;
-  display:flex;flex-direction:column;position:relative;
-  background:linear-gradient(170deg,rgba(248,248,255,.045),transparent 70%);
-  transition:transform .6s var(--ease),border-color .5s,background .5s}
-.u-premium .tier:hover{transform:translateY(-8px);border-color:rgba(159,180,255,.35)}
-.u-premium .tier.pick{border-color:rgba(159,180,255,.3);
-  background:radial-gradient(120% 150% at 100% 0%,rgba(159,180,255,.14),transparent 60%)}
-.u-premium .tier .lvl{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--fog)}
-.u-premium .tier.pick .lvl{color:var(--aura)}
-.u-premium .tier h4{margin:20px 0 10px;font-family:var(--display);font-weight:200;
-  font-size:1.55rem;letter-spacing:-.03em}
-.u-premium .tier .who{font-size:.9rem;color:var(--fog)}
-.u-premium .tier .amt{display:block;margin:28px 0 6px;font-family:var(--display);font-weight:200;
-  font-size:clamp(1.4rem,2.1vw,1.8rem);color:var(--ghost);letter-spacing:-.035em;line-height:1.1}
-.u-premium .tier .per{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--fog);display:block}
-.u-premium .tier ul{list-style:none;margin:26px 0 0;padding:0;flex:1}
-.u-premium .tier li{font-size:.88rem;color:var(--mist);padding:12px 0 12px 22px;position:relative;
-  border-top:1px solid var(--line)}
-.u-premium .tier li:first-child{border-top:none}
-.u-premium .tier li::before{content:"";position:absolute;left:2px;top:19px;width:6px;height:1px;background:var(--aura)}
-.u-premium .tier .btn{margin-top:30px;width:100%}
-@media(max-width:1000px){.u-premium .tiers{grid-template-columns:1fr}}
-.u-premium .pricenote{margin-top:var(--s3);border:1px solid var(--line);border-radius:18px;
-  padding:38px 40px;display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
-.u-premium .pricenote h4{font-family:var(--display);font-weight:200;font-size:1.3rem;
-  letter-spacing:-.03em;margin-bottom:18px}
-.u-premium .pricenote ul{list-style:none;margin:0;padding:0}
-.u-premium .pricenote li{font-size:.9rem;color:var(--fog);padding:10px 0 10px 22px;position:relative}
-.u-premium .pricenote li::before{content:"";position:absolute;left:2px;top:19px;width:6px;height:1px;
-  background:var(--fog);opacity:.7}
-@media(max-width:800px){.u-premium .pricenote{grid-template-columns:1fr;gap:var(--s2);padding:28px}}
-.u-premium .limits{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:var(--s5);
-  background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
-.u-premium .limit{background:var(--slate);padding:34px 30px 38px}
-.u-premium .limit .x{display:block;width:22px;height:22px;border-radius:50%;border:1px solid var(--line-2);
-  position:relative;margin-bottom:20px}
-.u-premium .limit .x::before{content:"";position:absolute;left:5px;right:5px;top:50%;height:1px;background:var(--fog)}
-.u-premium .limit h4{font-family:var(--display);font-weight:200;font-size:1.35rem;letter-spacing:-.03em;margin-bottom:12px}
-.u-premium .limit p{font-size:.9rem;color:var(--fog)}
-@media(max-width:960px){.u-premium .limits{grid-template-columns:1fr 1fr}}
-@media(max-width:620px){.u-premium .limits{grid-template-columns:1fr}}
-.u-premium .faq{margin-top:var(--s5);border-top:1px solid var(--line)}
-.u-premium details{border-bottom:1px solid var(--line)}
-.u-premium summary{cursor:pointer;list-style:none;padding:26px 60px 26px 0;position:relative;
-  font-family:var(--display);font-weight:300;font-size:clamp(1.05rem,1.9vw,1.3rem);
-  color:var(--ghost);letter-spacing:-.02em;transition:color .3s}
-.u-premium summary:hover{color:var(--aura)}
-.u-premium summary::-webkit-details-marker{display:none}
-.u-premium summary::after,.u-premium summary::before{content:"";position:absolute;right:14px;top:50%;background:var(--fog);
-  transition:transform .45s var(--ease),background .3s}
-.u-premium summary::after{width:14px;height:1px;margin-top:0}
-.u-premium summary::before{width:1px;height:14px;margin-top:-7px;right:20px}
-.u-premium details[open] summary::before{transform:rotate(90deg);background:var(--aura)}
-.u-premium details[open] summary::after{background:var(--aura)}
-.u-premium details .ans{overflow:hidden;max-height:0;transition:max-height .6s var(--ease)}
-.u-premium details .ans p{padding:0 60px 30px 0;color:var(--fog);max-width:80ch;font-size:.98rem}
-.u-premium .close{position:relative;padding:var(--s6) 0;text-align:center;overflow:hidden;border-bottom:1px solid var(--line)}
-.u-premium .close .orb-c{width:min(1000px,120vw);height:min(1000px,120vw);left:50%;top:50%;
-  transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(159,180,255,.16),transparent 62%)}
-.u-premium .close h2{margin:var(--s2) auto 0;max-width:16ch;font-size:clamp(2.6rem,7vw,5.4rem)}
-.u-premium .close p{max-width:54ch;margin:var(--s3) auto 0;color:var(--fog);font-size:1.08rem}
-.u-premium .close .acts{justify-content:center;margin-top:var(--s4)}
-.u-premium .close .eyebrow{justify-content:center}
-.u-premium footer{padding:var(--s4) 0}
-.u-premium .foot{display:flex;flex-wrap:wrap;gap:var(--s2);justify-content:space-between;align-items:center;
-  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fog)}
-.u-premium .foot a:hover{color:var(--aura)}
-@media(prefers-reduced-motion:reduce){.u-premium,.u-premium *,.u-premium *::before,.u-premium *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
-    transition-duration:.001ms!important;scroll-behavior:auto!important}
-.u-premium [data-r]{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
-.u-premium .hero h1 .ln i{transform:none!important}
-.u-premium .bub,.u-premium .slot{opacity:1!important;transform:none!important}
-.u-premium .cursor{display:none}}
-/* ===================== universe: comic ==================================== */
-.u-comic{--ink:#0A1024;
-  --navy:#0E1E52;
-  --navy-2:#152A6B;
-  --blue:#0A57C9;
-  --red:#C3102C;
-  --red-2:#9C0C22;
-  --gold:#F5B21B;
-  --gold-2:#FFD35E;
-  --green:#0E8A46;
-  --purple:#5A2A9E;
-  --white:#FFFFFF;
-  --paper:#F5F1E6;
-  --paper-2:#EAE4D4;
-  --muted:#5A5F70;
-
-  --toon:'Bangers',system-ui,cursive;
-  --punch:'Luckiest Guy',system-ui,cursive;
-  --body:'Nunito',system-ui,sans-serif;
-  --wrap:1200px;
-
-  --bd:4px solid var(--ink);
-  --bd-3:3px solid var(--ink);
-  --pop:10px 10px 0 var(--ink);
-  --pop-md:7px 7px 0 var(--ink);
-  --pop-sm:5px 5px 0 var(--ink);
-  --ring:inset 0 0 0 3px rgba(255,255,255,.94);
-  --s-1:14px; --s-2:22px; --s-3:34px; --s-4:48px; --s-5:72px; --s-6:96px;}
-.u-comic,.u-comic *{box-sizing:border-box}
-.u-comic{scroll-behavior:smooth}
-.u-comic{margin:0;background:var(--paper);color:var(--ink);
-  font-family:var(--body);font-size:17px;line-height:1.62;font-weight:400;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;}
-.u-comic .wrap{max-width:var(--wrap);margin:0 auto;padding:0 26px}
-.u-comic a{color:inherit}
-.u-comic p{margin:0}
-.u-comic h1,.u-comic h2,.u-comic h3,.u-comic h4{margin:0;font-family:var(--toon);font-weight:400;line-height:.94;letter-spacing:.012em}
-.u-comic h1{font-size:clamp(3.2rem,9.6vw,7.2rem)}
-.u-comic h2{font-size:clamp(2.15rem,5.2vw,3.85rem)}
-.u-comic h3{font-size:1.5rem}
-.u-comic h4{font-size:1.28rem}
-.u-comic section[id],.u-comic header[id]{scroll-margin-top:98px}
-.u-comic .crest{display:inline-flex;align-items:center;gap:10px;margin-bottom:4px}
-.u-comic .crest i{width:26px;height:30px;background:var(--gold);border:var(--bd-3);display:block;
-  clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%);}
-.u-comic .crest span{font-family:var(--punch);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
-.u-comic .dots{position:absolute;inset:0;pointer-events:none;
-  background-image:radial-gradient(var(--ink) 1.3px,transparent 1.3px);
-  background-size:13px 13px;opacity:.045}
-.u-comic .dots-l{opacity:.028}
-.u-comic .burst{position:absolute;inset:-45% -25%;pointer-events:none;
-  background:repeating-conic-gradient(from 10deg,var(--gold) 0deg 7deg,var(--gold-2) 7deg 14deg)}
-.u-comic .veil{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(120% 90% at 30% 45%,rgba(255,255,255,.86) 0%,rgba(255,255,255,.34) 55%,rgba(255,255,255,0) 100%)}
-.u-comic .btn{display:inline-flex;align-items:center;justify-content:center;
-  font-family:var(--punch);font-size:1.02rem;letter-spacing:.07em;text-transform:uppercase;
-  padding:17px 34px;border:var(--bd);border-radius:3px;text-decoration:none;
-  background:var(--red);color:var(--white);
-  box-shadow:var(--ring),var(--pop-md);
-  text-shadow:0 2px 0 rgba(0,0,0,.3);
-  transition:transform .09s ease,box-shadow .09s ease;}
-.u-comic .btn:hover{transform:translate(-2px,-2px);box-shadow:var(--ring),9px 9px 0 var(--ink)}
-.u-comic .btn:active{transform:translate(4px,4px);box-shadow:var(--ring),2px 2px 0 var(--ink)}
-.u-comic .btn-gold{background:var(--gold);color:var(--ink);text-shadow:none}
-.u-comic .btn-navy{background:var(--navy);color:var(--white)}
-.u-comic .btn-white{background:var(--white);color:var(--ink);text-shadow:none}
-.u-comic .btn:focus-visible,.u-comic a:focus-visible,.u-comic summary:focus-visible{outline:4px solid var(--blue);outline-offset:4px}
-@media(prefers-reduced-motion:reduce){.u-comic .btn{transition:none}
-.u-comic .btn:hover,.u-comic .btn:active{transform:none}}
-.u-comic .rail{display:flex;height:11px;border-bottom:var(--bd)}
-.u-comic .rail i{flex:1}
-.u-comic .nav{background:var(--white);border-bottom:var(--bd);position:sticky;top:0;z-index:60}
-.u-comic .nav-in{display:flex;align-items:center;justify-content:space-between;height:78px;gap:18px}
-.u-comic .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.u-comic .shield{width:46px;height:50px;background:var(--red);border:var(--bd-3);
-  clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%);
-  display:flex;align-items:flex-start;justify-content:center;padding-top:6px;
-  color:var(--white);font-family:var(--punch);font-size:1.4rem;line-height:1;}
-.u-comic .brand .bt{line-height:1}
-.u-comic .brand b{font-family:var(--toon);font-size:1.95rem;letter-spacing:.05em;display:block}
-.u-comic .brand em{font-style:normal;font-family:var(--punch);font-size:.6rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--muted);display:block;margin-top:1px}
-.u-comic .nav-links{display:flex;align-items:center;gap:26px}
-.u-comic .nav-links a{font-family:var(--punch);font-size:.8rem;letter-spacing:.06em;text-decoration:none;text-transform:uppercase}
-.u-comic .nav-links a:hover{color:var(--red)}
-.u-comic .nav .btn{padding:12px 22px;font-size:.84rem;box-shadow:var(--ring),var(--pop-sm)}
-@media(max-width:1180px){.u-comic .nav-links{display:none}}
-.u-comic .menu-btn{display:none;width:48px;height:48px;border:var(--bd);background:var(--white);
-  box-shadow:var(--ring),var(--pop-sm);cursor:pointer;align-items:center;justify-content:center;
-  flex-direction:column;gap:4px;border-radius:12px;flex:0 0 auto}
-.u-comic .menu-btn i{display:block;width:20px;height:3px;background:var(--navy);transition:transform .3s var(--ease, ease),opacity .2s}
-.u-comic .menu-btn[aria-expanded="true"] i:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.u-comic .menu-btn[aria-expanded="true"] i:nth-child(2){opacity:0}
-.u-comic .menu-btn[aria-expanded="true"] i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-@media(max-width:1120px){.u-comic .menu-btn{display:flex}.u-comic .nav>.wrap .btn{display:none}}
-.u-comic .c-sheet{position:fixed;left:0;right:0;top:var(--sb);bottom:0;z-index:150;background:var(--white);
-  border-bottom:var(--bd);display:flex;flex-direction:column;justify-content:center;gap:0;padding:20px 22px 36px;
-  overflow-y:auto;transform:translateY(-103%);transition:transform .45s cubic-bezier(.22,1,.36,1);
-  visibility:hidden}
-.u-comic .c-sheet.open{transform:none;visibility:visible}
-.u-comic .c-sheet a{font-family:var(--punch);font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--navy);text-decoration:none;padding:15px 2px;border-bottom:2px solid rgba(20,24,48,.12)}
-.u-comic .c-sheet a:hover{color:var(--red)}
-.u-comic .c-sheet .c-sheet-hire{color:var(--red);border-bottom:none;margin-top:10px}
-@media(min-width:1121px){.u-comic .c-sheet{display:none}}
-.u-comic .hero{position:relative;border-bottom:var(--bd);overflow:hidden;padding:var(--s-5) 0 calc(var(--s-5) + 12px)}
-.u-comic .hero .wrap{position:relative;z-index:3}
-.u-comic .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:var(--s-4);align-items:center}
-.u-comic .meet{display:inline-block;background:var(--navy);color:var(--white);border:var(--bd);
-  padding:8px 20px;font-family:var(--punch);font-size:.9rem;letter-spacing:.1em;
-  text-transform:uppercase;box-shadow:var(--ring),var(--pop-sm);transform:rotate(-1.6deg)}
-.u-comic .hero h1{margin:var(--s-2) 0 0;line-height:.86;
-  text-shadow:4px 0 0 var(--white),-4px 0 0 var(--white),0 4px 0 var(--white),0 -4px 0 var(--white),9px 9px 0 var(--ink)}
-.u-comic .hero h1 .l2{display:block;color:var(--red)}
-.u-comic .hero-sub{font-size:1.22rem;font-weight:700;max-width:33ch;margin-top:var(--s-3)}
-.u-comic .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--s-2)}
-.u-comic .tag{font-family:var(--punch);font-size:.73rem;letter-spacing:.07em;text-transform:uppercase;
-  padding:8px 15px;border:var(--bd-3);border-radius:3px;box-shadow:3px 3px 0 var(--ink);background:var(--white)}
-.u-comic .t-g{background:var(--gold)}
-.u-comic .t-r{background:var(--red);color:#fff}
-.u-comic .t-b{background:var(--blue);color:#fff}
-.u-comic .t-n{background:var(--navy);color:#fff}
-.u-comic .t-e{background:var(--green);color:#fff}
-.u-comic .t-p{background:var(--purple);color:#fff}
-.u-comic .hero-acts{display:flex;flex-wrap:wrap;gap:var(--s-1);margin-top:var(--s-3)}
-.u-comic .hero-note{font-family:var(--punch);font-size:.84rem;margin-top:var(--s-2);letter-spacing:.05em;color:var(--navy)}
-@media(max-width:1000px){.u-comic .hero-grid{grid-template-columns:1fr;gap:var(--s-4)}
-.u-comic .hero{padding:var(--s-4) 0}}
-.u-comic .card{background:var(--white);border:var(--bd);box-shadow:var(--pop);border-radius:4px;position:relative}
-.u-comic .card-top{background:var(--navy);color:var(--white);border-bottom:var(--bd);padding:16px 24px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px}
-.u-comic .card-top .n{font-family:var(--toon);font-size:2.1rem;letter-spacing:.06em;line-height:1}
-.u-comic .card-top .s{font-family:var(--punch);font-size:.62rem;letter-spacing:.11em;text-transform:uppercase;
-  text-align:right;color:var(--gold-2);line-height:1.5}
-.u-comic .rows{padding:10px 24px 20px}
-.u-comic .row{display:grid;grid-template-columns:11ch 1fr;gap:16px;padding:11px 0;
-  border-bottom:2px dotted rgba(10,16,36,.22);align-items:baseline}
-.u-comic .row:last-child{border-bottom:none}
-.u-comic .row dt{font-family:var(--punch);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-.u-comic .row dd{margin:0;font-size:.95rem;font-weight:700}
-.u-comic .row dd small{display:block;font-weight:400;font-size:.8rem;color:var(--muted);margin-top:3px}
-.u-comic .zero{font-family:var(--toon);font-size:2.3rem;color:var(--red);line-height:.85;display:inline-block}
-.u-comic .seal{position:absolute;bottom:-26px;left:-22px;width:98px;height:106px;background:var(--gold);
-  border:var(--bd);clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%);
-  display:flex;align-items:flex-start;justify-content:center;padding:16px 8px 0;text-align:center;
-  font-family:var(--punch);font-size:.72rem;line-height:1.25;transform:rotate(-6deg);}
-@media(max-width:600px){.u-comic .seal{position:static;margin:16px auto 0;transform:none}}
-.u-comic .sec{padding:var(--s-5) 0;border-bottom:var(--bd);position:relative}
-.u-comic .sec>.wrap{position:relative;z-index:2}
-.u-comic .sec-head{max-width:64ch}
-.u-comic .sec-head h2{margin:10px 0 0}
-.u-comic .sec-head p{margin-top:var(--s-2);font-size:1.08rem;font-weight:600}
-.u-comic .b-w{background:var(--white)}
-.u-comic .b-p{background:var(--paper-2)}
-.u-comic .b-g{background:var(--gold)}
-.u-comic .b-n{background:var(--navy);color:var(--white)}
-.u-comic .b-n h2{color:var(--gold-2)}
-.u-comic .b-n .crest span{color:var(--white)}
-.u-comic .b-e{background:var(--green);color:var(--white)}
-.u-comic .b-e h2{color:var(--white)}
-.u-comic .b-e .crest span{color:var(--white)}
-@media(max-width:700px){.u-comic .sec{padding:var(--s-4) 0}}
-.u-comic .powers{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-2);margin-top:var(--s-4)}
-.u-comic .power{border:var(--bd);border-radius:4px;box-shadow:var(--pop);padding:26px 24px 30px;position:relative}
-.u-comic .power .fx{position:absolute;top:-17px;right:-8px;font-family:var(--punch);font-size:.86rem;
-  letter-spacing:.08em;background:var(--white);color:var(--ink);border:var(--bd-3);border-radius:2px;
-  padding:5px 12px;transform:skewX(-9deg);box-shadow:3px 3px 0 var(--ink)}
-.u-comic .power .no{font-family:var(--punch);font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;opacity:.85}
-.u-comic .power h4{margin:11px 0 9px}
-.u-comic .power p{font-size:.93rem;font-weight:600}
-.u-comic .pw-g{background:var(--gold)}
-.u-comic .pw-r{background:var(--red);color:var(--white)}
-.u-comic .pw-n{background:var(--navy);color:var(--white)}
-.u-comic .pw-b{background:var(--blue);color:var(--white)}
-@media(max-width:1000px){.u-comic .powers{grid-template-columns:1fr 1fr}}
-@media(max-width:580px){.u-comic .powers{grid-template-columns:1fr}}
-.u-comic .villains{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-2);margin-top:var(--s-4)}
-.u-comic .vill{background:var(--ink);color:var(--white);border:var(--bd);border-radius:4px;
-  box-shadow:10px 10px 0 var(--red);padding:24px 22px 28px}
-.u-comic .vill .vt{font-family:var(--punch);font-size:.7rem;letter-spacing:.11em;color:var(--gold);text-transform:uppercase}
-.u-comic .vill h4{margin:11px 0 9px;color:var(--white)}
-.u-comic .vill p{font-size:.91rem;color:rgba(255,255,255,.8)}
-@media(max-width:1000px){.u-comic .villains{grid-template-columns:1fr 1fr}}
-@media(max-width:580px){.u-comic .villains{grid-template-columns:1fr}}
-.u-comic .depts{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-2);margin-top:var(--s-4)}
-.u-comic .dept{background:var(--white);border:var(--bd);border-radius:4px;box-shadow:var(--pop);
-  display:flex;flex-direction:column;overflow:hidden}
-.u-comic .dept-top{border-bottom:var(--bd);padding:15px 21px;display:flex;align-items:center;gap:13px}
-.u-comic .dept-top .no{font-family:var(--toon);font-size:1.8rem;line-height:1}
-.u-comic .dept-top .nm{font-family:var(--punch);font-size:.79rem;letter-spacing:.08em;text-transform:uppercase}
-.u-comic .dept-in{padding:21px 23px 25px;flex:1;display:flex;flex-direction:column}
-.u-comic .dept h4{margin-bottom:7px}
-.u-comic .dept .lede{font-size:.87rem;font-weight:700;color:var(--muted);margin-bottom:var(--s-1)}
-.u-comic .dept ul{list-style:none;margin:0;padding:0}
-.u-comic .dept li{font-size:.91rem;padding:9px 0 9px 25px;position:relative;
-  border-top:2px dotted rgba(10,16,36,.2);font-weight:600}
-.u-comic .dept li:first-child{border-top:none}
-.u-comic .dept li::before{content:"▸";position:absolute;left:5px;top:8px;font-size:.8rem;color:var(--red)}
-.u-comic .h-g{background:var(--gold)}
-.u-comic .h-e{background:var(--green);color:#fff}
-.u-comic .h-b{background:var(--blue);color:#fff}
-.u-comic .h-r{background:var(--red);color:#fff}
-.u-comic .h-p{background:var(--purple);color:#fff}
-.u-comic .h-n{background:var(--navy);color:var(--gold-2)}
-@media(max-width:1000px){.u-comic .depts{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.u-comic .depts{grid-template-columns:1fr}}
-.u-comic .anything{margin-top:var(--s-2);background:var(--navy);color:var(--white);border:var(--bd);
-  border-radius:4px;box-shadow:10px 10px 0 var(--gold);padding:32px 34px;
-  display:grid;grid-template-columns:auto 1fr;gap:var(--s-3);align-items:center}
-.u-comic .anything .big{font-family:var(--toon);font-size:4.6rem;color:var(--gold);line-height:.82;white-space:nowrap}
-.u-comic .anything p{font-weight:600;font-size:1.02rem;color:rgba(255,255,255,.86)}
-.u-comic .anything b{color:var(--gold-2)}
-@media(max-width:680px){.u-comic .anything{grid-template-columns:1fr;gap:var(--s-1);padding:26px}}
-.u-comic .day{margin-top:var(--s-4);display:grid;gap:var(--s-1)}
-.u-comic .slot{display:grid;grid-template-columns:9.5ch 168px 1fr;gap:var(--s-2);align-items:center;
-  background:var(--white);border:var(--bd);border-radius:4px;box-shadow:var(--pop-sm);padding:16px 22px;color:var(--ink)}
-.u-comic .slot .t{font-family:var(--toon);font-size:1.32rem;line-height:1}
-.u-comic .slot .d{font-family:var(--punch);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
-  border:var(--bd-3);border-radius:2px;padding:6px 10px;text-align:center}
-.u-comic .slot .a{font-size:.96rem;font-weight:600}
-@media(max-width:860px){.u-comic .slot{grid-template-columns:9.5ch auto;gap:10px var(--s-2);justify-content:start}
-.u-comic .slot .a{grid-column:1/-1}}
-.u-comic .reg{margin-top:var(--s-4);border:var(--bd);border-radius:4px;box-shadow:var(--pop);background:var(--white);overflow-x:auto}
-.u-comic table{width:100%;border-collapse:collapse;min-width:640px}
-.u-comic th,.u-comic td{padding:15px 20px;text-align:left;border-bottom:2px dotted rgba(10,16,36,.22)}
-.u-comic th{font-family:var(--punch);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
-  background:var(--ink);color:var(--gold);border-bottom:var(--bd)}
-.u-comic td{font-size:.95rem;font-weight:700;color:var(--ink)}
-.u-comic tr:last-child td{border-bottom:none}
-.u-comic td.num{font-family:var(--toon);font-size:1.9rem;color:var(--red);line-height:1;font-weight:400}
-.u-comic td.na{font-family:var(--punch);font-size:.76rem;color:var(--muted);font-weight:400}
-.u-comic .cmp{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-2);margin-top:var(--s-4)}
-.u-comic .cmp-col{border:var(--bd);border-radius:4px;box-shadow:var(--pop);padding:28px 28px 32px;background:var(--white);color:var(--ink)}
-.u-comic .cmp-col.win{background:var(--navy);color:var(--white);box-shadow:10px 10px 0 var(--gold)}
-.u-comic .cmp-col .crest{margin-bottom:8px}
-.u-comic .cmp-col h4{margin-bottom:var(--s-1)}
-.u-comic .cmp-col ul{list-style:none;margin:0;padding:0}
-.u-comic .cmp-col li{font-size:.93rem;font-weight:600;padding:10px 0 10px 28px;position:relative;
-  border-top:2px dotted rgba(10,16,36,.2)}
-.u-comic .cmp-col li:first-child{border-top:none}
-.u-comic .cmp-col li::before{content:"✗";position:absolute;left:2px;font-family:var(--punch);color:var(--red)}
-.u-comic .cmp-col.win li{border-top-color:rgba(255,255,255,.28)}
-.u-comic .cmp-col.win li::before{content:"✓";color:var(--gold)}
-@media(max-width:860px){.u-comic .cmp{grid-template-columns:1fr}}
-.u-comic .chat-wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:var(--s-4);align-items:center}
-.u-comic .phone{background:var(--paper-2);border:var(--bd);border-radius:10px;box-shadow:var(--pop);padding:20px}
-.u-comic .phone-bar{display:flex;align-items:center;gap:12px;padding-bottom:var(--s-1);border-bottom:var(--bd);margin-bottom:var(--s-2)}
-.u-comic .phone-bar .dot{width:40px;height:44px;background:var(--red);color:#fff;border:var(--bd-3);
-  clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%);
-  display:flex;align-items:flex-start;justify-content:center;padding-top:5px;font-family:var(--punch);font-size:1.1rem}
-.u-comic .phone-bar .who{font-family:var(--punch);font-size:.98rem;letter-spacing:.05em}
-.u-comic .phone-bar .who small{display:block;font-family:var(--body);font-weight:800;font-size:.64rem;
-  color:var(--green);letter-spacing:.12em;text-transform:uppercase}
-.u-comic .bub{max-width:87%;padding:13px 16px;border:var(--bd-3);border-radius:14px;
-  font-size:.92rem;font-weight:600;margin-bottom:13px;box-shadow:4px 4px 0 var(--ink)}
-.u-comic .bub time{display:block;font-family:var(--punch);font-size:.6rem;letter-spacing:.07em;color:var(--muted);margin-top:7px}
-.u-comic .bub.them{background:var(--white);border-bottom-left-radius:3px}
-.u-comic .bub.us{background:var(--gold);border-bottom-right-radius:3px;margin-left:auto}
-.u-comic .bub.rep{background:var(--navy);color:var(--white);max-width:100%;margin-left:0;margin-bottom:0}
-.u-comic .bub.rep time{color:var(--gold-2)}
-.u-comic .chat-note{font-family:var(--punch);font-size:.7rem;color:var(--muted);margin-top:var(--s-1);letter-spacing:.06em}
-@media(max-width:940px){.u-comic .chat-wrap{grid-template-columns:1fr;gap:var(--s-3)}}
-.u-comic .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:var(--s-1);margin-top:var(--s-4)}
-.u-comic .chip{background:var(--white);border:var(--bd-3);border-radius:3px;box-shadow:var(--pop-sm);padding:15px 18px;color:var(--ink)}
-.u-comic .chip b{display:block;font-family:var(--punch);font-size:.9rem;letter-spacing:.04em;line-height:1.25}
-.u-comic .chip span{font-size:.78rem;font-weight:700;color:var(--muted);display:block;margin-top:4px}
-.u-comic .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-2);margin-top:var(--s-4)}
-.u-comic .step{border:var(--bd);border-radius:4px;box-shadow:var(--pop);padding:24px 22px 28px;background:var(--white);color:var(--ink)}
-.u-comic .step .n{font-family:var(--toon);font-size:3.2rem;line-height:.76;display:block}
-.u-comic .step h4{margin:var(--s-1) 0 9px}
-.u-comic .step p{font-size:.91rem;font-weight:600}
-.u-comic .st1{background:var(--gold)}
-.u-comic .st1 .n{color:var(--red)}
-.u-comic .st2 .n{color:var(--blue)}
-.u-comic .st3{background:var(--gold)}
-.u-comic .st3 .n{color:var(--red)}
-.u-comic .st4 .n{color:var(--blue)}
-@media(max-width:1000px){.u-comic .steps{grid-template-columns:1fr 1fr}}
-@media(max-width:580px){.u-comic .steps{grid-template-columns:1fr}}
-.u-comic .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-2);margin-top:var(--s-4)}
-.u-comic .tier{background:var(--white);border:var(--bd);border-radius:4px;box-shadow:var(--pop);
-  display:flex;flex-direction:column;overflow:hidden}
-.u-comic .tier-top{border-bottom:var(--bd);padding:0 20px;height:54px;display:flex;align-items:center;
-  justify-content:space-between;gap:14px}
-.u-comic .tier-top .lvl{font-family:var(--punch);font-size:.79rem;letter-spacing:.09em;text-transform:uppercase}
-.u-comic .meter{display:flex;gap:4px;flex:none}
-.u-comic .meter i{width:13px;height:19px;border:var(--bd-3);background:var(--white);display:block;border-radius:1px}
-.u-comic .meter i.on{background:var(--red)}
-.u-comic .tier-in{padding:21px 23px 26px;flex:1;display:flex;flex-direction:column}
-.u-comic .tier h4{margin-bottom:7px}
-.u-comic .tier .who{font-size:.88rem;font-weight:700;color:var(--muted)}
-.u-comic .tier .amt{font-family:var(--toon);font-size:1.95rem;line-height:1;display:block;margin-top:var(--s-2)}
-.u-comic .tier .per{font-family:var(--punch);font-size:.63rem;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--muted);display:block;margin-top:6px}
-.u-comic .tier ul{list-style:none;margin:var(--s-2) 0 0;padding:0;flex:1}
-.u-comic .tier li{font-size:.9rem;padding:9px 0 9px 25px;position:relative;font-weight:600;
-  border-top:2px dotted rgba(10,16,36,.2)}
-.u-comic .tier li:first-child{border-top:none}
-.u-comic .tier li::before{content:"\25B8";position:absolute;left:5px;top:8px;font-size:.8rem;color:var(--red)}
-.u-comic .tier .btn{margin-top:var(--s-2);width:100%;padding:13px 20px;font-size:.86rem;
-  box-shadow:var(--ring),var(--pop-sm)}
-.u-comic .tl-1 .tier-top{background:var(--gold)}
-.u-comic .tl-2 .tier-top{background:var(--blue);color:#fff}
-.u-comic .tl-3 .tier-top{background:var(--red);color:#fff}
-.u-comic .tl-1 .meter i.on{background:var(--red)}
-.u-comic .tl-2 .meter i.on,.u-comic .tl-3 .meter i.on{background:var(--gold)}
-.u-comic .tl-2{box-shadow:10px 10px 0 var(--blue)}
-.u-comic .pickflag{display:inline-block;vertical-align:middle;margin-left:9px;font-family:var(--punch);
-  font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;background:var(--gold);
-  border:2px solid var(--ink);border-radius:2px;padding:3px 7px;color:var(--ink);font-weight:400}
-@media(max-width:1000px){.u-comic .tiers{grid-template-columns:1fr}}
-.u-comic .pricenote{margin-top:var(--s-2);background:var(--navy);color:var(--white);border:var(--bd);
-  border-radius:4px;box-shadow:10px 10px 0 var(--gold);padding:30px 32px;
-  display:grid;grid-template-columns:1fr 1fr;gap:var(--s-3)}
-.u-comic .pricenote h4{color:var(--gold);margin-bottom:11px}
-.u-comic .pricenote ul{list-style:none;margin:0;padding:0}
-.u-comic .pricenote li{font-size:.92rem;font-weight:600;color:rgba(255,255,255,.84);
-  padding:8px 0 8px 24px;position:relative;border-top:2px dotted rgba(255,255,255,.2)}
-.u-comic .pricenote li:first-child{border-top:none}
-.u-comic .pricenote li::before{content:"\25B8";position:absolute;left:4px;top:7px;color:var(--gold)}
-@media(max-width:760px){.u-comic .pricenote{grid-template-columns:1fr;gap:var(--s-2);padding:24px}}
-.u-comic .kryp{background:var(--ink);color:var(--white)}
-.u-comic .kryp h2{color:var(--gold)}
-.u-comic .kryp .crest span{color:var(--green)}
-.u-comic .kryp .crest i{background:var(--green)}
-.u-comic .kryp .sec-head p{color:rgba(255,255,255,.82)}
-.u-comic .kryp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-2);margin-top:var(--s-4)}
-.u-comic .kr{border:4px solid var(--green);border-radius:4px;padding:24px 22px 26px;background:rgba(255,255,255,.045)}
-.u-comic .kr h4{color:var(--green);font-size:1.2rem;margin-bottom:9px}
-.u-comic .kr p{font-size:.91rem;color:rgba(255,255,255,.79)}
-@media(max-width:1000px){.u-comic .kryp-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.u-comic .kryp-grid{grid-template-columns:1fr}}
-.u-comic .faq{margin-top:var(--s-4);display:grid;gap:var(--s-1)}
-.u-comic details{background:var(--white);border:var(--bd);border-radius:4px;box-shadow:var(--pop-sm)}
-.u-comic summary{cursor:pointer;list-style:none;padding:19px 60px 19px 22px;position:relative;
-  font-family:var(--punch);font-size:1rem;letter-spacing:.03em}
-.u-comic summary::-webkit-details-marker{display:none}
-.u-comic summary::after{content:"+";position:absolute;right:20px;top:11px;font-family:var(--toon);
-  font-size:2rem;color:var(--red);line-height:1}
-.u-comic details[open] summary::after{content:"–"}
-.u-comic details p{padding:0 22px 22px;font-size:.96rem;font-weight:600;max-width:78ch}
-.u-comic .close{position:relative;overflow:hidden;padding:var(--s-5) 0;text-align:center;border-bottom:var(--bd)}
-.u-comic .close .wrap{position:relative;z-index:3}
-.u-comic .close .crest{justify-content:center}
-.u-comic .close h2{margin:10px auto 0;max-width:21ch}
-.u-comic .close p{max-width:52ch;margin:var(--s-2) auto 0;font-weight:600;font-size:1.08rem}
-.u-comic .close .hero-acts{justify-content:center;margin-top:var(--s-3)}
-.u-comic footer{background:var(--ink);color:var(--white);padding:var(--s-3) 0}
-.u-comic .foot{display:flex;flex-wrap:wrap;gap:var(--s-1);justify-content:space-between;align-items:center;
-  font-family:var(--punch);font-size:.76rem;letter-spacing:.07em}
-.u-comic .foot a{text-decoration:none;color:var(--gold)}
-.u-comic .foot a:hover{color:var(--gold-2)}
-/* --------------------------------------------------------------------------
-   overrides — must outrank the scoped sheets above, so they live last
-   -------------------------------------------------------------------------- */
-/* each site set overflow-x on its own <body>; on a wrapper that would turn the
-   universe into a scroll container and kill its sticky nav. the real <body>
-   handles it instead. */
-.u-premium, .u-comic{ overflow:visible; }
-
-/* both sites pin their nav to the top — sit them under the switch bar */
-.u-premium .nav, .u-comic .nav{ top:var(--sb); }
-.u-premium .prog{ top:var(--sb); }
-.u-premium .sheet{ top:var(--sb); }
-.u-premium section[id], .u-premium header[id]{ scroll-margin-top:calc(90px + var(--sb)); }
-.u-comic   section[id], .u-comic   header[id]{ scroll-margin-top:calc(98px + var(--sb)); }
-
-</style>
-<style>
-  footer .foot.legal{font-size:13px;opacity:.72;margin-top:8px}
-  footer .foot.legal a{text-decoration:none;border-bottom:1px solid currentColor;opacity:.9}
-  footer .foot.note{display:block;font-size:12px;opacity:.55;margin-top:8px;line-height:1.6}
+/* close */
+.close{padding:96px 0;text-align:center}
+.close h2{font-size:clamp(28px,4.2vw,46px);letter-spacing:-.03em;line-height:1.1;max-width:20ch;margin:0 auto}
+.close p{color:var(--mut);margin:18px auto 30px;max-width:52ch}
+footer{border-top:1px solid var(--line2);padding:34px 0;color:var(--dim);font-size:13.5px}
+.fgrid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer a{color:var(--mut)}
+footer a:hover{color:var(--ink)}
 </style>
 </head>
-<body class="uni-premium">
-<script>
-/* pick the universe before anything paints, so there is no flash */
-(function(){var v;try{v=localStorage.getItem("ghost.universe");}catch(e){}
- if(v==="comic"){document.body.className="uni-comic";}})();
-</script>
+<body>
 
-<div class="sbar">
-  <div class="sbar-in">
-    <button class="uswitch" id="uswitch" role="switch" aria-checked="false">
-      <span class="uswitch-lbl">Change Universe</span>
-      <span class="uswitch-track"><span class="uswitch-knob" aria-hidden="true"></span></span>
-    </button>
-  </div>
-</div>
-
-<div class="ufx" id="ufx" aria-hidden="true">
-  <div class="ufx-mist"></div>
-  <div class="ufx-blur"></div>
-  <div class="ufx-lines"></div>
-  <div class="ufx-panel"><span class="ufx-dots"></span></div>
-  <div class="ufx-flash"></div>
-</div>
-
-<div class="universe u-premium" id="universe-premium">
-<div class="grain" aria-hidden="true"></div>
-<div class="cursor" id="cursor" aria-hidden="true"></div>
-<div class="prog" id="prog" aria-hidden="true"></div>
-
-<nav class="nav" id="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="#top" aria-label="GHOST home">
-      <span class="wm">GHOST</span>
-      <span class="wmsub">The Super Employee</span>
-    </a>
-    <div class="nav-links" id="navlinks">
-      <a href="#capabilities">Capabilities</a>
-      <a href="#losses">The losses</a>
-      <a href="#departments">Departments</a>
-      <a href="#day">A day on duty</a>
-      <a href="#onboarding">Onboarding</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#start">How to pay</a>
-      <a href="#limits">Limits</a>
-    </div>
-    <a class="btn btn-sm" href="https://app.ghostagents.in/" data-mag><span>Hire GHOST</span></a>
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sheet" aria-label="Open menu"><i></i><i></i></button>
-  </div>
-</nav>
-<div class="sheet" id="sheet">
-  <a href="#capabilities">Capabilities</a>
-  <a href="#losses">The losses</a>
-  <a href="#departments">Departments</a>
-  <a href="#day">A day on duty</a>
-  <a href="#onboarding">Onboarding</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#start">How to pay</a>
-  <a href="#limits">Limits</a>
-  <a href="https://app.ghostagents.in/" style="color:var(--aura)">Hire GHOST</a>
-</div>
-
-<header class="hero" id="top">
-  <div class="orb hero-orb-a" data-par="-0.14" aria-hidden="true"></div>
-  <div class="orb hero-orb-b" data-par="0.1" aria-hidden="true"></div>
-  <div class="wrap hero-grid">
-    <div>
-      <span class="pill" data-r style="--d:120ms"><i class="dot"></i>Meet GHOST</span>
-      <h1>
-        <span class="ln"><i class="thin" style="--d:220ms">The</i></span>
-        <span class="ln"><i class="bold" style="--d:330ms">Super</i></span>
-        <span class="ln"><i class="thin" style="--d:440ms">Employee</i></span>
-      </h1>
-      <p class="hero-sub" data-r style="--d:620ms">One hire. Every department. Works all night, takes no leave, and never forgets a thing.</p>
-      <div class="chips" data-r style="--d:720ms">
-        <span class="chip">Enquiries</span>
-        <span class="chip">Operations</span>
-        <span class="chip">Finance</span>
-        <span class="chip">Marketing</span>
-        <span class="chip">Staff</span>
-        <span class="chip">Reporting</span>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="/"><span class="dot"></span>GHOST</a>
+      <div class="nlinks">
+        <a href="#demo">Live demo</a>
+        <a href="#works">What it does</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#limits">Limits</a>
       </div>
-      <div class="acts" data-r style="--d:820ms">
-        <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Hire GHOST</span></a>
-        <a class="btn btn-ghost" href="#capabilities" data-mag><span>See what he does</span></a>
-      </div>
-      <p class="hero-note" data-r style="--d:900ms">No app · No dashboard · No training · Just WhatsApp</p>
-    </div>
-
-    <div class="record" data-r="scale" data-tilt style="--d:520ms">
-      <div class="rec-top">
-        <span class="t">GHOST</span>
-        <span class="m">Employment record<br>No. 001</span>
-      </div>
-      <dl class="rows">
-        <div class="row"><dt>Role</dt><dd>The Super Employee</dd></div>
-        <div class="row"><dt>Reports to</dt><dd>You. Directly.</dd></div>
-        <div class="row"><dt>Departments</dt><dd>All six<small>And any job you can describe in a sentence</small></dd></div>
-        <div class="row"><dt>On duty</dt><dd>24 hours, 7 days<small>Sundays and festivals included</small></dd></div>
-        <div class="row"><dt>Reply speed</dt><dd>Under one minute<small>At every hour, to everyone</small></dd></div>
-        <div class="row"><dt>Leave taken</dt><dd><span class="zero">0</span><small>Sick, casual, paid, festival — none</small></dd></div>
-        <div class="row"><dt>Resigns?</dt><dd>Never<small>Your customer list stays yours</small></dd></div>
-        <div class="row"><dt>Joins in</dt><dd>Two weeks<small>One week learning, one under your review</small></dd></div>
-      </dl>
-      <div class="rec-foot"><i class="dot"></i>On duty — always</div>
-    </div>
+      <a class="btn btn-p" href="#start">Hire GHOST</a>
+    </nav>
   </div>
 </header>
 
-<div class="ribbon" aria-hidden="true">
-  <div class="marq" id="marq"></div>
+<main>
+<div class="wrap">
+  <div class="hero">
+    <span class="eyebrow">Not a chatbot · an employee</span>
+    <h1>Your business needs one more pair of hands. <em>He never sleeps.</em></h1>
+    <p>GHOST answers your customers, runs the day's operations, keeps the books and reports to you — inside WhatsApp, where your team already is. You talk to him like staff. He does the work.</p>
+    <div class="pricebar">
+      <b>₹15,000</b><span>per agent / month</span>
+      <b>5 users</b><span>included</span>
+      <b>2 weeks</b><span>to go live</span>
+    </div>
+    <div class="cta">
+      <a class="btn btn-p" href="#demo">Run him yourself &nbsp;→</a>
+      <a class="btn btn-g" href="https://wa.me/919497243925?text=Hi%2C%20I%20want%20to%20hire%20GHOST" target="_blank" rel="noopener">Message us on WhatsApp</a>
+      <small>No card to try the demo</small>
+    </div>
+
+    <!-- LIVE DEMO -->
+    <div class="demo" id="demo">
+      <div class="demo-top">
+        <span class="live"><i></i>LIVE AGENT</span>
+        <span>this is not a recording — every run is a real request</span>
+      </div>
+      <div class="demo-body">
+        <div class="chips">
+          <button class="chip" data-t="https://ghostagents.in what is missing from this page?">Brief a website</button>
+          <button class="chip" data-t="Client wants 4 nights Munnar in Dec, 2 adults, budget 60k. Turn this into a booking note with the open questions.">Turn a message into a note</button>
+          <button class="chip" data-t="Invoice: Rs 45,000 from Live The Day Holidays, 3 nights Munnar, dated 12 Nov 2026. Pull out the facts.">Read an invoice</button>
+          <button class="chip" data-t="List the 5 questions a travel agent must ask before quoting a Kerala package.">Do the thinking</button>
+        </div>
+        <div class="row">
+          <input class="din" id="q" placeholder="Paste a link to brief, or a message to work on…" maxlength="400" />
+          <button class="run" id="go">Run agent</button>
+        </div>
+        <div class="out" id="out">
+          <div class="trace" id="trace"></div>
+          <div class="facts" id="facts"></div>
+          <div class="answer" id="answer"></div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        <span id="meta">Paste a link and he reads the real page. Paste a message and he works on it.</span>
+        <span>Nothing you type is stored.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="strip-grid">
+      <div><b>6</b><span>businesses live</span></div>
+      <div><b>18</b><span>jobs on duty</span></div>
+      <div><b>Under 1 min</b><span>first reply to a customer</span></div>
+      <div><b>0</b><span>servers you own</span></div>
+    </div>
+  </div>
 </div>
 
-<section class="sec" id="capabilities">
+<section class="blk" id="works">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>Four capabilities</span>
-      <h2 data-r style="--d:80ms">What sets him apart</h2>
-      <p class="lede" data-r style="--d:160ms">Not magic. Just four things no human hire can offer you, however good they are.</p>
+    <div class="head">
+      <div>
+        <span class="eyebrow">One employee, six jobs</span>
+        <h2 class="sec-t">He is not one skill. He is the work you keep dropping.</h2>
+      </div>
+      <p class="lede">Each GHOST is built for your business — your services, your rates, your way of writing. Then he is wired into the tools that hold your data.</p>
     </div>
-    <div class="caps" data-r="scale" style="--d:120ms">
-      <div class="cap" data-glow>
-        <span class="no">Capability 01</span>
-        <div class="big"><span style="font-size:.5em;letter-spacing:0;color:var(--fog)">&lt;</span><span data-count="60">0</span><span style="font-size:.42em;letter-spacing:0">s</span></div>
-        <span class="unit">Typical reply time</span>
-        <h4>Answers in under a minute</h4>
-        <p>The 11 PM enquiry gets the same reply as the 11 AM one. Whoever answers first usually wins the customer — and now that is you.</p>
-      </div>
-      <div class="cap" data-glow>
-        <span class="no">Capability 02</span>
-        <div class="big"><span data-count="24">0</span><span style="font-size:.42em;letter-spacing:0">/7</span></div>
-        <span class="unit">Hours on duty</span>
-        <h4>Never off duty</h4>
-        <p>No shifts to cover, no closing time. Sundays, festival days, and the week your manager is away at a wedding.</p>
-      </div>
-      <div class="cap" data-glow>
-        <span class="no">Capability 03</span>
-        <div class="big"><span data-count="0">0</span></div>
-        <span class="unit">Days of leave</span>
-        <h4>No sick, casual or paid leave</h4>
-        <p>Nothing to sanction. No notice period. No resignation that walks out of the door with your customer list.</p>
-      </div>
-      <div class="cap" data-glow>
-        <span class="no">Capability 04</span>
-        <div class="big"><span data-count="100">0</span><span style="font-size:.42em;letter-spacing:0">%</span></div>
-        <span class="unit">Follow-ups retained</span>
-        <h4>Forgets nothing</h4>
-        <p>Every pending payment, follow-up and reorder is still on the list on a busy day. Busy days are exactly when they get dropped.</p>
-      </div>
+    <div class="grid3">
+      <div class="card"><span class="num">01 / FRONT DESK</span><h3>Answers customers</h3><p>Replies on WhatsApp and Telegram, quotes from your real rate card, follows up on the ones who went quiet.</p></div>
+      <div class="card"><span class="num">02 / OPERATIONS</span><h3>Runs the day</h3><p>Today's schedule, pickups, confirmations, the one booking that has no driver. He flags the gap before it costs you.</p></div>
+      <div class="card"><span class="num">03 / MONEY</span><h3>Keeps the books</h3><p>Invoices, advances, payments due, the spreadsheet your accountant actually opens. He writes to it, not just about it.</p></div>
+      <div class="card"><span class="num">04 / REPORTING</span><h3>Reports without being asked</h3><p>A morning numbers post and an evening closing post in the owner's own group. Fixed times, every day.</p></div>
+      <div class="card"><span class="num">05 / PEOPLE</span><h3>Handles staff routines</h3><p>Attendance check-ins, leave requests, reminders — and it lands in the register, not in someone's head.</p></div>
+      <div class="card"><span class="num">06 / PAPERWORK</span><h3>Reads and drafts</h3><p>Vendor emails, PDFs, quotations, proposals. He reads the document, pulls the facts and drafts the reply.</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec slate" id="losses">
-  <div class="orb" style="width:700px;height:700px;top:-30%;right:-10%;background:radial-gradient(circle,rgba(159,180,255,.09),transparent 65%)" data-par="0.08" aria-hidden="true"></div>
+<section class="blk" id="how">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>Where the money goes</span>
-      <h2 data-r style="--d:80ms">Four losses that never appear on a bill</h2>
-      <p class="lede" data-r style="--d:160ms">None of them look dramatic. That is exactly why they get away with it, month after month.</p>
-    </div>
-    <div class="losses">
-      <div class="loss" data-r style="--d:0ms">
-        <span class="tag">Loss 01</span>
-        <h4>The missed enquiry</h4>
-        <p>Messaged at 9 PM, saw your reply at 11 AM, had already booked somewhere else. You never even knew he existed.</p>
+    <div class="head">
+      <div>
+        <span class="eyebrow">Two weeks, four steps</span>
+        <h2 class="sec-t">You do not learn software. You hire a person.</h2>
       </div>
-      <div class="loss" data-r style="--d:110ms">
-        <span class="tag">Loss 02</span>
-        <h4>The vanishing regular</h4>
-        <p>Came every month for two years, then stopped. Nobody noticed for five months, and by then he was somebody else's regular.</p>
-      </div>
-      <div class="loss" data-r style="--d:220ms">
-        <span class="tag">Loss 03</span>
-        <h4>The ageing payment</h4>
-        <p>Sixty days old. You keep meaning to call. It is awkward, so it waits, and every week it gets harder to ask.</p>
-      </div>
-      <div class="loss" data-r style="--d:330ms">
-        <span class="tag">Loss 04</span>
-        <h4>The quiet Tuesday</h4>
-        <p>Half your capacity empty at 2 PM while a full Saturday turns customers away. Nobody moved one to the other.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="rail-sec" id="departments">
-  <div class="rail-pin">
-    <div class="rail-head">
-      <span class="eyebrow" data-r>Scope of work</span>
-      <h2 data-r style="--d:80ms">Six departments. One employee.</h2>
-      <p class="lede" data-r style="--d:160ms">A human hire sits in one function. GHOST is taught the whole business — so the enquiry, the booking, the bill, the pending amount and the follow-up are one story instead of five disconnected ones.</p>
-    </div>
-    <div class="rail-track" id="railTrack">
-      <article class="dept">
-        <div class="dept-top"><span class="no">01</span><span class="nm">Enquiry management</span></div>
-        <div class="dept-in">
-          <h4>Nothing goes unanswered</h4>
-          <p class="lede-s">The department that decides whether you got the customer at all.</p>
-          <ul>
-            <li>Replies to every WhatsApp enquiry, day or night</li>
-            <li>Explains what you offer and what it costs</li>
-            <li>Books the slot, confirms it, reminds about it</li>
-            <li>Reschedules without a single phone call</li>
-            <li>Chases the enquiry that went quiet</li>
-            <li>Hands you the one that truly needs you</li>
-          </ul>
-        </div>
-      </article>
-      <article class="dept">
-        <div class="dept-top"><span class="no">02</span><span class="nm">Operations</span></div>
-        <div class="dept-in">
-          <h4>The day runs to plan</h4>
-          <p class="lede-s">Opening to closing, without you holding it in your head.</p>
-          <ul>
-            <li>Opening and closing checklists, verified daily</li>
-            <li>Job status: pending, in progress, ready</li>
-            <li>Dispatch and delivery follow-ups</li>
-            <li>Reorder alerts before the shelf is empty</li>
-            <li>Vendor and indent reminders</li>
-            <li>Escalates the job that has sat too long</li>
-          </ul>
-        </div>
-      </article>
-      <article class="dept">
-        <div class="dept-top"><span class="no">03</span><span class="nm">Finance</span></div>
-        <div class="dept-in">
-          <h4>Money in, money accounted for</h4>
-          <p class="lede-s">The reminders you keep meaning to send, actually sent.</p>
-          <ul>
-            <li>Who owes what, and for how long</li>
-            <li>Payment reminders, politely, on schedule</li>
-            <li>Daily sales and cash closing summary</li>
-            <li>Expense log built from your own messages</li>
-            <li>Filing dates and dues to your accountant</li>
-            <li>Tells you when a reminder needs your call</li>
-          </ul>
-        </div>
-      </article>
-      <article class="dept">
-        <div class="dept-top"><span class="no">04</span><span class="nm">Marketing</span></div>
-        <div class="dept-in">
-          <h4>The right message, not a blast</h4>
-          <p class="lede-s">Sent to the fifty it applies to, not the five thousand it does not.</p>
-          <ul>
-            <li>Win-backs for customers who stopped coming</li>
-            <li>Festival and offer messages, targeted by history</li>
-            <li>Review requests after a visit that went well</li>
-            <li>Birthday and anniversary wishes on the day</li>
-            <li>Quiet-hour offers to fill an empty afternoon</li>
-            <li>Reports which offer worked and which did not</li>
-          </ul>
-        </div>
-      </article>
-      <article class="dept">
-        <div class="dept-top"><span class="no">05</span><span class="nm">Staff and HR</span></div>
-        <div class="dept-in">
-          <h4>The register keeps itself</h4>
-          <p class="lede-s">No paper book, no month-end evening lost to arithmetic.</p>
-          <ul>
-            <li>Attendance on WhatsApp, register maintained</li>
-            <li>Leave requests, approvals and balances</li>
-            <li>Monthly salary statement, ready to approve</li>
-            <li>Shift and duty reminders to the right person</li>
-            <li>New joiner document checklist</li>
-            <li>Flags the pattern you should know about early</li>
-          </ul>
-        </div>
-      </article>
-      <article class="dept">
-        <div class="dept-top"><span class="no">06</span><span class="nm">Admin and reporting</span></div>
-        <div class="dept-in">
-          <h4>You always know where things stand</h4>
-          <p class="lede-s">One message each morning instead of five people to ask.</p>
-          <ul>
-            <li>A short report every morning on yesterday</li>
-            <li>A written account each month of what he did</li>
-            <li>Licence, insurance and AMC renewal reminders</li>
-            <li>Answers your questions about your own records</li>
-            <li>Keeps the lists you never get around to</li>
-            <li>Any repeatable job you can describe in a line</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-    <div class="rail-bar" aria-hidden="true"><i><b id="railBar"></b></i></div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="anything" data-r="scale">
-      <p class="n">6 in 1</p>
-      <p><strong>If it is repeatable and you can describe it, he can be taught it.</strong>
-      The six departments are where most businesses start, not a menu you are stuck with. During the
-      onboarding you tell us the jobs that actually eat your week — the ones specific to your
-      trade — and they get written into his job description alongside these.</p>
-    </div>
-  </div>
-</section>
-
-<section class="sec slate" id="day">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>One day in the life</span>
-      <h2 data-r style="--d:80ms">Twenty-four hours on duty</h2>
-      <p class="lede" data-r style="--d:160ms">The same employee moving between departments through a single day. No handover, because there is nobody to hand over to.</p>
-    </div>
-    <div class="day-grid">
-      <div class="day-stick">
-        <div class="clock" id="clock">12:40 AM</div>
-        <div class="clock-dept" id="clockDept">Enquiries</div>
-        <svg class="arc" viewBox="0 0 120 120" aria-hidden="true">
-          <circle class="bg" cx="60" cy="60" r="54"/>
-          <circle class="fg" id="arcFg" cx="60" cy="60" r="54"
-            stroke-dasharray="339.3" stroke-dashoffset="339.3" transform="rotate(-90 60 60)"/>
-        </svg>
-      </div>
-      <div class="slots" id="slots">
-        <div class="slot" data-time="12:40 AM" data-dept="Enquiries"><span class="t">12:40 AM</span><span><span class="d">Enquiries</span><span class="a">A new enquiry lands. Answered in 40 seconds, with your prices and your next free slot.</span></span></div>
-        <div class="slot" data-time="6:30 AM" data-dept="Operations"><span class="t">6:30 AM</span><span><span class="d">Operations</span><span class="a">Reminders go out to everyone booked today, before anyone is awake to forget.</span></span></div>
-        <div class="slot" data-time="8:00 AM" data-dept="Reporting"><span class="t">8:00 AM</span><span><span class="d">Reporting</span><span class="a">Your morning message: yesterday's numbers, and the one thing that needs you.</span></span></div>
-        <div class="slot" data-time="9:15 AM" data-dept="Staff"><span class="t">9:15 AM</span><span><span class="d">Staff</span><span class="a">Attendance marked as your team walks in. The register is already up to date.</span></span></div>
-        <div class="slot" data-time="11:00 AM" data-dept="Operations"><span class="t">11:00 AM</span><span><span class="d">Operations</span><span class="a">Two items running low, flagged for reorder before a customer asks for them.</span></span></div>
-        <div class="slot" data-time="2:30 PM" data-dept="Finance"><span class="t">2:30 PM</span><span><span class="d">Finance</span><span class="a">Reminders sent on four pending payments. One is escalated for you to call.</span></span></div>
-        <div class="slot" data-time="5:00 PM" data-dept="Marketing"><span class="t">5:00 PM</span><span><span class="d">Marketing</span><span class="a">Tomorrow looks quiet, so an offer goes to thirty nearby regulars — not to everybody.</span></span></div>
-        <div class="slot" data-time="9:45 PM" data-dept="Finance"><span class="t">9:45 PM</span><span><span class="d">Finance</span><span class="a">Day closed off: sales, cash, pending, and what did not get done.</span></span></div>
-        <div class="slot" data-time="11:58 PM" data-dept="Enquiries"><span class="t">11:58 PM</span><span><span class="d">Enquiries</span><span class="a">Still on duty. Your competitor's phone has been switched off for four hours.</span></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>Leave register</span>
-      <h2 data-r style="--d:80ms">The register that stays empty</h2>
-      <p class="lede" data-r style="--d:160ms">Not a criticism of your team — a description of the difference. Both belong in your business.</p>
-    </div>
-    <div class="reg" data-r="scale">
-      <table>
-        <thead>
-          <tr><th scope="col">Head</th><th scope="col">Entitlement</th><th scope="col">Availed</th><th scope="col">Pending</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Sick leave</td><td class="na">Not applicable</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Casual leave</td><td class="na">Not applicable</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Paid leave</td><td class="na">Not applicable</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Festival holidays</td><td class="na">Not applicable</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Late arrivals</td><td class="na">—</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Handover on exit</td><td class="na">—</td><td class="na">Does not exit</td><td class="na">—</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section class="sec slate">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>One employee, not a toolkit</span>
-      <h2 data-r style="--d:80ms">A team of bots is still your problem</h2>
-      <p class="lede" data-r style="--d:160ms">Most products in this space hand you a roster — one for email, one for social, one for sales. Each has to be set up, taught and supervised separately. That is a job, and the job lands on you.</p>
-    </div>
-    <div class="cmp">
-      <div class="col" data-r>
-        <span class="eyebrow" style="color:var(--fog)">Several separate bots</span>
-        <h4>You become the supervisor</h4>
-        <ul>
-          <li>Each one is briefed about your business from scratch</li>
-          <li>None of them knows what the others did</li>
-          <li>An enquiry and a pending payment are two unrelated records</li>
-          <li>More logins, more screens, more to check</li>
-          <li>You learn something broke when a customer tells you</li>
-        </ul>
-      </div>
-      <div class="col win" data-r style="--d:130ms">
-        <span class="eyebrow">One super employee</span>
-        <h4>He holds the whole picture</h4>
-        <ul>
-          <li>You explain your business a single time</li>
-          <li>The enquiry, the visit, the bill and the dues are one story</li>
-          <li>He can say "she asked in March and never came back"</li>
-          <li>One number, one thread, one thing to read</li>
-          <li>He tells you what he did, and what he could not</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap chat-grid">
-    <div>
-      <span class="eyebrow" data-r>Where he works</span>
-      <h2 data-r style="--d:80ms">He works on WhatsApp</h2>
-      <p data-r style="--d:160ms">The number your customers already message. They learn nothing new, and neither do you — there is no portal to log into and no report to go and fetch.</p>
-      <p data-r style="--d:220ms">You reply to him the way you reply to your manager: a line or two, in whatever language you actually type in.</p>
-      <p class="note" data-r style="--d:280ms">Illustration of the format. Your own messages are written around your business.</p>
-    </div>
-    <div class="phone" data-r="scale" id="phone" data-tilt>
-      <div class="ph-bar">
-        <span class="av" aria-hidden="true">G</span>
-        <span class="who">GHOST<small>On duty</small></span>
-      </div>
-      <div class="bub them" data-seq>Hi, do you take appointments on Sunday? And what would it cost?<time>Customer · 11:48 PM</time></div>
-      <div class="typing" data-typing aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="bub us" data-seq>Yes, we are open Sunday from 10 AM to 2 PM. I have 11:30 AM and 12:15 PM free. Shall I hold one for you?<time>GHOST · 11:48 PM</time></div>
-      <div class="bub them" data-seq>11:30 is fine.<time>Customer · 11:51 PM</time></div>
-      <div class="bub us" data-seq>Booked for Sunday, 11:30 AM. I will send a reminder on Saturday evening.<time>GHOST · 11:51 PM</time></div>
-      <div class="bub rep" data-seq>Good morning. Yesterday: 9 enquiries, 6 booked, 1 asked for a call from you — Mr Nair, about a bulk order. Two payments are now over 30 days pending. Shall I send reminders?<time>GHOST to owner · 8:00 AM</time></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec light">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>Who needs him</span>
-      <h2 data-r style="--d:80ms">Any business with more work than hands</h2>
-      <p class="lede" data-r style="--d:160ms">The departments are the same everywhere. Only the vocabulary changes, and that is learned during the onboarding.</p>
-    </div>
-    <div class="sectors" data-r="scale">
-      <div class="sector"><b>Dental and skin clinics</b><span>enquiries · recalls · dues</span></div>
-      <div class="sector"><b>Salons and spas</b><span>bookings · quiet hours · regulars</span></div>
-      <div class="sector"><b>Retail shops</b><span>stock · enquiries · offers</span></div>
-      <div class="sector"><b>Workshops and service centres</b><span>job status · delivery · dues</span></div>
-      <div class="sector"><b>Gyms and studios</b><span>renewals · attendance · win-backs</span></div>
-      <div class="sector"><b>Coaching centres</b><span>admissions · fees · parents</span></div>
-      <div class="sector"><b>Restaurants and cafés</b><span>orders · vendors · staff</span></div>
-      <div class="sector"><b>Distributors and wholesalers</b><span>indents · udhaar · dispatch</span></div>
-      <div class="sector"><b>Apartments and rentals</b><span>complaints · dues · reminders</span></div>
-      <div class="sector"><b>Labs and diagnostics</b><span>bookings · reports · follow-ups</span></div>
-      <div class="sector"><b>Pharmacies and medical stores</b><span>refills · stock · dues</span></div>
-      <div class="sector"><b>Event and catering services</b><span>enquiries · quotes · advances</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="onboarding">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>Onboarding</span>
-      <h2 data-r style="--d:80ms">How to hire him: four steps, two weeks</h2>
-      <p class="lede" data-r style="--d:160ms">It is an induction, not an installation. A new employee needs a fortnight to be useful, and this one is honest about that.</p>
+      <p class="lede">No dashboards to train your team on, no app to install. The interface is the chat app they already use.</p>
     </div>
     <div class="steps">
-      <div class="step" data-r data-step>
-        <div><span class="n">01</span><span class="wk">Day 1</span></div>
-        <div>
-          <h4>You describe the business</h4>
-          <p>A conversation, not a form full of settings. What you sell, your timings, your staff, and the three things that keep going wrong.</p>
-        </div>
-      </div>
-      <div class="step" data-r data-step>
-        <div><span class="n">02</span><span class="wk">Days 2–5</span></div>
-        <div>
-          <h4>We write his job description</h4>
-          <p>In writing, before anything goes live: which jobs in which departments he handles, and what stays with you. Approve it or change it.</p>
-        </div>
-      </div>
-      <div class="step" data-r data-step>
-        <div><span class="n">03</span><span class="wk">Week 2</span></div>
-        <div>
-          <h4>He works under your review</h4>
-          <p>In week two nothing goes out unseen. He drafts, you approve, he learns from your corrections. Then you let him run.</p>
-        </div>
-      </div>
-      <div class="step" data-r data-step>
-        <div><span class="n">04</span><span class="wk">Every month</span></div>
-        <div>
-          <h4>He reports every month</h4>
-          <p>On the first of each month, a written account of what he handled and what it was worth. If the number is poor, you see that too.</p>
-        </div>
-      </div>
+      <div class="step"><em>DAY 1–2</em><b>Tell us the job</b><p>A 45-minute call: what your business does, who answers customers today, and what keeps slipping.</p></div>
+      <div class="step"><em>DAY 3–7</em><b>He learns your business</b><p>Your rate card, your sheets, your tone, your do-not-say list. We connect the tools read-first.</p></div>
+      <div class="step"><em>DAY 8–12</em><b>He works in the dark</b><p>He drafts while you approve. Every answer is reviewed before it reaches a customer.</p></div>
+      <div class="step"><em>DAY 13–14</em><b>He goes live</b><p>Your number, your group, your staff. You keep the approvals on for the jobs that matter.</p></div>
     </div>
+    <table class="tbl">
+      <thead><tr><th>What you give</th><th>What GHOST gives back</th></tr></thead>
+      <tbody>
+        <tr><td>A WhatsApp number</td><td>Customer replies in your own words, 24 hours a day</td></tr>
+        <tr><td>Your rate card &amp; sheets</td><td>Quotes, bookings and ledgers written for you</td></tr>
+        <tr><td>The tasks that keep slipping</td><td>A fixed daily rhythm of posts, checks and reports</td></tr>
+        <tr><td>15 minutes a week</td><td>The rest of the week back</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<section class="sec" id="start">
+<section class="blk" id="pricing">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>Start now</span>
-      <h2 data-r style="--d:80ms">Hire him in one sitting</h2>
-      <p class="lede" data-r style="--d:160ms">No sales call is needed to begin. Five fields, one UPI payment, and the workspace is yours. A conversation is only needed if you want the six-department scope.</p>
-    </div>
-    <div class="steps">
-      <div class="step" data-r data-step>
-        <div><span class="n">01</span><span class="wk">Two minutes</span></div>
-        <div>
-          <h4>You tell us the basics</h4>
-          <p>Company, your name, email, phone, and how many agents you are hiring. Nothing else, and no card.</p>
-        </div>
-      </div>
-      <div class="step" data-r data-step>
-        <div><span class="n">02</span><span class="wk">Same screen</span></div>
-        <div>
-          <h4>You pay the first month</h4>
-          <p>A UPI QR open to any app — GPay, PhonePe, Paytm, your bank. No payment gateway, no card details, nothing stored on our side.</p>
-        </div>
-      </div>
-      <div class="step" data-r data-step>
-        <div><span class="n">03</span><span class="wk">Ten seconds</span></div>
-        <div>
-          <h4>You send the reference</h4>
-          <p>Paste the UTR / transaction ID from your payment app, and attach the screenshot if you have it. That is the whole submission.</p>
-        </div>
-      </div>
-      <div class="step" data-r data-step>
-        <div><span class="n">04</span><span class="wk">Same day</span></div>
-        <div>
-          <h4>The workspace opens</h4>
-          <p>We match the payment, provision your GHOST workspace and email the credentials. Week one he drafts, you approve. Then you let him run.</p>
-        </div>
-      </div>
-    </div>
-    <div class="acts" data-r style="--d:200ms;margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center">
-      <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Start now — hire GHOST</span></a>
-      <a class="btn btn-ghost" href="#pricing" data-mag><span>See the scopes</span></a>
-    </div>
-    <div class="pricenote" data-r="scale">
+    <div class="head">
       <div>
-        <h4>The money, plainly</h4>
-        <ul>
-          <li><b>&#8377;10,000 per agent, per month.</b> Billed monthly in advance.</li>
-          <li>Nothing extra per message, per department or per person using him.</li>
-          <li>From month two it is a renewal link, not a new signup.</li>
-        </ul>
+        <span class="eyebrow">Pricing, on the first page</span>
+        <h2 class="sec-t">₹15,000 a month. That is the whole headline.</h2>
       </div>
+      <p class="lede">Cheaper than a junior hire, and he does not take leave, forget a follow-up, or leave with your customer list. Setup is included.</p>
+    </div>
+    <div class="grid2">
+      <div class="pcard">
+        <div class="amt">₹15,000</div>
+        <div class="per">per agent / month · 5 users · billed monthly</div>
+        <ul>
+          <li>One agent built for your business</li>
+          <li>WhatsApp, Telegram and Gmail</li>
+          <li>Google Sheets &amp; Drive wired in</li>
+          <li>₹3,000 of model usage included every month</li>
+          <li>Daily jobs, reports and approvals</li>
+          <li>Setup in two weeks, no setup fee</li>
+        </ul>
+        <div class="cta"><a class="btn btn-p" href="#start">Start the two weeks</a></div>
+      </div>
+      <div class="card" style="align-self:start">
+        <h3>What you are really comparing</h3>
+        <p>A junior coordinator in most Indian cities costs ₹25,000–₹40,000 a month, works 8 hours, takes 12 days of leave, needs a laptop and a manager, and quits in 11 months — with the customer relationships in their head.</p>
+        <ul>
+          <li>GHOST: ₹15,000 · 24 hours · no leave · no ramp-up</li>
+          <li>He remembers every client, rate and past trip</li>
+          <li>Nothing leaves with him when he is switched off</li>
+        </ul>
+        <p style="margin-top:14px;color:var(--dim);font-size:13px">Multi-agent and group-company pricing is quoted after the call. Token usage beyond ₹3,000 is passed through at cost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="limits">
+  <div class="wrap">
+    <div class="head">
       <div>
-        <h4>If it does not work out</h4>
-        <ul>
-          <li>Full refund within 7 days of your first payment — see <a href="refund.html">Refunds</a>.</li>
-          <li>Your workspace stays live until the end of the period you paid for; nothing is deleted.</li>
-          <li>Lost the payment link? Write to <a href="mailto:ghostagents.in@gmail.com">ghostagents.in@gmail.com</a> and we resend it.</li>
-        </ul>
+        <span class="eyebrow">Read this before you hire</span>
+        <h2 class="sec-t">What he cannot do</h2>
       </div>
+      <p class="lede">Most agent demos stop before this section. Ours does not — you should know the edges before you pay.</p>
+    </div>
+    <div class="limits">
+      <div class="lim"><b>He is not a lawyer or an accountant</b><p>He drafts, extracts and reminds. A human signs off on anything with legal or statutory weight.</p></div>
+      <div class="lim"><b>He cannot fix your data</b><p>If two spreadsheets disagree, he will tell you exactly where. He will not silently pick one.</p></div>
+      <div class="lim"><b>He needs your numbers to be real</b><p>Quotes come from your rate card. If the rate card is stale, his quotes are stale.</p></div>
+      <div class="lim"><b>He will ask before money moves</b><p>Payments, refunds and mass messages need an approval until you turn that off.</p></div>
+      <div class="lim"><b>He is not on your payroll software</b><p>He is a worker, not a statutory employer record. Salary processing stays where it is.</p></div>
+      <div class="lim"><b>WhatsApp can still rate-limit</b><p>He paces messages and respects the platform. Bulk blasting is exactly what we refuse to do.</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="pricing">
+<section class="blk" id="start">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>Pricing</span>
-      <h2 data-r style="--d:80ms">Priced like a salary, set by scope</h2>
-      <p class="lede" data-r style="--d:160ms">One monthly amount for one employee. Nothing extra per message, per department or per person using him. What moves the figure is how much of the business he is asked to hold — so the scope is agreed first — <b>&#8377;10,000 per agent, per month</b>, billed monthly, nothing else.</p>
-    </div>
-    <div class="tiers">
-
-      <div class="tier" data-r data-glow>
-        <span class="lvl">Scope 01</span>
-        <h4>One department</h4>
-        <p class="who">The single job costing you the most right now — for most owners that is enquiries, or money that has gone unchased.</p>
-        <!-- PRICE 01 · replace the text in .amt with your figure, e.g. "&#8377;12,000" -->
-        <span class="amt">&#8377;10,000</span>
-        <span class="per">Per month · 1 agent · &#8377;10,000 per agent</span>
-        <ul>
-          <li>Any one of the six departments</li>
-          <li>Works on your existing WhatsApp business number</li>
-          <li>A short report every morning on yesterday</li>
-          <li>Two-week onboarding, second week under your review</li>
-        </ul>
-        <a class="btn btn-ghost" href="https://app.ghostagents.in/" data-mag><span>Start here</span></a>
-      </div>
-
-      <div class="tier pick" data-r style="--d:110ms" data-glow>
-        <span class="lvl">Scope 02 · where most owners settle</span>
-        <h4>Three departments</h4>
-        <p class="who">The front desk, the money and the follow-up together — the point where he stops being a helper and starts being staff.</p>
-        <!-- PRICE 02 · replace the text in .amt with your figure -->
-        <span class="amt">&#8377;30,000</span>
-        <span class="per">Per month · 3 agents · &#8377;10,000 per agent</span>
-        <ul>
-          <li>Any three of the six departments</li>
-          <li>Jobs specific to your trade written into his job description</li>
-          <li>Morning report, plus a written account each month</li>
-          <li>Corrections in month one treated as priority</li>
-        </ul>
-        <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Hire GHOST</span></a>
-      </div>
-
-      <div class="tier" data-r style="--d:220ms" data-glow>
-        <span class="lvl">Scope 03</span>
-        <h4>The whole desk</h4>
-        <p class="who">Every department, and the repeatable jobs that are specific to your trade rather than to businesses in general.</p>
-        <!-- PRICE 03 · replace the text in .amt with your figure -->
-        <span class="amt">&#8377;60,000</span>
-        <span class="per">Per month · 6 agents · &#8377;10,000 per agent</span>
-        <ul>
-          <li>All six departments</li>
-          <li>Any repeatable job you can describe in a sentence</li>
-          <li>More than one branch or number, where you have them</li>
-          <li>A named person at Babuba on the account</li>
-        </ul>
-        <a class="btn btn-ghost" href="https://app.ghostagents.in/" data-mag><span>Talk it through</span></a>
-      </div>
-
+    <span class="eyebrow">Hiring</span>
+    <h2 class="sec-t" style="margin-bottom:26px">Three questions and we are moving.</h2>
+    <div class="grid3">
+      <div class="card"><span class="num">START</span><h3>Book the call</h3><p>45 minutes, your business, no slides. We come back with a written scope and a fixed price.</p><a class="btn btn-g" style="margin-top:14px" href="https://wa.me/919497243925?text=Hi%2C%20I%20want%20to%20hire%20GHOST" target="_blank" rel="noopener">WhatsApp us</a></div>
+      <div class="card"><span class="num">OR</span><h3>Send the brief</h3><p>Write what keeps slipping. We will tell you honestly whether an agent is the right answer.</p><a class="btn btn-g" style="margin-top:14px" href="mailto:ghostagents.in@gmail.com?subject=Hiring%20GHOST">ghostagents.in@gmail.com</a></div>
+      <div class="card"><span class="num">ALREADY A CUSTOMER</span><h3>Your panel</h3><p>Sign in, see his logs, change his rules, add a user. Same agent, your control.</p><a class="btn btn-g" style="margin-top:14px" href="https://app.ghostagents.in" target="_blank" rel="noopener">Open the panel</a></div>
     </div>
 
-    <div class="pricenote" data-r="scale">
-      <div>
-        <h4>What moves the figure</h4>
-        <ul>
-          <li>How many departments he is asked to hold</li>
-          <li>How many messages a day come through your number</li>
-          <li>How many branches, or how many numbers</li>
-          <li>How much of your existing record-keeping he has to learn at the start</li>
-        </ul>
-      </div>
-      <div>
-        <h4>The same at every scope</h4>
-        <ul>
-          <li>No separate charge per task or per department</li>
-          <li>The onboarding conversation costs nothing</li>
-          <li>His job description is in writing, and you approve it before anything goes live</li>
-          <li>If it is not working in month one, tell us and we stop</li>
-        </ul>
-      </div>
+    <div style="margin-top:56px">
+      <h2 class="sec-t" style="font-size:clamp(22px,2.6vw,30px);margin-bottom:18px">Questions people actually ask</h2>
+      <details><summary>Is this just ChatGPT with a new skin?</summary><p>No. ChatGPT answers; GHOST acts. He holds the tools — WhatsApp, your Sheets, your Drive, your site repo — and he runs on a schedule. The demo above is a real live call, not a video.</p></details>
+      <details><summary>Where does my data live?</summary><p>Your agent runs in its own isolated container with its own credentials. One customer's agent cannot read another's data, and your Google account is connected by you, revocable by you, at any time.</p></details>
+      <details><summary>What happens if he gets something wrong?</summary><p>Approvals stay on for the jobs that matter until you trust him. Every action is logged, and you can read the log from the panel — what he read, what he wrote, and when.</p></details>
+      <details><summary>Can two people use the same agent?</summary><p>Yes — five users are included. Staff, family or partners can each talk to him, and he answers according to who is asking.</p></details>
+      <details><summary>What if I stop paying?</summary><p>He stops. You keep your data — it lives in your Google account and your WhatsApp, not in ours.</p></details>
     </div>
   </div>
 </section>
 
-<section class="sec slate" id="limits">
+<div class="close">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>Stated limits</span>
-      <h2 data-r style="--d:80ms">What he cannot do</h2>
-      <p class="lede" data-r style="--d:160ms">Every employee has limits, and ours are written down before you hire. The fastest way to lose your trust is to let you assume something we never promised.</p>
-    </div>
-    <div class="limits" data-r="scale">
-      <div class="limit">
-        <span class="x" aria-hidden="true"></span>
-        <h4>No professional advice</h4>
-        <p>No medical, legal or financial opinions to your customers, under any wording. He answers what you sell and what it costs, and routes the rest to you.</p>
-      </div>
-      <div class="limit">
-        <span class="x" aria-hidden="true"></span>
-        <h4>He cannot commit for you</h4>
-        <p>No discounts invented, no deadlines promised, no exceptions granted. Anything outside what you set becomes a message asking you.</p>
-      </div>
-      <div class="limit">
-        <span class="x" aria-hidden="true"></span>
-        <h4>He only knows what he is told</h4>
-        <p>He cannot chase a payment nobody recorded. Someone still has to enter the bill. The onboarding sets up that one habit, and we are direct about it.</p>
-      </div>
-      <div class="limit">
-        <span class="x" aria-hidden="true"></span>
-        <h4>He does not replace your team</h4>
-        <p>He has no judgement and cannot read a room. He removes the work your staff should never have been doing, so they can do the part that needs a person.</p>
-      </div>
-      <div class="limit">
-        <span class="x" aria-hidden="true"></span>
-        <h4>He gets things wrong at first</h4>
-        <p>Every new employee does. That is what the review week is for, and why corrections in month one are expected rather than a fault.</p>
-      </div>
-      <div class="limit">
-        <span class="x" aria-hidden="true"></span>
-        <h4>He never shares your data</h4>
-        <p>Your customer list is yours. It is not pooled with other businesses, and it is not used to sell anything to anyone else.</p>
-      </div>
+    <h2>Put him on your payroll. He starts in two weeks.</h2>
+    <p>One agent, ₹15,000 a month, five users. If the first month does not save you more than he costs, tell us and we will shut him down.</p>
+    <div class="cta" style="justify-content:center">
+      <a class="btn btn-p" href="https://wa.me/919497243925?text=Hi%2C%20I%20want%20to%20hire%20GHOST" target="_blank" rel="noopener">Message us on WhatsApp</a>
+      <a class="btn btn-g" href="#demo">Try the demo again</a>
     </div>
   </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-r>Questions owners actually ask</span>
-      <h2 data-r style="--d:80ms">Before you hire him</h2>
-    </div>
-    <div class="faq" data-r>
-      <details>
-        <summary>Do I need to be good with computers?</summary>
-        <div class="ans"><p>No. If you can use WhatsApp, you can work with GHOST. There is no dashboard, no software to install, and nothing for your staff to be trained on. You talk to him the way you talk to a person who works for you.</p></div>
-      </details>
-      <details>
-        <summary>Do I have to switch on all six departments?</summary>
-        <div class="ans"><p>No, and most owners do not. Start with the one or two jobs costing you the most — usually enquiries or pending payments. Because it is the same employee throughout, switching on marketing or staff later does not mean starting again. He already knows your business.</p></div>
-      </details>
-      <details>
-        <summary>My business has jobs specific to my trade. Can he learn those?</summary>
-        <div class="ans"><p>That is the normal case. The six departments are a starting structure, not a fixed list. If a job is repeatable and you can describe it in a sentence, it can usually be written into his job description during the onboarding.</p></div>
-      </details>
-      <details>
-        <summary>Will my customers know they are talking to a machine?</summary>
-        <div class="ans"><p>We do not pretend otherwise, and we would advise you not to either. In practice customers care about a straight answer quickly. He introduces himself as your business, answers what he knows, and hands over to a person the moment the question needs one.</p></div>
-      </details>
-      <details>
-        <summary>What happens to my existing WhatsApp number?</summary>
-        <div class="ans"><p>It keeps working. He operates on your business number, so the number on your board and your conversation history stay exactly as they are. We walk you through the change during setup.</p></div>
-      </details>
-      <details>
-        <summary>Can he handle the way my customers actually write?</summary>
-        <div class="ans"><p>That is the normal case, not the exception. Customers write in short forms, in a mix of English and their own language, often without punctuation. He is built for how people really message, not for clean sentences.</p></div>
-      </details>
-      <details>
-        <summary>What does he cost?</summary>
-        <div class="ans"><p>He is priced like a salary — one monthly amount for one employee, with no separate charge per task or per department. The figure follows the scope you choose, and the three scopes are set out above. We quote after the first conversation rather than putting a number here that may not apply to your business.</p></div>
-      </details>
-      <details>
-        <summary>What if he is not working for me?</summary>
-        <div class="ans"><p>Tell us in the first month and we will either fix the job description or stop. We would rather lose one customer early than have a business paying for an employee it does not rate.</p></div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section class="close">
-  <div class="orb orb-c" aria-hidden="true"></div>
-  <div class="wrap">
-    <span class="eyebrow" data-r>Start the onboarding</span>
-    <h2 data-r style="--d:80ms">Put him on your payroll.</h2>
-    <p data-r style="--d:160ms">Five fields, one UPI payment, and his workspace opens the same day. His duties are in writing before anything goes live, and you can walk away after reading them.</p>
-    <div class="acts" data-r style="--d:240ms">
-      <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Hire GHOST</span></a>
-      <a class="btn btn-ghost" href="#start" data-mag><span>How to pay</span></a>
-    </div>
-  </div>
-</section>
+</div>
+</main>
 
 <footer>
-  <div class="wrap foot">
-    <span>GHOST — the Super Employee, by Babuba</span>
-    <span><a href="https://app.ghostagents.in/"><b>Start now</b></a> · <a href="mailto:ghostagents.in@gmail.com">ghostagents.in@gmail.com</a></span>
+  <div class="wrap fgrid">
+    <div>© 2026 GHOST · ghostagents.in · Running on infrastructure we own.</div>
+    <div style="display:flex;gap:20px">
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/refund.html">Refunds</a>
+      <a href="mailto:ghostagents.in@gmail.com">ghostagents.in@gmail.com</a>
+    </div>
   </div>
-  <div class="wrap foot legal">
-    <span>© 2026 Babuba. GHOST is a product of Babuba.</span>
-    <span><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="refund.html">Refunds</a></span>
-  </div>
-  <p class="wrap foot note">&#8377;10,000 per agent, per month. Pay by UPI QR — no card needed. Full refund within 7 days of your first payment. Pro-rata credit for outages longer than 72 hours. Prices exclude applicable taxes unless stated.</p>
 </footer>
-</div>
 
-<div class="universe u-comic" id="universe-comic" aria-hidden="true">
-<div class="rail" aria-hidden="true">
-  <i style="background:var(--red)"></i><i style="background:var(--gold)"></i><i style="background:var(--navy)"></i>
-  <i style="background:var(--blue)"></i><i style="background:var(--white)"></i><i style="background:var(--green)"></i>
-</div>
-
-<nav class="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="#c-top">
-      <span class="shield" aria-hidden="true">G</span>
-      <span class="bt"><b>GHOST</b><em>The Super Employee</em></span>
-    </a>
-    <div class="nav-links">
-      <a href="#c-powers">Powers</a>
-      <a href="#c-villains">Villains</a>
-      <a href="#c-departments">Departments</a>
-      <a href="#c-day">24 hours</a>
-      <a href="#c-hire">How to hire</a>
-      <a href="#c-powerlevels">Power levels</a>
-      <a href="#c-pay">How to pay</a>
-      <a href="#c-kryptonite">Kryptonite</a>
-    </div>
-    <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Hire GHOST</span></a>
-    <button class="menu-btn" id="menuBtnC" aria-expanded="false" aria-controls="sheetC" aria-label="Open menu"><i></i><i></i><i></i></button>
-  </div>
-</nav>
-
-<div class="c-sheet" id="sheetC">
-  <a href="#c-powers">Powers</a>
-  <a href="#c-villains">Villains</a>
-  <a href="#c-departments">Departments</a>
-  <a href="#c-day">24 hours</a>
-  <a href="#c-hire">How to hire</a>
-  <a href="#c-powerlevels">Power levels</a>
-  <a href="#c-pay">How to pay</a>
-  <a href="#c-kryptonite">Kryptonite</a>
-  <a class="c-sheet-hire" href="https://app.ghostagents.in/">Hire GHOST &#8594;</a>
-</div>
-
-<header class="hero" id="c-top">
-  <div class="burst" aria-hidden="true"></div>
-  <div class="veil" aria-hidden="true"></div>
-  <div class="dots dots-l" aria-hidden="true"></div>
-  <div class="wrap hero-grid">
-    <div>
-      <span class="meet">Meet GHOST</span>
-      <h1>The<span class="l2">Super</span>Employee</h1>
-      <p class="hero-sub">One hire. Every department. Works all night, takes no leave, and never forgets a thing.</p>
-      <div class="badges">
-        <span class="tag t-g">Enquiries</span>
-        <span class="tag t-e">Operations</span>
-        <span class="tag t-b">Finance</span>
-        <span class="tag t-r">Marketing</span>
-        <span class="tag t-p">Staff</span>
-        <span class="tag t-n">Reporting</span>
-      </div>
-      <div class="hero-acts">
-        <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Hire GHOST</span></a>
-        <a class="btn btn-white" href="#c-powers">See his powers</a>
-      </div>
-      <p class="hero-note">No app. No dashboard. No training. Just WhatsApp.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-top">
-        <span class="n">GHOST</span>
-        <span class="s">Employment<br>record · 001</span>
-      </div>
-      <dl class="rows">
-        <div class="row"><dt>Alias</dt><dd>The Super Employee</dd></div>
-        <div class="row"><dt>Reports to</dt><dd>You. Directly.</dd></div>
-        <div class="row"><dt>Departments</dt><dd>All six<small>And any job you can describe in a sentence</small></dd></div>
-        <div class="row"><dt>On duty</dt><dd>24 hours, 7 days<small>Sundays and festivals included</small></dd></div>
-        <div class="row"><dt>Reply speed</dt><dd>Under one minute<small>At every hour, to everyone</small></dd></div>
-        <div class="row"><dt>Leave taken</dt><dd><span class="zero">0</span><small>Sick, casual, paid, festival — none</small></dd></div>
-        <div class="row"><dt>Resigns?</dt><dd>Never<small>Your customer list stays yours</small></dd></div>
-        <div class="row"><dt>Joins in</dt><dd>Two weeks<small>One week learning, one under your review</small></dd></div>
-      </dl>
-      <div class="seal" aria-hidden="true">On duty<br>always</div>
-    </div>
-  </div>
-</header>
-
-<section class="sec b-w" id="c-powers">
-  <div class="dots" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i aria-hidden="true"></i><span style="color:var(--red)">Four super powers</span></span>
-      <h2>What makes him super</h2>
-      <p>Not magic. Just four things no human hire can offer you, however good they are.</p>
-    </div>
-    <div class="powers">
-      <div class="power pw-g">
-        <span class="fx">Instant</span>
-        <span class="no">Power 01</span>
-        <h4>Answers in under a minute</h4>
-        <p>The 11 PM enquiry gets the same reply as the 11 AM one. Whoever answers first usually wins the customer — and now that is you.</p>
-      </div>
-      <div class="power pw-r">
-        <span class="fx">24 / 7</span>
-        <span class="no">Power 02</span>
-        <h4>Never off duty</h4>
-        <p>No shifts to cover, no closing time. Sundays, festival days, and the week your manager is away at a wedding.</p>
-      </div>
-      <div class="power pw-n">
-        <span class="fx">Zero</span>
-        <span class="no">Power 03</span>
-        <h4>No sick, casual or paid leave</h4>
-        <p>Nothing to sanction. No notice period. No resignation that walks out of the door with your customer list.</p>
-      </div>
-      <div class="power pw-b">
-        <span class="fx">Total recall</span>
-        <span class="no">Power 04</span>
-        <h4>Forgets nothing</h4>
-        <p>Every pending payment, follow-up and reorder is still on the list on a busy day. Busy days are exactly when they get dropped.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-g" id="c-villains">
-  <div class="dots" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i style="background:var(--red)" aria-hidden="true"></i><span style="color:var(--red)">The rogues gallery</span></span>
-      <h2>The villains he fights daily</h2>
-      <p>None of them look dramatic. That is exactly why they get away with it, month after month.</p>
-    </div>
-    <div class="villains">
-      <div class="vill">
-        <span class="vt">Villain 01</span>
-        <h4>The Missed Enquiry</h4>
-        <p>Messaged at 9 PM, saw your reply at 11 AM, had already booked somewhere else. You never even knew he existed.</p>
-      </div>
-      <div class="vill">
-        <span class="vt">Villain 02</span>
-        <h4>The Vanishing Regular</h4>
-        <p>Came every month for two years, then stopped. Nobody noticed for five months, and by then he was somebody else's regular.</p>
-      </div>
-      <div class="vill">
-        <span class="vt">Villain 03</span>
-        <h4>The Ageing Payment</h4>
-        <p>Sixty days old. You keep meaning to call. It is awkward, so it waits, and every week it gets harder to ask.</p>
-      </div>
-      <div class="vill">
-        <span class="vt">Villain 04</span>
-        <h4>The Quiet Tuesday</h4>
-        <p>Half your capacity empty at 2 PM while a full Saturday turns customers away. Nobody moved one to the other.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-w" id="c-departments">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i style="background:var(--blue)" aria-hidden="true"></i><span style="color:var(--blue)">Scope of work</span></span>
-      <h2>Six departments. One super employee.</h2>
-      <p>A human hire sits in one function. GHOST is taught the whole business — so the enquiry, the booking, the bill, the pending amount and the follow-up are one story instead of five disconnected ones.</p>
-    </div>
-
-    <div class="depts">
-      <article class="dept">
-        <div class="dept-top h-g"><span class="no">01</span><span class="nm">Enquiry management</span></div>
-        <div class="dept-in">
-          <h4>Nothing goes unanswered</h4>
-          <p class="lede">The department that decides whether you got the customer at all.</p>
-          <ul>
-            <li>Replies to every WhatsApp enquiry, day or night</li>
-            <li>Explains what you offer and what it costs</li>
-            <li>Books the slot, confirms it, reminds about it</li>
-            <li>Reschedules without a single phone call</li>
-            <li>Chases the enquiry that went quiet</li>
-            <li>Hands you the one that truly needs you</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="dept">
-        <div class="dept-top h-e"><span class="no">02</span><span class="nm">Operations</span></div>
-        <div class="dept-in">
-          <h4>The day runs to plan</h4>
-          <p class="lede">Opening to closing, without you holding it in your head.</p>
-          <ul>
-            <li>Opening and closing checklists, verified daily</li>
-            <li>Job status: pending, in progress, ready</li>
-            <li>Dispatch and delivery follow-ups</li>
-            <li>Reorder alerts before the shelf is empty</li>
-            <li>Vendor and indent reminders</li>
-            <li>Escalates the job that has sat too long</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="dept">
-        <div class="dept-top h-b"><span class="no">03</span><span class="nm">Finance</span></div>
-        <div class="dept-in">
-          <h4>Money in, money accounted for</h4>
-          <p class="lede">The reminders you keep meaning to send, actually sent.</p>
-          <ul>
-            <li>Who owes what, and for how long</li>
-            <li>Payment reminders, politely, on schedule</li>
-            <li>Daily sales and cash closing summary</li>
-            <li>Expense log built from your own messages</li>
-            <li>Filing dates and dues to your accountant</li>
-            <li>Tells you when a reminder needs your call</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="dept">
-        <div class="dept-top h-r"><span class="no">04</span><span class="nm">Marketing</span></div>
-        <div class="dept-in">
-          <h4>The right message, not a blast</h4>
-          <p class="lede">Sent to the fifty it applies to, not the five thousand it does not.</p>
-          <ul>
-            <li>Win-backs for customers who stopped coming</li>
-            <li>Festival and offer messages, targeted by history</li>
-            <li>Review requests after a visit that went well</li>
-            <li>Birthday and anniversary wishes on the day</li>
-            <li>Quiet-hour offers to fill an empty afternoon</li>
-            <li>Reports which offer worked and which flopped</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="dept">
-        <div class="dept-top h-p"><span class="no">05</span><span class="nm">Staff and HR</span></div>
-        <div class="dept-in">
-          <h4>The register keeps itself</h4>
-          <p class="lede">No paper book, no month-end evening lost to arithmetic.</p>
-          <ul>
-            <li>Attendance on WhatsApp, register maintained</li>
-            <li>Leave requests, approvals and balances</li>
-            <li>Monthly salary statement, ready to approve</li>
-            <li>Shift and duty reminders to the right person</li>
-            <li>New joiner document checklist</li>
-            <li>Flags the pattern you should know about early</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="dept">
-        <div class="dept-top h-n"><span class="no">06</span><span class="nm">Admin and reporting</span></div>
-        <div class="dept-in">
-          <h4>You always know where things stand</h4>
-          <p class="lede">One message each morning instead of five people to ask.</p>
-          <ul>
-            <li>A short report every morning on yesterday</li>
-            <li>A written account each month of what he did</li>
-            <li>Licence, insurance and AMC renewal reminders</li>
-            <li>Answers your questions about your own records</li>
-            <li>Keeps the lists you never get around to</li>
-            <li>Any repeatable job you can describe in a line</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-
-    <div class="anything">
-      <p class="big">6 in 1</p>
-      <p><b>If it is repeatable and you can describe it, he can be taught it.</b>
-      The six above are where most businesses start, not a menu you are stuck with. During the
-      induction you tell us the jobs that actually eat your week — the ones specific to your
-      trade — and they get written into his job description alongside these.</p>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-n" id="c-day">
-  <div class="dots" aria-hidden="true" style="opacity:.06;background-image:radial-gradient(#fff 1.3px,transparent 1.3px)"></div>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i aria-hidden="true"></i><span>One day in the life</span></span>
-      <h2>Twenty-four hours on duty</h2>
-      <p>The same employee moving between departments through a single day. No handover, because there is nobody to hand over to.</p>
-    </div>
-    <div class="day">
-      <div class="slot"><span class="t">12:40 AM</span><span class="d h-g">Enquiries</span><span class="a">A new enquiry lands. Answered in 40 seconds, with your prices and your next free slot.</span></div>
-      <div class="slot"><span class="t">6:30 AM</span><span class="d h-e">Operations</span><span class="a">Reminders go out to everyone booked today, before anyone is awake to forget.</span></div>
-      <div class="slot"><span class="t">8:00 AM</span><span class="d h-n">Reporting</span><span class="a">Your morning message: yesterday's numbers, and the one thing that needs you.</span></div>
-      <div class="slot"><span class="t">9:15 AM</span><span class="d h-p">Staff</span><span class="a">Attendance marked as your team walks in. The register is already up to date.</span></div>
-      <div class="slot"><span class="t">11:00 AM</span><span class="d h-e">Operations</span><span class="a">Two items running low, flagged for reorder before a customer asks for them.</span></div>
-      <div class="slot"><span class="t">2:30 PM</span><span class="d h-b">Finance</span><span class="a">Reminders sent on four pending payments. One is escalated for you to call.</span></div>
-      <div class="slot"><span class="t">5:00 PM</span><span class="d h-r">Marketing</span><span class="a">Tomorrow looks quiet, so an offer goes to thirty nearby regulars — not to everybody.</span></div>
-      <div class="slot"><span class="t">9:45 PM</span><span class="d h-b">Finance</span><span class="a">Day closed off: sales, cash, pending, and what did not get done.</span></div>
-      <div class="slot"><span class="t">11:58 PM</span><span class="d h-g">Enquiries</span><span class="a">Still on duty. Your competitor's phone has been switched off for four hours.</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-w">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i style="background:var(--red)" aria-hidden="true"></i><span style="color:var(--red)">Leave register</span></span>
-      <h2>The register that stays empty</h2>
-      <p>Not a criticism of your team — a description of the difference. Both belong in your business.</p>
-    </div>
-    <div class="reg">
-      <table>
-        <thead>
-          <tr><th scope="col">Head</th><th scope="col">Entitlement</th><th scope="col">Availed</th><th scope="col">Pending</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Sick leave</td><td class="na">Not applicable</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Casual leave</td><td class="na">Not applicable</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Paid leave</td><td class="na">Not applicable</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Festival holidays</td><td class="na">Not applicable</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Late arrivals</td><td class="na">—</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Handover on exit</td><td class="na">—</td><td class="na">Does not exit</td><td class="na">—</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-p">
-  <div class="dots" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i style="background:var(--red)" aria-hidden="true"></i><span style="color:var(--red)">One hero, not a squad</span></span>
-      <h2>A team of bots is still your problem</h2>
-      <p>Most products in this space hand you a roster — one for email, one for social, one for sales. Each has to be set up, taught and supervised separately. That is a job, and the job lands on you.</p>
-    </div>
-    <div class="cmp">
-      <div class="cmp-col">
-        <span class="crest"><i style="background:var(--red)" aria-hidden="true"></i><span style="color:var(--red)">Several separate bots</span></span>
-        <h4>You become the supervisor</h4>
-        <ul>
-          <li>Each one is briefed about your business from scratch</li>
-          <li>None of them knows what the others did</li>
-          <li>An enquiry and a pending payment are two unrelated records</li>
-          <li>More logins, more screens, more to check</li>
-          <li>You learn something broke when a customer tells you</li>
-        </ul>
-      </div>
-      <div class="cmp-col win">
-        <span class="crest"><i aria-hidden="true"></i><span style="color:var(--gold)">One super employee</span></span>
-        <h4>He holds the whole picture</h4>
-        <ul>
-          <li>You explain your business a single time</li>
-          <li>The enquiry, the visit, the bill and the dues are one story</li>
-          <li>He can say "she asked in March and never came back"</li>
-          <li>One number, one thread, one thing to read</li>
-          <li>He tells you what he did, and what he could not</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-w">
-  <div class="wrap chat-wrap">
-    <div>
-      <span class="crest"><i style="background:var(--green)" aria-hidden="true"></i><span style="color:var(--green)">His headquarters</span></span>
-      <h2 style="margin-top:10px">He works on WhatsApp</h2>
-      <p style="margin-top:var(--s-2);font-weight:600;font-size:1.05rem">
-        The number your customers already message. They learn nothing new, and neither do you —
-        there is no portal to log into and no report to go and fetch.
-      </p>
-      <p style="margin-top:var(--s-1);font-weight:600;font-size:1.05rem">
-        You reply to him the way you reply to your manager: a line or two, in whatever language
-        you actually type in.
-      </p>
-      <p class="chat-note">Illustration of the format. Your own messages are written around your business.</p>
-    </div>
-    <div class="phone">
-      <div class="phone-bar">
-        <span class="dot" aria-hidden="true">G</span>
-        <span class="who">GHOST<small>On duty</small></span>
-      </div>
-      <div class="bub them">Hi, do you take appointments on Sunday? And what would it cost?<time>Customer · 11:48 PM</time></div>
-      <div class="bub us">Yes, we are open Sunday from 10 AM to 2 PM. I have 11:30 AM and 12:15 PM free. Shall I hold one for you?<time>GHOST · 11:48 PM</time></div>
-      <div class="bub them">11:30 is fine.<time>Customer · 11:51 PM</time></div>
-      <div class="bub us">Booked for Sunday, 11:30 AM. I will send a reminder on Saturday evening.<time>GHOST · 11:51 PM</time></div>
-      <div class="bub rep">Good morning. Yesterday: 9 enquiries, 6 booked, 1 asked for a call from you — Mr Nair, about a bulk order. Two payments are now over 30 days pending. Shall I send reminders?<time>GHOST to owner · 8:00 AM</time></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-e">
-  <div class="dots" aria-hidden="true" style="opacity:.07;background-image:radial-gradient(#fff 1.3px,transparent 1.3px)"></div>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i aria-hidden="true"></i><span>Who needs him</span></span>
-      <h2>Any business with more work than hands</h2>
-      <p>The departments are the same everywhere. Only the vocabulary changes, and that is learned during the induction.</p>
-    </div>
-    <div class="who-grid">
-      <span class="chip"><b>Dental and skin clinics</b><span>enquiries · recalls · dues</span></span>
-      <span class="chip"><b>Salons and spas</b><span>bookings · quiet hours · regulars</span></span>
-      <span class="chip"><b>Retail shops</b><span>stock · enquiries · offers</span></span>
-      <span class="chip"><b>Workshops and service centres</b><span>job status · delivery · dues</span></span>
-      <span class="chip"><b>Gyms and studios</b><span>renewals · attendance · win-backs</span></span>
-      <span class="chip"><b>Coaching centres</b><span>admissions · fees · parents</span></span>
-      <span class="chip"><b>Restaurants and cafés</b><span>orders · vendors · staff</span></span>
-      <span class="chip"><b>Distributors and wholesalers</b><span>indents · udhaar · dispatch</span></span>
-      <span class="chip"><b>Apartments and rentals</b><span>complaints · dues · reminders</span></span>
-      <span class="chip"><b>Labs and diagnostics</b><span>bookings · reports · follow-ups</span></span>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-w" id="c-hire">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i style="background:var(--blue)" aria-hidden="true"></i><span style="color:var(--blue)">Origin story</span></span>
-      <h2>How to hire him: four steps, two weeks</h2>
-      <p>It is an induction, not an installation. A new employee needs a fortnight to be useful, and this one is honest about that.</p>
-    </div>
-    <div class="steps">
-      <div class="step st1">
-        <span class="n">1</span>
-        <h4>You describe the business</h4>
-        <p>A conversation, not a form full of settings. What you sell, your timings, your staff, and the three things that keep going wrong.</p>
-      </div>
-      <div class="step st2">
-        <span class="n">2</span>
-        <h4>We write his job description</h4>
-        <p>In writing, before anything goes live: which jobs in which departments he handles, and what stays with you. Approve it or change it.</p>
-      </div>
-      <div class="step st3">
-        <span class="n">3</span>
-        <h4>He works under your review</h4>
-        <p>In week two nothing goes out unseen. He drafts, you approve, he learns from your corrections. Then you let him run.</p>
-      </div>
-      <div class="step st4">
-        <span class="n">4</span>
-        <h4>He reports every month</h4>
-        <p>On the first of each month, a written account of what he handled and what it was worth. If the number is poor, you see that too.</p>
-      </div>
-    </div>
-    <div class="hero-acts" style="margin-top:30px">
-      <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Hire GHOST</span></a>
-      <a class="btn btn-white" href="mailto:ghostagents.in@gmail.com?subject=Hiring%20GHOST"><span>Talk it through</span></a>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-g" id="c-powerlevels">
-  <div class="dots" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i style="background:var(--red)" aria-hidden="true"></i><span style="color:var(--red)">Power levels</span></span>
-      <h2>Dial his power up or down</h2>
-      <p>He is paid like an employee — one amount each month, nothing extra per message or per department. The only thing that changes it is how much power you switch on.</p>
-    </div>
-    <div class="tiers">
-
-      <div class="tier tl-1">
-        <div class="tier-top">
-          <span class="lvl">Low power</span>
-          <span class="meter" aria-label="Power level 1 of 3"><i class="on"></i><i></i><i></i></span>
-        </div>
-        <div class="tier-in">
-          <h4>One department</h4>
-          <p class="who">Point him at the one job bleeding the most — usually the missed enquiry, or money nobody chased.</p>
-          <!-- PRICE 01 &middot; replace the text in .amt with your figure -->
-          <span class="amt">&#8377;10,000</span>
-          <span class="per">Per month · 1 agent · &#8377;10,000 per agent</span>
-          <ul>
-            <li>Any one of the six departments</li>
-            <li>Runs on your own WhatsApp number</li>
-            <li>A short report every morning</li>
-            <li>Two weeks to join, week two under your review</li>
-          </ul>
-          <a class="btn btn-white" href="https://app.ghostagents.in/">Start here</a>
-        </div>
-      </div>
-
-      <div class="tier tl-2">
-        <div class="tier-top">
-          <span class="lvl">Mid power <b class="pickflag">Most hired</b></span>
-          <span class="meter" aria-label="Power level 2 of 3"><i class="on"></i><i class="on"></i><i></i></span>
-        </div>
-        <div class="tier-in">
-          <h4>Three departments</h4>
-          <p class="who">The front desk, the money and the follow-up at once. This is where most owners land.</p>
-          <!-- PRICE 02 &middot; replace the text in .amt with your figure -->
-          <span class="amt">&#8377;30,000</span>
-          <span class="per">Per month · 3 agents · &#8377;10,000 per agent</span>
-          <ul>
-            <li>Any three of the six departments</li>
-            <li>Your own trade's jobs written into his duties</li>
-            <li>Morning report and a monthly written account</li>
-            <li>Month-one corrections jump the queue</li>
-          </ul>
-          <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Hire GHOST</span></a>
-        </div>
-      </div>
-
-      <div class="tier tl-3">
-        <div class="tier-top">
-          <span class="lvl">Full power</span>
-          <span class="meter" aria-label="Power level 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i></span>
-        </div>
-        <div class="tier-in">
-          <h4>All six departments</h4>
-          <p class="who">Every department switched on, plus the repeatable jobs nobody else in your trade has either.</p>
-          <!-- PRICE 03 &middot; replace the text in .amt with your figure -->
-          <span class="amt">&#8377;60,000</span>
-          <span class="per">Per month · 6 agents · &#8377;10,000 per agent</span>
-          <ul>
-            <li>All six departments</li>
-            <li>Any repeatable job you can say in one line</li>
-            <li>More than one branch or number</li>
-            <li>A named person at Babuba on your account</li>
-          </ul>
-          <a class="btn btn-gold" href="mailto:ghostagents.in@gmail.com?subject=Hiring%20GHOST">Talk it through</a>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="pricenote">
-      <div>
-        <h4>What turns the dial</h4>
-        <ul>
-          <li>How many departments he holds</li>
-          <li>How many messages a day hit your number</li>
-          <li>How many branches, or how many numbers</li>
-          <li>How much of your old record-keeping he learns at the start</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Same at every level</h4>
-        <ul>
-          <li>Nothing extra per task or per department</li>
-          <li>The first conversation costs nothing</li>
-          <li>His duties are in writing, and you sign them off first</li>
-          <li>Not working in month one? Say so and we stop</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-w" id="c-pay">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i style="background:var(--blue)" aria-hidden="true"></i><span style="color:var(--blue)">Before you hire</span></span>
-      <h2>Paid up in one sitting. On duty the same day.</h2>
-      <p>No sales call is needed to begin, and no card. Five fields, one UPI payment, and his workspace is provisioned and mailed to you. A conversation is only needed if you want the full six-department scope.</p>
-    </div>
-    <div class="steps">
-      <div class="step st1">
-        <span class="n">1</span>
-        <h4>Two minutes</h4>
-        <p>You tell us the basics: company, your name, email, phone, and how many agents you are hiring. Nothing else.</p>
-      </div>
-      <div class="step st2">
-        <span class="n">2</span>
-        <h4>Same screen</h4>
-        <p>You pay the first month. A UPI QR open to any app — GPay, PhonePe, Paytm, your own bank. No payment gateway in the middle, nothing stored on our side.</p>
-      </div>
-      <div class="step st3">
-        <span class="n">3</span>
-        <h4>Ten seconds</h4>
-        <p>You send the reference: paste the UTR / transaction ID from your payment app, attach the screenshot if you have it. That is the whole submission.</p>
-      </div>
-      <div class="step st4">
-        <span class="n">4</span>
-        <h4>Same day</h4>
-        <p>His workspace opens. We match the payment, provision the workspace and email the credentials. Week one he drafts, you approve — then you let him run.</p>
-      </div>
-    </div>
-    <div class="cmp">
-      <div class="cmp-col">
-        <span class="crest"><i aria-hidden="true"></i><span>The money, plainly</span></span>
-        <h4>One amount, every month</h4>
-        <ul>
-          <li>&#8377;10,000 per agent, per month, billed monthly in advance</li>
-          <li>Nothing extra per message, per department or per person using him</li>
-          <li>From month two it is a renewal link, not a new signup</li>
-          <li>Your workspace stays live to the end of the period you paid for</li>
-        </ul>
-      </div>
-      <div class="cmp-col win">
-        <span class="crest"><i aria-hidden="true"></i><span>Before you commit</span></span>
-        <h4>The small print, in the open</h4>
-        <ul>
-          <li>Full refund within 7 days of your first payment — see <a href="refund.html" style="color:inherit;text-decoration:underline">Refunds</a></li>
-          <li>His duties are in writing, and you sign them off first</li>
-          <li>Not working in month one? Say so and we stop</li>
-          <li>Lost the payment link? Write to <a href="mailto:ghostagents.in@gmail.com" style="color:inherit;text-decoration:underline">ghostagents.in@gmail.com</a> and we resend it</li>
-        </ul>
-      </div>
-    </div>
-    <div class="hero-acts" style="margin-top:34px">
-      <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Start now — hire GHOST</span></a>
-      <a class="btn btn-white" href="mailto:ghostagents.in@gmail.com?subject=Hiring%20GHOST"><span>Talk it through</span></a>
-    </div>
-  </div>
-</section>
-
-<section class="sec kryp" id="c-kryptonite">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i aria-hidden="true"></i><span>His kryptonite</span></span>
-      <h2>What he cannot do</h2>
-      <p>Every hero has limits, and ours are written down before you hire. The fastest way to lose your trust is to let you assume something we never promised.</p>
-    </div>
-    <div class="kryp-grid">
-      <div class="kr">
-        <h4>No professional advice</h4>
-        <p>No medical, legal or financial opinions to your customers, under any wording. He answers what you sell and what it costs, and routes the rest to you.</p>
-      </div>
-      <div class="kr">
-        <h4>He cannot commit for you</h4>
-        <p>No discounts invented, no deadlines promised, no exceptions granted. Anything outside what you set becomes a message asking you.</p>
-      </div>
-      <div class="kr">
-        <h4>He only knows what he is told</h4>
-        <p>He cannot chase a payment nobody recorded. Someone still has to enter the bill. The induction sets up that one habit, and we are direct about it.</p>
-      </div>
-      <div class="kr">
-        <h4>He does not replace your team</h4>
-        <p>He has no judgement and cannot read a room. He removes the work your staff should never have been doing, so they can do the part that needs a person.</p>
-      </div>
-      <div class="kr">
-        <h4>He gets things wrong at first</h4>
-        <p>Every new employee does. That is what the review week is for, and why corrections in month one are expected rather than a fault.</p>
-      </div>
-      <div class="kr">
-        <h4>He never shares your data</h4>
-        <p>Your customer list is yours. It is not pooled with other businesses, and it is not used to sell anything to anyone else.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec b-p">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="crest"><i style="background:var(--red)" aria-hidden="true"></i><span style="color:var(--red)">Questions owners actually ask</span></span>
-      <h2>Before you hire him</h2>
-    </div>
-    <div class="faq">
-      <details>
-        <summary>Do I need to be good with computers?</summary>
-        <p>No. If you can use WhatsApp, you can work with GHOST. There is no dashboard, no software to install, and nothing for your staff to be trained on. You talk to him the way you talk to a person who works for you.</p>
-      </details>
-      <details>
-        <summary>Do I have to switch on all six departments?</summary>
-        <p>No, and most owners do not. Start with the one or two jobs costing you the most — usually enquiries or pending payments. Because it is the same employee throughout, switching on marketing or staff later does not mean starting again. He already knows your business.</p>
-      </details>
-      <details>
-        <summary>My business has jobs specific to my trade. Can he learn those?</summary>
-        <p>That is the normal case. The six departments are a starting structure, not a fixed list. If a job is repeatable and you can describe it in a sentence, it can usually be written into his job description during the induction.</p>
-      </details>
-      <details>
-        <summary>Will my customers know they are talking to a machine?</summary>
-        <p>We do not pretend otherwise, and we would advise you not to either. In practice customers care about a straight answer quickly. He introduces himself as your business, answers what he knows, and hands over to a person the moment the question needs one.</p>
-      </details>
-      <details>
-        <summary>What happens to my existing WhatsApp number?</summary>
-        <p>It keeps working. He operates on your business number, so the number on your board and your conversation history stay exactly as they are. We walk you through the change during setup.</p>
-      </details>
-      <details>
-        <summary>Can he handle the way my customers actually write?</summary>
-        <p>That is the normal case, not the exception. Customers write in short forms, in a mix of English and their own language, often without punctuation. He is built for how people really message, not for clean sentences.</p>
-      </details>
-      <details>
-        <summary>What does he cost?</summary>
-        <p>He is priced like a salary — one monthly amount for one employee, with no separate charge per task or per department. The figure follows the power level you switch on, and the three levels are set out above. We quote after the first conversation rather than putting a number here that may not apply to you.</p>
-      </details>
-      <details>
-        <summary>What if he is not working for me?</summary>
-        <p>Tell us in the first month and we will either fix the job description or stop. We would rather lose one customer early than have a business paying for an employee it does not rate.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section class="close">
-  <div class="burst" aria-hidden="true"></div>
-  <div class="veil" aria-hidden="true"></div>
-  <div class="dots dots-l" aria-hidden="true"></div>
-  <div class="wrap">
-    <span class="crest"><i style="background:var(--red)" aria-hidden="true"></i><span style="color:var(--red)">Start the induction</span></span>
-    <h2>Put him on your payroll.</h2>
-    <p>Five fields, one UPI payment, and his workspace opens the same day. His duties are in writing before anything goes live, and you can walk away after reading them.</p>
-    <div class="hero-acts">
-      <a class="btn" href="https://app.ghostagents.in/" data-mag><span>Hire him now</span></a>
-      <a class="btn btn-navy" href="#c-pay">How to pay</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap foot">
-    <span>GHOST — the Super Employee, by Babuba</span>
-    <span><a href="https://app.ghostagents.in/"><b>Start now</b></a> · <a href="mailto:ghostagents.in@gmail.com">ghostagents.in@gmail.com</a></span>
-  </div>
-  <div class="wrap foot legal">
-    <span>© 2026 Babuba. GHOST is a product of Babuba.</span>
-    <span><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="refund.html">Refunds</a></span>
-  </div>
-  <p class="wrap foot note">&#8377;10,000 per agent, per month. Pay by UPI QR — no card needed. Full refund within 7 days of your first payment. Pro-rata credit for outages longer than 72 hours. Prices exclude applicable taxes unless stated.</p>
-</footer>
-</div>
-
-<script>
-
-window.__initPremium = function(){
-  "use strict";
-  var ROOT = document.getElementById("universe-premium");
-  var $  = function(s){ return ROOT.querySelector(s); };
-  var $$ = function(s){ return ROOT.querySelectorAll(s); };
-
-  var RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var TOUCH = window.matchMedia("(hover: none)").matches;
-  var lerp = function(a,b,t){ return a+(b-a)*t; };
-  var clamp = function(v,a,b){ return Math.min(b,Math.max(a,v)); };
-
-  /* ---------- hero entrance ---------- */
-  requestAnimationFrame(function(){requestAnimationFrame(function(){
-    var h=$(".hero"); if(h) h.classList.add("ready");
-  });});
-  setTimeout(function(){ $(".hero").classList.add("ready"); }, 400);
-
-  /* ---------- marquee ---------- */
-  var words = ["Enquiry management","Operations","Finance","Marketing","Staff and HR",
-               "Admin and reporting","Answers in under a minute","Never off duty",
-               "Zero leave","Forgets nothing","Works on WhatsApp"];
-  var marq = $("#marq");
-  if(marq){
-    var html = words.map(function(w){ return "<span>"+w+"</span>"; }).join("");
-    marq.innerHTML = html + html;
-  }
-
-  /* ---------- reveal on scroll ---------- */
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-    });
-  },{ rootMargin:"0px 0px -12% 0px", threshold:0.12 });
-  $$("[data-r]").forEach(function(el){
-    if(el.getBoundingClientRect().top < innerHeight*0.98){ el.classList.add("in"); }
-    else { io.observe(el); }
-  });
-
-  /* ---------- counters ---------- */
-  var cio = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(!e.isIntersecting) return;
-      cio.unobserve(e.target);
-      var el = e.target, target = parseInt(el.getAttribute("data-count"),10) || 0;
-      if(RM || target === 0){ el.textContent = target; return; }
-      var t0 = performance.now(), dur = 1500;
-      (function step(now){
-        var p = clamp((now-t0)/dur,0,1);
-        var eased = 1 - Math.pow(1-p,3);
-        el.textContent = Math.round(target*eased);
-        if(p<1) requestAnimationFrame(step);
-      })(t0);
-    });
-  },{ threshold:0.6 });
-  $$("[data-count]").forEach(function(el){ cio.observe(el); });
-
-  /* ---------- pointer glow on cards & buttons ---------- */
-  if(!TOUCH){
-    $$("[data-glow], .btn").forEach(function(el){
-      el.addEventListener("pointermove", function(ev){
-        var r = el.getBoundingClientRect();
-        el.style.setProperty("--mx", (ev.clientX-r.left)+"px");
-        el.style.setProperty("--my", (ev.clientY-r.top)+"px");
-      });
-    });
-  }
-
-  /* ---------- magnetic buttons ---------- */
-  if(!TOUCH && !RM){
-    $$("[data-mag]").forEach(function(el){
-      var raf, tx=0, ty=0, cx=0, cy=0, active=false;
-      function loop(){
-        cx = lerp(cx,tx,.16); cy = lerp(cy,ty,.16);
-        el.style.transform = "translate("+cx.toFixed(2)+"px,"+cy.toFixed(2)+"px)";
-        if(active || Math.abs(cx-tx)>.1 || Math.abs(cy-ty)>.1) raf = requestAnimationFrame(loop);
-      }
-      el.addEventListener("pointerenter", function(){ active = true; cancelAnimationFrame(raf); loop(); });
-      el.addEventListener("pointermove", function(ev){
-        var r = el.getBoundingClientRect();
-        tx = (ev.clientX - (r.left+r.width/2)) * .28;
-        ty = (ev.clientY - (r.top+r.height/2)) * .42;
-      });
-      el.addEventListener("pointerleave", function(){ active=false; tx=0; ty=0; cancelAnimationFrame(raf); loop(); });
-    });
-  }
-
-  /* ---------- tilt ---------- */
-  if(!TOUCH && !RM){
-    $$("[data-tilt]").forEach(function(el){
-      el.addEventListener("pointermove", function(ev){
-        var r = el.getBoundingClientRect();
-        var px = (ev.clientX-r.left)/r.width - .5;
-        var py = (ev.clientY-r.top)/r.height - .5;
-        el.style.transition = "transform .18s ease-out";
-        el.style.transform = "perspective(1100px) rotateY("+(px*5).toFixed(2)+"deg) rotateX("+(-py*5).toFixed(2)+"deg) translateY(-4px)";
-      });
-      el.addEventListener("pointerleave", function(){
-        el.style.transition = "transform .9s cubic-bezier(.16,1,.3,1)";
-        el.style.transform = "";
-      });
-    });
-  }
-
-  /* ---------- cursor aura ---------- */
-  var cur = $("#cursor");
-  if(cur && !TOUCH && !RM){
-    var mx=innerWidth/2, my=innerHeight/2, ax=mx, ay=my;
-    addEventListener("pointermove", function(e){ mx=e.clientX; my=e.clientY; cur.style.opacity=1; },{passive:true});
-    (function tick(){
-      ax = lerp(ax,mx,.085); ay = lerp(ay,my,.085);
-      cur.style.transform = "translate("+ax+"px,"+ay+"px)";
-      requestAnimationFrame(tick);
-    })();
-  }
-
-  /* ---------- scroll orchestration ---------- */
-  var prog = $("#prog");
-  var nav  = $("#nav");
-  var par  = [].slice.call($$("[data-par]"));
-  var railSec = $("#departments");
-  var railTrack = $("#railTrack");
-  var railBar = $("#railBar");
-  var navLinks = [].slice.call($$("#navlinks a"));
-  var sections = navLinks.map(function(a){ return $(a.getAttribute("href")); });
-
-  function sizeRail(){
-    if(!railSec || !railTrack) return;
-    if(innerWidth <= 760){ railSec.style.height=""; railTrack.style.transform=""; return; }
-    var extra = Math.max(0, railTrack.scrollWidth - innerWidth);
-    railSec.style.height = (innerHeight + extra + innerHeight*0.35) + "px";
-  }
-
-  var ticking = false;
-  function onScroll(){
-    if(ticking) return;
-    ticking = true;
-    requestAnimationFrame(function(){
-      ticking = false;
-      var y = scrollY;
-      var max = document.documentElement.scrollHeight - innerHeight;
-
-      if(prog) prog.style.transform = "scaleX("+ (max>0 ? y/max : 0) +")";
-      if(nav) nav.classList.toggle("stuck", y > 40);
-
-      if(!RM){
-        par.forEach(function(el){
-          var r = el.getBoundingClientRect();
-          if(r.bottom < -200 || r.top > innerHeight+200) return;
-          var speed = parseFloat(el.getAttribute("data-par"));
-          var off = (r.top + r.height/2 - innerHeight/2) * speed;
-          el.style.transform = (el.classList.contains("spectre") ? "translateY(-50%) " : "") +
-                               "translate3d(0,"+off.toFixed(1)+"px,0)";
-        });
-      }
-
-      if(railSec && railTrack && innerWidth > 760){
-        var rr = railSec.getBoundingClientRect();
-        var total = railSec.offsetHeight - innerHeight;
-        var p = clamp(-rr.top / (total||1), 0, 1);
-        var extra = Math.max(0, railTrack.scrollWidth - innerWidth + 56);
-        railTrack.style.transform = "translate3d("+(-p*extra).toFixed(1)+"px,0,0)";
-        if(railBar) railBar.style.transform = "scaleX("+ (0.16 + p*0.84) +")";
-      }
-
-      var cy = y + innerHeight*0.45, act = null;
-      sections.forEach(function(s,i){
-        if(s && s.offsetTop <= cy && s.offsetTop + s.offsetHeight > cy) act = i;
-      });
-      navLinks.forEach(function(a,i){ a.classList.toggle("active", i===act); });
-    });
-  }
-  addEventListener("scroll", onScroll, {passive:true});
-  addEventListener("resize", function(){ sizeRail(); onScroll(); });
-  sizeRail(); onScroll();
-  setTimeout(sizeRail, 900);
-
-  /* ---------- day timeline ---------- */
-  var clock = $("#clock");
-  var clockDept = $("#clockDept");
-  var arcFg = $("#arcFg");
-  var slots = [].slice.call($$(".slot"));
-  var LEN = 339.3;
-  if(slots.length){
-    var dio = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(!e.isIntersecting) return;
-        slots.forEach(function(s){ s.classList.remove("on"); });
-        e.target.classList.add("on");
-        var idx = slots.indexOf(e.target);
-        if(clock) clock.textContent = e.target.getAttribute("data-time");
-        if(clockDept) clockDept.textContent = e.target.getAttribute("data-dept");
-        if(arcFg) arcFg.setAttribute("stroke-dashoffset", LEN - LEN*((idx+1)/slots.length));
-      });
-    },{ rootMargin:"-42% 0px -42% 0px", threshold:0 });
-    slots.forEach(function(s){ dio.observe(s); });
-  }
-
-  /* ---------- chat sequence ---------- */
-  var phone = $("#phone");
-  if(phone){
-    var items = [].slice.call(phone.querySelectorAll("[data-seq], [data-typing]"));
-    var pio = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(!e.isIntersecting) return;
-        pio.disconnect();
-        if(RM){ items.forEach(function(el){ if(el.hasAttribute("data-seq")) el.classList.add("show"); }); return; }
-        var d = 250;
-        items.forEach(function(el){
-          if(el.hasAttribute("data-typing")){
-            setTimeout(function(){ el.classList.add("show"); }, d);
-            setTimeout(function(){ el.classList.remove("show"); el.style.height="0"; el.style.padding="0";
-              el.style.margin="0"; el.style.border="none"; }, d+1100);
-            d += 1150;
-          }else{
-            setTimeout(function(){ el.classList.add("show"); }, d);
-            d += 780;
-          }
-        });
-      });
-    },{ threshold:0.28 });
-    pio.observe(phone);
-  }
-
-  /* ---------- accordion ---------- */
-  $$("details").forEach(function(d){
-    var sum = d.querySelector("summary");
-    var ans = d.querySelector(".ans");
-    if(!sum || !ans) return;
-    sum.addEventListener("click", function(ev){
-      ev.preventDefault();
-      if(d.open){
-        ans.style.maxHeight = ans.scrollHeight + "px";
-        requestAnimationFrame(function(){
-          ans.style.maxHeight = "0px";
-          setTimeout(function(){ d.open = false; }, RM ? 0 : 520);
-        });
-      }else{
-        $$("details[open]").forEach(function(o){
-          if(o===d) return;
-          var oa = o.querySelector(".ans");
-          if(oa) oa.style.maxHeight = "0px";
-          setTimeout(function(){ o.open = false; }, RM ? 0 : 520);
-        });
-        d.open = true;
-        requestAnimationFrame(function(){ ans.style.maxHeight = ans.scrollHeight + "px"; });
-      }
-    });
-  });
-
-  /* ---------- mobile menu ---------- */
-  var mBtn = $("#menuBtn"), sheet = $("#sheet");
-  if(mBtn && sheet){
-    var links = [].slice.call(sheet.querySelectorAll("a"));
-    links.forEach(function(a,i){ a.style.transitionDelay = (60+i*45)+"ms"; });
-    function setMenu(open){
-      sheet.classList.toggle("open", open);
-      mBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      document.body.style.overflow = open ? "hidden" : "";
-    }
-    mBtn.addEventListener("click", function(){ setMenu(sheet.className.indexOf("open") === -1); });
-    links.forEach(function(a){ a.addEventListener("click", function(){ setMenu(false); }); });
-    addEventListener("keydown", function(e){ if(e.key === "Escape") setMenu(false); });
-  }
-
-  /* ---------- steps: light the number ---------- */
-  var sio = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ e.target.classList.toggle("in-view", e.isIntersecting); });
-  },{ rootMargin:"-30% 0px -30% 0px" });
-  $$("[data-step]").forEach(function(el){ sio.observe(el); });
-
-  /* recalculated when the universe is revealed after being hidden */
-  window.__premiumRefresh = function(){ sizeRail(); onScroll(); };
-};
-
-</script>
 <script>
 (function(){
-  "use strict";
+  var API = "https://demo.ghostagents.in/demo";
+  var q = document.getElementById("q"), go = document.getElementById("go");
+  var out = document.getElementById("out"), trace = document.getElementById("trace");
+  var facts = document.getElementById("facts"), answer = document.getElementById("answer");
+  var meta = document.getElementById("meta");
 
-  var body = document.body;
-  var btn  = document.getElementById("uswitch");
-  var meta = document.getElementById("themeColor");
-  var RM   = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* The two universes carry the same content in a different skin, so every
-     section has a counterpart. Switching keeps you at the same section
-     rather than at the same pixel. */
-  var U = {
-    premium:{ el:document.getElementById("universe-premium"), theme:"#0B0C0E",
-              marks:["top","capabilities","losses","departments","day","onboarding","pricing","limits"] },
-    comic:  { el:document.getElementById("universe-comic"),   theme:"#F5F1E6",
-              marks:["c-top","c-powers","c-villains","c-departments","c-day","c-hire","c-powerlevels","c-kryptonite"] }
-  };
-
-  /* ---------- storage: real when hosted, in-memory when sandboxed ---------- */
-  var mem = {};
-  function lset(k,v){ mem[k]=v; try{ localStorage.setItem(k,v); }catch(e){} }
-  function sget(k){ try{ var v=sessionStorage.getItem(k); return v===null?mem[k]:v; }
-                    catch(e){ return mem[k]; } }
-  function sset(k,v){ mem[k]=v; try{ sessionStorage.setItem(k,v); }catch(e){} }
-
-  var current = body.classList.contains("uni-comic") ? "comic" : "premium";
-  var busy    = false;
-  var booted  = { premium:false, comic:true };   /* the comic universe has no script */
-
-  if("scrollRestoration" in history) history.scrollRestoration = "manual";
-
-  function bootPremium(){
-    if(booted.premium) return;
-    booted.premium = true;
-    if(typeof window.__initPremium === "function") window.__initPremium();
-  }
-  function refreshPremium(){
-    if(typeof window.__premiumRefresh === "function") window.__premiumRefresh();
-  }
-
-  /* ---------- position, in section terms ---------- */
-  function offsets(key){
-    var marks = U[key].marks, out = [];
-    for(var i=0;i<marks.length;i++){
-      var el = document.getElementById(marks[i]);
-      out.push(el ? el.getBoundingClientRect().top + window.scrollY : 0);
-    }
-    out.push(document.documentElement.scrollHeight - window.innerHeight);
-    return out;
-  }
-
-  function locate(key){
-    var o = offsets(key), y = window.scrollY;
-    if(y < o[0]) return { i:0, frac:0, pre: o[0] > 0 ? y / o[0] : 0 };
-    for(var i = o.length - 2; i >= 0; i--){
-      if(y >= o[i] - 2){
-        var span = o[i+1] - o[i];
-        return { i:i, frac: span > 0 ? Math.min(1,(y - o[i]) / span) : 0 };
-      }
-    }
-    return { i:0, frac:0 };
-  }
-
-  function place(key, at){
-    var o = offsets(key);
-    if(at.pre !== undefined){ window.scrollTo(0, Math.round(at.pre * o[0])); return; }
-    var i = Math.min(at.i, o.length - 2);
-    window.scrollTo(0, Math.max(0, Math.round(o[i] + at.frac * (o[i+1] - o[i]))));
-  }
-
-  /* Safety net. The premium universe reveals sections on scroll; if a very
-     fast scroll ever outruns the observer, this makes sure nothing is left
-     invisible on screen. It only ever reveals what is already in view. */
-  function sweep(){
-    if(current !== "premium") return;
-    var els = U.premium.el.querySelectorAll("[data-r]:not(.in)");
-    for(var i = 0; i < els.length; i++){
-      var r = els[i].getBoundingClientRect();
-      if(r.top < window.innerHeight * 0.96 && r.bottom > -40) els[i].classList.add("in");
-    }
-  }
-
-  function sync(){
-    btn.setAttribute("aria-checked", current === "comic" ? "true" : "false");
-    if(meta) meta.setAttribute("content", U[current].theme);
-  }
-
-  /* ---------- first paint ---------- */
-  (function land(){
-    if(current === "premium") bootPremium();
-    var y = +(sget("ghost.y." + current) || 0);
-    if(y) window.scrollTo(0, y);
-    if(current === "premium") requestAnimationFrame(function(){ refreshPremium(); sweep(); });
-    sync();
-  })();
-
-  /* ---------- the switch ---------- */
-  var TIMING = { comic:{ total:760, swap:350 }, premium:{ total:1180, swap:545 } };
-
-  function go(next){
-    if(busy || next === current) return;
-    busy = true;
-
-    var t = RM ? { total:300, swap:140 } : TIMING[next];
-    var prev = current;
-    var at = locate(prev);
-
-    document.body.style.overflow = "";   /* a premium mobile sheet may have locked it */
-
-    body.classList.add("uni-switching", "fx-to-" + next);
-    body.classList.remove("uni-" + prev);
-    body.classList.add("uni-" + next);
-    current = next;
-    sync();
-    lset("ghost.universe", next);
-
-    /* mid-flight, under full cover: swap the page, land on the same section */
-    setTimeout(function(){
-      U[prev].el.setAttribute("aria-hidden", "true");
-      U[next].el.removeAttribute("aria-hidden");
-      if(next === "premium"){ bootPremium(); refreshPremium(); }
-      place(next, at);
-      if(next === "premium"){
-        requestAnimationFrame(function(){ refreshPremium(); place(next, at); sweep(); });
-      }
-      sset("ghost.y." + next, window.scrollY);
-    }, t.swap);
-
-    setTimeout(function(){
-      body.classList.remove("uni-switching", "fx-to-" + next);
-      busy = false;
-    }, t.total + 40);
-  }
-
-  btn.addEventListener("click", function(){
-    go(current === "premium" ? "comic" : "premium");
+  document.querySelectorAll(".chip").forEach(function(c){
+    c.addEventListener("click", function(){ q.value = c.dataset.t; q.focus(); });
   });
 
-  /* remember the reading position so a reload picks it back up */
-  var pending = false;
-  addEventListener("scroll", function(){
-    if(pending || busy) return;
-    pending = true;
-    var u = current;
-    setTimeout(function(){
-      pending = false;
-      if(busy || current !== u) return;
-      sweep();
-      sset("ghost.y." + u, window.scrollY);
-    }, 240);
-  }, { passive:true });
+  function esc(s){ return String(s||"").replace(/[&<>]/g, function(m){ return {"&":"&amp;","<":"&lt;",">":"&gt;"}[m]; }); }
 
-  /* ---------- comic universe mobile menu ---------- */
-  var cBtn = document.getElementById("menuBtnC"), cSheet = document.getElementById("sheetC");
-  if(cBtn && cSheet){
-    var setComic = function(open){
-      cSheet.classList.toggle("open", open);
-      cBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      document.body.style.overflow = open ? "hidden" : "";
-    };
-    cBtn.addEventListener("click", function(){ setComic(!cSheet.classList.contains("open")); });
-    [].forEach.call(cSheet.querySelectorAll("a"), function(a){
-      a.addEventListener("click", function(){ setComic(false); });
-    });
-    addEventListener("keydown", function(e){ if(e.key === "Escape") setComic(false); });
+  async function run(){
+    var input = (q.value || "").trim();
+    if (input.length < 4){ q.focus(); return; }
+    go.disabled = true; go.textContent = "Working…";
+    out.classList.add("on"); trace.innerHTML = '<div class="tstep"><b>›</b><span>sent to the agent…</span></div>';
+    facts.innerHTML = ""; answer.textContent = ""; answer.classList.remove("err");
+    try {
+      var r = await fetch(API, { method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({ input: input }) });
+      var d = await r.json();
+      trace.innerHTML = (d.steps || []).map(function(s){
+        return '<div class="tstep"><b>✓</b><span>' + esc(s.name) + (s.detail ? ' <span style="color:#6b7380">· ' + esc(s.detail) + '</span>' : "") + "</span></div>";
+      }).join("") || '<div class="tstep"><b>!</b><span>no steps</span></div>';
+      if (d.facts && d.facts.length){
+        facts.innerHTML = d.facts.map(function(f){ return '<div class="fact"><k>' + esc(f.k) + "</k><v>" + esc(f.v) + "</v></div>"; }).join("");
+      }
+      if (d.ok){ answer.textContent = d.answer || ""; }
+      else { answer.classList.add("err"); answer.textContent = d.error || "the agent could not finish that one"; }
+      meta.textContent = "Done in " + ((d.ms||0)/1000).toFixed(1) + "s · " + (d.kind === "brief" ? "read the real page" : "reasoning, no web access");
+    } catch(e) {
+      trace.innerHTML = '<div class="tstep"><b>!</b><span>could not reach the demo</span></div>';
+      answer.classList.add("err"); answer.textContent = "The demo service did not answer. Try again, or message us on WhatsApp.";
+    } finally {
+      go.disabled = false; go.textContent = "Run agent";
+    }
   }
-})();
 
+  go.addEventListener("click", run);
+  q.addEventListener("keydown", function(e){ if (e.key === "Enter") run(); });
+})();
 </script>
 </body>
 </html>
-
