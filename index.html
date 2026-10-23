@@ -396,7 +396,8 @@ footer a:hover{color:var(--ink)}
 
   async function run(){
     var input = (q.value || "").trim();
-    if (input.length < 4){ q.focus(); return; }
+    if (!input.length){ q.focus(); return; }
+    if (input.length < 3){ answer.classList.remove("err"); answer.textContent = "Say a little more — a few words is enough."; out.classList.add("on"); return; }
     go.disabled = true; go.textContent = "Aria is typing…";
     out.classList.add("on"); trace.innerHTML = '<div class="tstep"><b>›</b><span>sent to the agent…</span></div>';
     facts.innerHTML = ""; answer.textContent = ""; answer.classList.remove("err");
