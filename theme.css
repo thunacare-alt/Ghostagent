@@ -351,3 +351,10 @@ body.nf a.btn{display:inline-block;margin-top:26px;background:var(--volt);color:
 body.nf a.btn:hover{background:#D8FF6B;box-shadow:0 0 26px var(--volt-dim)}
 body.nf small{display:block;margin-top:34px;color:var(--dim);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;line-height:2}
 body.nf small a{color:var(--mut)}
+
+/* subscription tab */
+.nsub{display:none;color:var(--mut);font-size:14.5px}
+.nsub:hover{color:var(--ink)}
+@media(max-width:860px){.nsub{display:inline-block;margin-left:auto;margin-right:14px;font-size:13.5px}}
+/* subscription tab: tight nav */
+@media(max-width:1040px){.nlinks{gap:16px}.nlinks a{font-size:13.5px}}
