@@ -10,7 +10,7 @@
 <meta property="og:description" content="One agent that answers customers, runs ops and keeps the books. ₹15,000/month, 5 users, live in two weeks." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ghostagents.in/" />
-<meta name="theme-color" content="#0A0A0B" />
+<meta name="theme-color" content="#F8F3E7" />
 <meta property="og:site_name" content="GHOST" />
 <meta property="og:image" content="https://ghostagents.in/assets/og-ghost.png" />
 <meta property="og:image:width" content="1200" />
@@ -73,13 +73,10 @@
   ]
 }
 </script>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230A0A0B'/><text x='50' y='72' font-size='62' font-family='system-ui' font-weight='700' fill='%23C9F24B' text-anchor='middle'>G</text></svg>" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2317140E'/><text x='50' y='72' font-size='62' font-family='system-ui' font-weight='700' fill='%2317140E' text-anchor='middle'>G</text></svg>" />
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/theme.css?v=1" />
+<link rel="stylesheet" href="/theme.css?v=2" />
 </head>
 <body>
 
@@ -368,7 +365,7 @@
       var r = await fetch(API, { method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({ input: input }) });
       var d = await r.json();
       trace.innerHTML = (d.steps || []).map(function(s){
-        return '<div class="tstep"><b>✓</b><span>' + esc(s.name) + (s.detail ? ' <span style="color:#6b7380">· ' + esc(s.detail) + '</span>' : "") + "</span></div>";
+        return '<div class="tstep"><b>✓</b><span>' + esc(s.name) + (s.detail ? ' <span style="color:#6E6551">· ' + esc(s.detail) + '</span>' : "") + "</span></div>";
       }).join("") || '<div class="tstep"><b>!</b><span>no steps</span></div>';
       if (d.facts && d.facts.length){
         facts.innerHTML = d.facts.map(function(f){ return '<div class="fact"><k>' + esc(f.k) + "</k><v>" + esc(f.v) + "</v></div>"; }).join("");
