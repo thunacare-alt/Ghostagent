@@ -101,7 +101,7 @@
 
 <main>
 <div class="wrap">
-  <div class="hero">
+  <div class="hero" data-say="Hi, I&rsquo;m Bub. GHOST answers his own WhatsApp &mdash; follow me." data-pose="wave">
     <span class="eyebrow">Not a chatbot · an employee</span>
     <h1>Your business needs one more pair of hands. <em>He never sleeps.</em></h1>
     <p>GHOST answers your customers, runs the day's operations, keeps the books and reports to you — inside WhatsApp, where your team already is. You talk to him like staff. He does the work.</p>
@@ -117,7 +117,7 @@
     </div>
 
     <!-- LIVE DEMO -->
-    <div class="demo" id="demo">
+    <div class="demo" id="demo" data-say="Type anything here. Demo is knowledge only &mdash; he sends nothing." data-pose="point">
       <div class="demo-top">
         <span class="live"><i></i>ARIA · LIVE</span>
         <span>our sales agent, answering right now — not a script, not a recording</span>
@@ -156,7 +156,7 @@
   </div>
 </div>
 
-<section class="blk" id="works">
+<section class="blk" id="works" data-say="Six jobs, one agent. You hire the work, not a chatbot." data-pose="think">
   <div class="wrap">
     <div class="head">
       <div>
@@ -250,7 +250,7 @@
   </div>
 </section>
 
-<section class="blk" id="how">
+<section class="blk" id="how" data-say="Four days from payment to live. This is the path." data-pose="point">
   <div class="wrap">
     <div class="head">
       <div>
@@ -439,7 +439,7 @@
   </div>
 </section>
 
-<section class="blk" id="who">
+<section class="blk" id="who" data-say="For people who build. Not for everyone &mdash; read it." data-pose="wave">
   <div class="wrap">
     <div class="head">
       <div>
@@ -472,7 +472,7 @@
   </div>
 </section>
 
-<section class="blk" id="platform">
+<section class="blk" id="platform" data-say="One WhatsApp number. Departments underneath. Clean handover." data-pose="hold">
   <div class="wrap">
     <div class="head">
       <div>
@@ -508,7 +508,7 @@
   </div>
 </section>
 
-<section class="blk" id="pricing">
+<section class="blk" id="pricing" data-say="&rsquo;15,000 a month, five users. No seat maths." data-pose="coin">
   <div class="wrap">
     <div class="head">
       <div>
@@ -546,7 +546,7 @@
   </div>
 </section>
 
-<section class="blk" id="limits">
+<section class="blk" id="limits" data-say="What he will not do. Read this before you pay." data-pose="hold">
   <div class="wrap">
     <div class="head">
       <div>
@@ -566,7 +566,7 @@
   </div>
 </section>
 
-<section class="blk" id="start">
+<section class="blk" id="start" data-say="Start on WhatsApp. He is yours in two weeks." data-pose="wave">
   <div class="wrap">
     <span class="eyebrow">Hiring</span>
     <h2 class="sec-t" style="margin-bottom:26px">Three questions and we are moving.</h2>
@@ -598,6 +598,41 @@
   </div>
 </div>
 </main>
+<!-- ============ BUB — the tour ============ -->
+<div class="bub" id="bub" aria-live="polite">
+  <button class="bub-char" id="bubChar" aria-label="Bub, the tour guide — next stop">
+    <svg viewBox="0 0 120 152" aria-hidden="true">
+      <ellipse cx="60" cy="146" rx="27" ry="6" fill="#17140E" opacity=".13"/>
+      <g class="m-float">
+        <g class="m-ant">
+          <path d="M60 40V27" stroke="#17140E" stroke-width="3" stroke-linecap="round"/>
+          <circle class="m-acc" cx="60" cy="19" r="7.5" fill="#F2B01E" stroke="#17140E" stroke-width="3"/>
+        </g>
+        <rect x="42" y="110" width="13" height="26" rx="6.5" fill="#17140E"/>
+        <rect x="65" y="110" width="13" height="26" rx="6.5" fill="#17140E"/>
+        <g class="m-arm-l"><path d="M21 79C11 85 9 95 13 103" fill="none" stroke="#17140E" stroke-width="7" stroke-linecap="round"/></g>
+        <g class="m-arm-r"><path d="M99 79C109 85 111 95 107 103" fill="none" stroke="#17140E" stroke-width="7" stroke-linecap="round"/></g>
+        <rect x="14" y="38" width="92" height="86" rx="30" fill="#FFFDF8" stroke="#17140E" stroke-width="3.5"/>
+        <ellipse class="m-eye" cx="44" cy="70" rx="5.4" ry="6.4" fill="#17140E"/>
+        <ellipse class="m-eye" cx="76" cy="70" rx="5.4" ry="6.4" fill="#17140E"/>
+        <path d="M50 85q10 9 20 0" fill="none" stroke="#17140E" stroke-width="3" stroke-linecap="round"/>
+        <rect class="m-acc" x="50" y="98" width="20" height="14" rx="5" fill="#F2B01E" stroke="#17140E" stroke-width="2.4"/>
+        <circle cx="30" cy="84" r="4.4" fill="#DE3A1A" opacity=".35"/>
+        <circle cx="90" cy="84" r="4.4" fill="#DE3A1A" opacity=".35"/>
+      </g>
+    </svg>
+  </button>
+  <div class="bub-note">
+    <button class="bub-close" id="bubClose" aria-label="Close the tour">&times;</button>
+    <p class="say">Hi, I&rsquo;m Bub. I&rsquo;ll walk you round GHOST.</p>
+    <div class="ctrl">
+      <span class="step">1/9</span>
+      <span class="bar"><i></i></span>
+      <button class="next" id="bubNext">Next &darr;</button>
+    </div>
+  </div>
+</div>
+
 
 <footer>
   <div class="wrap fgrid">
@@ -656,6 +691,49 @@
 
   go.addEventListener("click", run);
   q.addEventListener("keydown", function(e){ if (e.key === "Enter") run(); });
+})();
+</script>
+<script>
+(function(){
+  var bub=document.getElementById('bub'); if(!bub) return;
+  var say=bub.querySelector('.say'), bar=bub.querySelector('.bar i'),
+      step=bub.querySelector('.step'),
+      secs=[].slice.call(document.querySelectorAll('[data-say]')),
+      i=-1, off=false, narrow=window.matchMedia('(max-width:640px)');
+  function paint(n){
+    i=n;
+    var s=secs[n], pose=s.getAttribute('data-pose')||'wave';
+    bub.className='bub pose-'+pose+(off?' hidden':'')+((narrow.matches&&i>0)?'':'');
+    say.innerHTML=s.getAttribute('data-say');
+    step.textContent=(n+1)+'/'+secs.length;
+    bar.style.width=(((n+1)/secs.length)*100)+'%';
+  }
+  function sy(){
+    return window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0;
+  }
+  function find(){
+    var y=window.innerHeight*0.42, n=0, k, t;
+    for(k=0;k<secs.length;k++){ t=secs[k].getBoundingClientRect().top; if(t<=y) n=k; }
+    if(n!==i) paint(n);
+  }
+  window.addEventListener('scroll',find,{passive:true});
+  document.addEventListener('scroll',find,{passive:true,capture:true});
+  window.addEventListener('resize',find);
+  window.addEventListener('touchmove',find,{passive:true});
+  find();
+  function go(){
+    var n=Math.min(i+1,secs.length-1);
+    window.scrollTo({top:secs[n].getBoundingClientRect().top+sy()-74,behavior:'smooth'});
+  }
+  bub.querySelector('.next').addEventListener('click',go);
+  document.getElementById('bubChar').addEventListener('click',function(){
+    off=false; bub.className=bub.className.replace(' hidden','');
+    if(narrow.matches){ bub.classList.toggle('open'); return; }
+    go();
+  });
+  document.getElementById('bubClose').addEventListener('click',function(){
+    off=true; bub.classList.add('hidden');
+  });
 })();
 </script>
 </body>

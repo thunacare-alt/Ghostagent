@@ -351,3 +351,53 @@ body.simple small{display:block;margin-top:22px;font-family:var(--mono);font-siz
   .f2-ck,.f2-stage{opacity:1}
 }
 @media (max-width:820px){.fig-raw{overflow-x:auto}.fig-raw svg{min-width:720px}}
+/* ---------- Bub — the tour mascot ---------- */
+.bub{position:fixed;right:22px;bottom:18px;z-index:80;display:flex;flex-direction:row-reverse;align-items:flex-end;pointer-events:none}
+.bub-char{width:88px;flex:0 0 88px;pointer-events:auto;cursor:pointer;background:none;border:0;padding:0;transform-origin:50% 100%}
+.bub-char svg{width:100%;height:auto;overflow:visible}
+.bub-note{pointer-events:auto;position:relative;background:var(--white);border:2px solid var(--ink);border-radius:14px 14px 3px 14px;box-shadow:5px 5px 0 var(--ink);padding:13px 34px 11px 15px;max-width:250px;margin-right:-4px;margin-bottom:28px;transition:opacity .25s,transform .25s}
+.bub-note::after{content:"";position:absolute;right:-2px;bottom:-13px;width:16px;height:14px;background:var(--white);border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);clip-path:polygon(100% 0,100% 100%,0 0);transform:skewX(-14deg)}
+.bub-note .say{font-family:var(--hand);font-size:18.5px;line-height:1.3;color:var(--ink);margin:0}
+.bub-note .ctrl{display:flex;align-items:center;gap:10px;margin-top:11px}
+.bub-note .bar{position:relative;flex:1;height:3px;background:var(--line2);overflow:hidden}
+.bub-note .bar i{position:absolute;left:0;top:0;bottom:0;width:9%;background:var(--red);transition:width .35s}
+.bub-note .step{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--ink3)}
+.bub-note .next{border:1.5px solid var(--ink);background:var(--paper);font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;cursor:pointer;line-height:1}
+.bub-note .next:hover{background:var(--ink);color:var(--paper)}
+.bub-close{position:absolute;right:7px;top:5px;border:0;background:none;font-family:var(--mono);font-size:12px;line-height:1;color:var(--ink3);cursor:pointer;padding:3px}
+.bub-close:hover{color:var(--red)}
+.bub.hidden .bub-note{opacity:0;transform:translateY(6px) scale(.97);pointer-events:none}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes wave{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(-24deg)}}
+@keyframes blink{0%,96%,100%{transform:scaleY(1)}98%{transform:scaleY(.1)}}
+@keyframes ant{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+.bub-char .m-float{animation:bob 3.4s ease-in-out infinite}
+.bub-char .m-arm-l{transform-box:view-box;transform-origin:21px 79px;transition:transform .35s ease}
+.bub-char .m-arm-r{transform-box:view-box;transform-origin:99px 79px;transition:transform .35s ease}
+.bub-char .m-eye{transform-box:fill-box;transform-origin:center;animation:blink 6s infinite}
+.bub-char .m-ant{transform-box:fill-box;transform-origin:center bottom;animation:ant 2.2s ease-in-out infinite}
+.bub.pose-wave .m-arm-r{animation:wave 1.5s ease-in-out infinite}
+.bub.pose-point .m-arm-r{transform:rotate(34deg)}
+.bub.pose-think .m-arm-l{transform:rotate(-58deg)}
+.bub.pose-coin .m-arm-r{transform:rotate(16deg)}
+.bub.pose-hold .m-arm-l{transform:rotate(-10deg)}
+.bub.pose-hold .m-arm-r{transform:rotate(10deg)}
+.bub.pose-wave .m-acc{fill:#F2B01E}
+.bub.pose-point .m-acc{fill:#DE3A1A}
+.bub.pose-think .m-acc{fill:#1D34D8}
+.bub.pose-coin .m-acc{fill:#F2B01E}
+.bub.pose-hold .m-acc{fill:#0C7A62}
+@media (max-width:640px){
+  .bub{left:auto;right:12px;bottom:12px;flex-direction:column;align-items:flex-end;gap:0}
+  .bub-char{width:56px;flex:0 0 56px}
+  .bub-char svg{width:56px}
+  .bub-note{display:none;position:absolute;right:0;bottom:66px;width:214px;margin:0;padding:10px 30px 9px 12px;border-radius:12px 12px 12px 3px}
+  .bub.open .bub-note{display:block}
+  .bub-note .say{font-size:15.5px}
+  .bub-note .bar{display:none}
+  .bub-note .ctrl{margin-top:8px;justify-content:space-between}
+  .bub-note::after{right:26px;bottom:-12px;transform:none;clip-path:polygon(0 0,100% 0,50% 100%);border:0;width:14px;height:12px;background:var(--white);box-shadow:none;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);rotate:45deg}
+}
+@media (prefers-reduced-motion:reduce){
+  .bub-char .m-float,.bub-char .m-eye,.bub-char .m-ant,.bub.pose-wave .m-arm-r{animation:none}
+}
